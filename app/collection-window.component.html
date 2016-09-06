@@ -6,7 +6,6 @@
       </div>
       <form [formGroup]="dataCollection" novalidate >
         <div class="form-group">
-          <!--addresses-->
           <div formArrayName="collectionWindow">
             <div *ngFor="let address of dataCollection.controls.collectionWindow.controls; let i=index" class="panel panel-default">
               <div class="panel-heading">
@@ -16,18 +15,18 @@
               <div class="panel-body" [formGroupName]="i">
                 <div class="form-group col-xs-12">
                   <label>Start of Collection Window:
-                    <input type="date" class="form-control col-xs-6" formControlName="startDate" step="1" min="theDates.starting" max="theDates.ending">
+                    <input type="date" class="form-control col-xs-6" formControlName="startDate" [(ngModel)]="collection.startDate" step="1" min="theDates.starting" max="theDates.ending">
                   </label>
                   <label>End of Collection Window:
-                    <input type="date" class="form-control col-xs-6" formControlName="endDate" step="1" min="theDates.starting" max="theDates.ending">
+                    <input type="date" class="form-control col-xs-6" formControlName="endDate" step="1" [(ngModel)]="collection.endDate" min="{{collection.startDate}}" max="theDates.ending">
                   </label>
                 </div>
                 <div>
                   <label>Do you need to collect new data in this window?
-                    <input type="checkbox" class="col-xs-6" formControlName="collectingData">
+                    <input type="checkbox" class="col-xs-6" formControlName="collectingData" [(ngModel)]="collection.collectingData">
                   </label>
                   <label>Do you need data from FCPS in this window?
-                    <input type="checkbox" class="col-xs-6" formControlName="needFcpsData">
+                    <input type="checkbox" class="col-xs-6" formControlName="needFcpsData" [(ngModel)]="collection.needFcpsData">
                   </label>
                 </div>
                 <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.collectingData.value">

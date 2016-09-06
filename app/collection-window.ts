@@ -2,9 +2,10 @@ import { ExistingData } from './existing-data';
 import { Measures } from './measures';
 
 export class CollectionWindow {
-  collectionId: number;
-  start: Date;
-  end: Date;
+  startDate: Date;
+  endDate: Date;
+  collectingData: boolean;
   dataToCollect: Measures[];
+  needFcpsData: boolean;
   fcpsData: ExistingData;
 }

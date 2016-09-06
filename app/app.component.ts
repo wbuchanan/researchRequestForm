@@ -7,6 +7,7 @@ import {MeasuresComponent} from "./measures.component";
 import {DistrictSponsorComponent} from "./district-sponsor.component";
 import {SponsorComponent} from "./sponsor.component";
 import {PhoneComponent} from "./phone.component";
+import {HypothesisComponent} from "./hypothesis.component";
 
 
 @Component({
@@ -37,6 +38,9 @@ export class AppComponent {
 
   @Input()
   phone: PhoneComponent;
+
+  @Input()
+  hypoetheses: HypothesisComponent;
 
   constructor() { }
 

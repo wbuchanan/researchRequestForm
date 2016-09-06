@@ -1,17 +1,21 @@
 <div class="container">
-    <div>
-        <h4>Person</h4>
+  <form [formGroup]="people" novalidate class="form-group col-xs-12">
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="firstName">First Name:</label>
+        <input type="text" [(ngModel)]="person.firstName" class="form-control" formControlName="firstName" placeholder="John">
+        <div *ngIf="!people.controls.firstName.valid && !people.controls.firstName.pristine" class="alert alert-danger" style="font-size: 12px;">First Name should be between 2 and 40 characters</div>
+      </div>
+      <div class="col-xs-4">
+        <label>Last Name:</label>
+        <input type="text" [(ngModel)]="person.lastName" class="form-control" formControlName="lastName" placeholder="Doe">
+        <div *ngIf="!people.controls.lastName.valid && !people.controls.lastName.pristine" class="alert alert-danger" style="font-size: 12px;">Last Name should be between 2 and 40 characters</div>
+      </div>
+      <div class="col-xs-4">
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" [(ngModel)]="person.jobTitle" class="form-control" formControlName="jobTitle" placeholder="Teacher">
+        <div *ngIf="!people.controls.jobTitle.valid && !people.controls.jobTitle.pristine" class="alert alert-danger" style="font-size: 12px;">Job Title should be between 2 and 40 characters</div>
+      </div>
     </div>
-    <form [formGroup]="people" novalidate class="form-group col-xs-12">
-        <div class="form-group">
-        <label>First Name: <input type="text" [ngModel]="person.firstName" class="form-control col-xs-3" formControlName="firstName" placeholder="John"></label>
-        <label>Last Name: <input type="text" [ngModel]="person.lastName" class="form-control col-xs-3" formControlName="lastName" placeholder="Doe"></label>
-        <label>Job Title: <input type="text" [ngModel]="person.jobTitle" class="form-control col-xs-3" formControlName="jobTitle" placeholder="Teacher"></label>
-        </div>
-    </form>
-    <div class="col-xs-12">
-        <small [hidden]="people.controls.firstName.valid" class="text-danger">First Name should be between 2 and 40 characters</small>
-        <small [hidden]="people.controls.lastName.valid" class="text-danger">Last Name should be between 2 and 40 characters</small>
-        <small [hidden]="people.controls.jobTitle.valid" class="text-danger">Job Title should be between 2 and 40 characters</small>
-    </div>
+  </form>
 </div>

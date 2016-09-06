@@ -23,6 +23,9 @@ var PeopleComponent = (function () {
             jobTitle: ['', [forms_1.Validators.required, forms_1.Validators.minLength(2)]]
         });
     };
+    PeopleComponent.prototype.getPerson = function () {
+        return this.person;
+    };
     PeopleComponent = __decorate([
         core_1.Component({
             selector: 'people',

@@ -1,39 +1,53 @@
-<div class="container">
-  <div class="col-xs-12">
     <form [formGroup]="measures" novalidate>
       <div formArrayName="measure">
         <div *ngFor="let address of measures.controls.measure.controls; let i=index">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <span><strong>{{measures.controls.measure.controls[i].controls.name.value}}</strong></span>
+              <span> <strong> {{measures.controls.measure.controls[i].controls.name.value}} </strong> </span>
               <span class="glyphicon glyphicon-remove pull-right" *ngIf="measures.controls.measure.controls.length > 1" (click)="removeMeasureFields(i)"></span>
             </div>
             <div [formGroupName]="i" class="panel-body">
               <div class="form-group col-xs-12">
-                <label>Measure Name: <input type="text" class="form-control col-xs-4" formControlName="name"></label>
-                <label>Unit of Measurement:
-                  <select class="form-control col-xs-4" formControlName="unitOfMeasurement">
-                    <option *ngFor="let m of units" [value]="m.value">{{m.key}}</option>
-                  </select>
-                </label>
-                <label>Is this a Pilot? <input type="checkbox" class="col-xs-4" formControlName="pilot"></label>
-                <label>Administration Time
-                  <input type="number" class="form-control col-xs-4" formControlName="administrationTime" min="0.0" max="10.0" step="0.01">
-                  <select formControlName="administrationTimeUnits" class="form-control col-xs-4">
-                    <option *ngFor="let tunit of timeUnits" [value]="tunit">{{tunit}}</option>
-                  </select>
-                </label>
-              </div>
-              <div class="form-group col-xs-12" *ngIf="!measures.controls.measure.controls[i].controls.pilot.value">
-                <label>References: <input type="text" class="form-control col-xs-12" formControlName="references"></label>
+                <div class="col-xs-4">
+                  <label>Measure Name:
+                    <input type="text" class="form-control" formControlName="name" name="name"  [(ngModel)]="measurement[i].name" placeholder="WISC-III, Fountas & Pinnell, PALS, etc...">
+                    <div *ngIf="!measures.controls.measure.controls[i].controls.name.valid" class="alert alert-danger" style="font-size: 12px">
+                      Must include the name of the measure being used to collect data
+                    </div>
+                  </label>
+                </div>
+                <div class="col-xs-4">
+                  <label>Unit of Measurement:
+                    <select class="form-control col-xs-4" formControlName="unitOfMeasurement" name="unitOfMeasurement"   [(ngModel)]="measurement[i].unitOfMeasurement">
+                      <option *ngFor="let m of units" [value]="m.value">{{m.key}}</option>
+                    </select>
+                    <div *ngIf="!measures.controls.measure.controls[i].controls.unitOfMeasurement.valid" class="alert alert-danger" style="font-size: 12px">
+                      Must identify the unit of measurement at which data will be collected
+                    </div>
+                  </label>
+                </div>
+                <div class="col-xs-4">
+                  <label>Is this a Pilot? <input type="checkbox" class="col-xs-4" formControlName="pilot" name="pilot" [(ngModel)]="measurement[i].pilot"></label>
+                </div>
+               </div>
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
+                  <label>Administration Time:
+                    <input type="number" class="form-control" formControlName="administrationTime" min="0.0" max="10.0" step="0.01"  [(ngModel)]="measurement[i].administrationTime">
+                  </label>
+                </div>
+                <div class="col-xs-4">
+                  <label>Time Units:
+                    <select formControlName="administrationTimeUnits" class="form-control" [(ngModel)]="measurement[i].administrationTimeUnits">
+                      <option *ngFor="let tunit of timeUnits" [value]="tunit">{{tunit}}</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="col-xs-4">
+                  <label *ngIf="!measures.controls.measure.controls[i].controls.pilot.value">References: <input type="text" class="form-control" formControlName="references" [(ngModel)]="measurement[i].references"></label>
+                </div>
               </div>
               <div class="col-xs-12">
-                <small [hidden]="measures.controls.measure.controls[i].controls.name.valid" class="text-danger col-xs-4">
-                  Must include the name of the measure being used to collect data
-                </small>
-                <small [hidden]="measures.controls.measure.controls[i].controls.unitOfMeasurement.valid" class="text-danger col-xs-4">
-                  Must identify the unit of measurement at which data will be collected
-                </small>
               </div>
             </div>
           </div>
@@ -45,5 +59,3 @@
         Add another measure +
       </a>
     </div>
-  </div>
-</div>

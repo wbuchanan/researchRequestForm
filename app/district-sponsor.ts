@@ -3,7 +3,8 @@
  */
 import {People} from "./people";
 import {Contact} from './contact';
-export class DistrictSponsor extends People {
+export class DistrictSponsor {
+  private person: People;
   private contactInfo: Contact;
   private office: string;
   private level: string;

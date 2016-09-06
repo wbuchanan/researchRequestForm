@@ -8,7 +8,7 @@ import { Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 })
 export class PeopleComponent implements OnInit {
     people: FormGroup;
-    person: People = new People();
+    private person: People = new People();
 
     constructor(private _fb: FormBuilder) { }
     ngOnInit() {
@@ -17,6 +17,10 @@ export class PeopleComponent implements OnInit {
             lastName: ['', [Validators.required, Validators.minLength(2)]],
             jobTitle: ['', [Validators.required, Validators.minLength(2)]]
         });
+    }
+
+    getPerson(): People {
+      return this.person;
     }
 
 }

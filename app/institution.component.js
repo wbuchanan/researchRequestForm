@@ -9,27 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var address_component_1 = require('./address.component');
 var forms_1 = require('@angular/forms');
+var institution_1 = require("./institution");
 var InstitutionComponent = (function () {
-    function InstitutionComponent(_fb, addy) {
+    function InstitutionComponent(_fb) {
         this._fb = _fb;
-        this.addy = addy;
+        this.inst = new institution_1.Institution();
     }
     InstitutionComponent.prototype.ngOnInit = function () {
         this.institution = this._fb.group({
-            name: ['', forms_1.Validators.required],
-            department: ['', forms_1.Validators.required],
+            name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9]+')]],
+            department: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z]+')]],
             address: this.addy
         });
+    };
+    InstitutionComponent.prototype.getInstitution = function () {
+        return this.inst;
     };
     InstitutionComponent = __decorate([
         core_1.Component({
             selector: 'institution',
-            templateUrl: '../app/institution.component.html',
-            providers: [address_component_1.AddressComponent]
+            templateUrl: '../app/institution.component.html'
         }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder, address_component_1.AddressComponent])
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], InstitutionComponent);
     return InstitutionComponent;
 }());
