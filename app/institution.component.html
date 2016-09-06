@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="margin-20">
+                <h4>Institution</h4>
+            </div>
+            <form [formGroup]="institution" novalidate>
+                <div class="form-group col-xs-12">
+                    <label>Institution Name: <input type="text" class="form-control col-xs-6" formControlName="name"></label>
+                    <label>Department Name: <input type="text" class="form-control col-xs-6" formControlName="department"></label>
+                </div>
+                <address></address>
+                <div class="margin-20">
+                    <div>myForm details:-</div>
+                    <pre>Is myForm valid?: <br>{{institution.valid | json}}</pre>
+                    <pre>form value: <br>{{institution.value | json}}</pre>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

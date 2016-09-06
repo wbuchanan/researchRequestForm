@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="col-xs-12">
+    <form [formGroup]="measures" novalidate>
+      <div formArrayName="measure">
+        <div *ngFor="let address of measures.controls.measure.controls; let i=index">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <span><strong>{{measures.controls.measure.controls[i].controls.name.value}}</strong></span>
+              <span class="glyphicon glyphicon-remove pull-right" *ngIf="measures.controls.measure.controls.length > 1" (click)="removeMeasureFields(i)"></span>
+            </div>
+            <div [formGroupName]="i" class="panel-body">
+              <div class="form-group col-xs-12">
+                <label>Measure Name: <input type="text" class="form-control col-xs-4" formControlName="name"></label>
+                <label>Unit of Measurement:
+                  <select class="form-control col-xs-4" formControlName="unitOfMeasurement">
+                    <option *ngFor="let m of units" [value]="m.value">{{m.key}}</option>
+                  </select>
+                </label>
+                <label>Is this a Pilot? <input type="checkbox" class="col-xs-4" formControlName="pilot"></label>
+                <label>Administration Time
+                  <input type="number" class="form-control col-xs-4" formControlName="administrationTime" min="0.0" max="10.0" step="0.01">
+                  <select formControlName="administrationTimeUnits" class="form-control col-xs-4">
+                    <option *ngFor="let tunit of timeUnits" [value]="tunit">{{tunit}}</option>
+                  </select>
+                </label>
+              </div>
+              <div class="form-group col-xs-12" *ngIf="!measures.controls.measure.controls[i].controls.pilot.value">
+                <label>References: <input type="text" class="form-control col-xs-12" formControlName="references"></label>
+              </div>
+              <div class="col-xs-12">
+                <small [hidden]="measures.controls.measure.controls[i].controls.name.valid" class="text-danger col-xs-4">
+                  Must include the name of the measure being used to collect data
+                </small>
+                <small [hidden]="measures.controls.measure.controls[i].controls.unitOfMeasurement.valid" class="text-danger col-xs-4">
+                  Must identify the unit of measurement at which data will be collected
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="margin-20">
+      <a (click)="addMeasureFields()" style="cursor: default">
+        Add another measure +
+      </a>
+    </div>
+  </div>
+</div>

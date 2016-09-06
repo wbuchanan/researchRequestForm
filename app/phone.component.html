@@ -1,0 +1,52 @@
+<div class="container">
+  <form [formGroup]="phone" novalidate (ngSubmit)="save(phone)">
+    <div class="form-group">
+      <div formArrayName="phoneNumbers">
+        <div *ngFor="let address of phone.controls.phoneNumbers.controls; let i=index" class="panel panel-default">
+          <div class="panel-heading">
+            <span>Phone Number {{i + 1}}</span>
+            <span class="glyphicon glyphicon-remove pull-right" *ngIf="phone.controls.phoneNumbers.controls.length > 1" (click)="removePhoneFields(i)"></span>
+          </div>
+          <div class="panel-body" [formGroupName]="i">
+            <div class="form-group col-xs-6">
+              <label>Phone Type:</label>
+              <select class="form-control" formControlName="phoneType" [(ngModel)]="phones[i].phoneType">
+                <option *ngFor="let m of phoneTypes" [value]="m">{{m}}</option>
+              </select>
+            </div>
+            <div class="form-group col-xs-6">
+              <label>Country Code: <input type="text" class="form-control" formControlName="countryCode" [(ngModel)]="phones[i].countryCode"></label>
+            </div>
+            <div class="form-group col-xs-12">
+              <div class="col-xs-2"><strong>Phone Number:</strong></div>
+              <div class="col-xs-2"><input type="text" class="form-control" formControlName="areaCode" placeholder="###"  [(ngModel)]="phones[i].areaCode"></div>
+              <div class="col-xs-2"><input type="text" class="form-control" formControlName="exchangeCode" placeholder="###"  [(ngModel)]="phones[i].exchangeCode"></div>
+              <div class="col-xs-2"><input type="text" class="form-control" formControlName="subscriberNumber" placeholder="####"  [(ngModel)]="phones[i].subscriberNumber"></div>
+              <div class="col-xs-2"><strong>Extension:</strong></div>
+              <div class="col-xs-2"><input type="text" class="form-control" formControlName="extension" [(ngModel)]="phones[i].extension"></div>
+            </div>
+            <div class="col-xs-12">
+              <a (click)="addPhoneFields()" style="cursor: default">
+                Add another phonenumber +
+              </a>
+            </div>
+            <div class="col-xs-12">
+              <small [hidden]="phone.controls.phoneNumbers.controls[i].controls.countryCode.valid" class="text-danger">
+                Country Code is invalid.  Should only contain three digits
+              </small>
+              <small [hidden]="phone.controls.phoneNumbers.controls[i].controls.areaCode.valid" class="text-danger col-xs-4">
+                Area Code is invalid.  Should only contain three digits
+              </small>
+              <small [hidden]="phone.controls.phoneNumbers.controls[i].controls.exchangeCode.valid" class="text-danger col-xs-4">
+                Exchange Code is invalid.  Should only contain three digits
+              </small>
+              <small [hidden]="phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.valid && phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.dirty" class="text-danger col-xs-4">
+                Subscriber number is invalid.  Should only contain four digits
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

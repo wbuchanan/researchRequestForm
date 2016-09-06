@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="margin-20">
+        <h4>Person</h4>
+      </div>
+      <form [formGroup]="person" novalidate>
+        <people></people>
+        <div class="form-control col-xs-12">
+          <label>Are you an FCPS Employee? <input type="checkbox" class="col-xs-1" formGroupName="isFCPS"></label>
+        </div>
+        <contactInformation></contactInformation>
+        <institution></institution>
+      </form>
+    </div>
+   </div>
+ </div>

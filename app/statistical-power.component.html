@@ -1,0 +1,11 @@
+<div class="container">
+  <form [formGroup]="statPower" novalidate>
+    <div class="form-group col-xs-12">
+      <label>&alpha; :<input type="number" class="form-control col-xs-1" [(ngModel)]="power.alpha" formControlName="alpha" min="0.0" max="1.0" step="0.001"></label>
+      <label>&beta; :<input type="number" class="form-control col-xs-1" [(ngModel)]="power.beta" formControlName="beta" min="0.0" max="1.0" step="0.001"></label>
+      <label>Test Statistic: <input type="text" class="form-control col-xs-1" [(ngModel)]="power.statistic" formControlName="statistic"></label>
+      <label>n: <input type="number" class="form-control col-xs-1" [(ngModel)]="power.totalSampleSize" formControlName="totalSampleSize" min="5" max="42000" step="1"></label>
+      <label>Minimal Detectable Effect Size: <input type="number" class="form-control col-xs-1" [(ngModel)]="power.minimalDetectableEffect" formControlName="minimalDetectableEffect" min="0.0" max="100" step="0.001"></label>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+  <form [formGroup]="physicalAddress" novalidate>
+    <div class="form-group col-xs-12">
+      <label>Street #: <input type="text" class="form-control col-xs-1" [(ngModel)]="addy.streetNumber" formControlName="streetNumber" size="5"></label>
+      <label>Street Direction:
+        <select class="form-control col-xs-1" formControlName="streetDirection" [(ngModel)]="addy.streetDirection">
+         <option *ngFor="let x of directions" [value]="x">{{x}}</option>
+        </select>
+      </label>
+      <label>Street Name: <input type="text" class="form-control col-xs-5" formControlName="streetName"  [(ngModel)]="addy.streetName"></label>
+      <label>Street Type:
+        <select class="form-control col-xs-5" formControlName="streetType"  [(ngModel)]="addy.streetType">
+          <option *ngFor="let y of streetTypes" [value]="y.value">{{y.key}}</option>
+        </select>
+      </label>
+    </div>
+    <label>Do you need a second address line? <input type="checkbox" formControlName="secondLine" [(ngModel)]="addy.secondLine"></label>
+    <div class="form-group" *ngIf="physicalAddress.controls.secondLine.value">
+      <label>Unit Type:
+        <select class="form-control col-xs-6" formControlName="unitType"  [(ngModel)]="addy.unitType">
+          <option *ngFor="let z of secUnits" [value]="z.value">{{z.key}}</option>
+        </select>
+      </label>
+      <label>Unit Number: <input type="text" class="form-control col-xs-6" formControlName="unitNumber" size="5"  [(ngModel)]="addy.unitNumber"></label>
+    </div>
+    <div class="form-group">
+      <label>City: <input type="text" class="form-control col-xs-5" formControlName="city"  [(ngModel)]="addy.city"></label>
+      <label>State:
+        <select class="form-control col-xs-2" formControlName="state"  [(ngModel)]="addy.state">
+          <option *ngFor="let st of cszips" [value]="st.stusps">{{st.statenm}}</option>
+        </select>
+      </label>
+      <label>Zip Code: <input type="text" class="form-control col-xs-5" formControlName="zipCode" [(ngModel)]="addy.zipCode"></label>
+    </div>
+  </form>
+  <div class="col-xs-12">
+    <small *ngIf="!physicalAddress.controls.zipCode.valid" class="text-danger">Zip Code should only contain 5 digits or 9 digits with a hyphen separating the 5th and 6th digit.</small>
+  </div>
+  <div class="margin-20">
+    <div>myForm details:-</div>
+    <pre>Is myForm valid?: <br>{{physicalAddress.valid | json}}</pre>
+    <pre>form value: <br>{{addy | json}}</pre>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form [formGroup]="existingData" novalidate>
+        <div class="form-group">
+          <label>Student Level Data :<input type="text" class="form-control col-xs-4" formControlName="studentLevel" [(ngModel)]="existing.studentLevel" placeholder="Student Race, Sex, and EL Status"></label>
+          <label>Classroom Level Data :<input type="text" class="form-control col-xs-4" formControlName="classRoomLevel" [(ngModel)]="existing.classRoomLevel" placeholder="% of students with 5 or more absences"></label>
+          <label>Teacher Level Data: <input type="text" class="form-control col-xs-4" formControlName="teacherLevel" [(ngModel)]="existing.teacherLevel" placeholder="NBCT Indicator"></label>
+        </div>
+        <div class="form-group">
+          <label>Grade Level Data: <input type="text" class="form-control col-xs-4" formControlName="gradeLevel" [(ngModel)]="existing.gradeLevel" placeholder="Average MAP Math Score in grade 5"></label>
+          <label>School Level Data: <input type="text" class="form-control col-xs-4" formControlName="schoolLevel" [(ngModel)]="existing.schoolLevel" placeholder="% of Homeless/Highly Mobile Students"></label>
+          <label>District Level Data: <input type="text" class="form-control col-xs-4" formControlName="districtLevel" [(ngModel)]="existing.districtLevel" placeholder="% of students with disabilities"></label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

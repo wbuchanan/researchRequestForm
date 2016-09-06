@@ -1,0 +1,42 @@
+<div class="container">
+  <form [formGroup]="email" novalidate (ngSubmit)="save(email)">
+    <div class="form-group">
+      <!--addresses-->
+      <div formArrayName="emailAddresses">
+        <div *ngFor="let address of email.controls.emailAddresses.controls; let i=index" class="panel panel-default">
+          <div class="panel-heading">
+            <span>Email Address {{i + 1}}</span>
+            <span class="glyphicon glyphicon-remove pull-right" *ngIf="email.controls.emailAddresses.controls.length > 1" (click)="removeEmailFields(i)"></span>
+          </div>
+          <div class="panel-body" [formGroupName]="i">
+            <div class="form-group col-xs-12">
+              <div class="col-xs-2">Email Type:</div>
+              <div class="col-xs-2">
+                <select class="form-control" formControlName="emailType" [(ngModel)]="emails[i].emailType">
+                  <option *ngFor="let m of emailTypes" [value]="m">{{m}}</option>
+                </select>
+              </div>
+              <div class="col-xs-2">Email Address: </div>
+              <div class="col-xs-3"><input type="text" class="form-control" formControlName="userName" [(ngModel)]="emails[i].userName"></div>
+              <div class="col-xs-1">@</div>
+              <div class="col-xs-2"><input type="text" class="form-control" formControlName="domain" [(ngModel)]="emails[i].domain"></div>
+            </div>
+            <div class="col-xs-12">
+              <small *ngIf="!email.controls.emailAddresses.controls[i].controls.userName.valid" class="text-danger">
+                Invalid User Name
+              </small>
+              <small *ngIf="!email.controls.emailAddresses.controls[i].controls.domain.valid" class="text-danger">
+                Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
+              </small>
+            </div>
+            <div class="col-xs-12">
+              <a (click)="addEmailFields()" style="cursor: default">
+                Add another email address +
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
