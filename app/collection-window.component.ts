@@ -1,15 +1,21 @@
-import {Component, OnInit, Input} from '@angular/core';
+///<reference path="date-range.validator.ts"/>
+import { Component, OnInit, Input } from '@angular/core';
 import { CollectionWindow } from './collection-window';
 import { MeasuresComponent } from './measures.component';
 import { ExistingDataComponent } from './existing-data.component';
-import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators, NG_VALIDATORS } from '@angular/forms';
+import { checkDateRange } from './date-range.validator';
+
+
 
 @Component({
   selector: 'collection-window',
-  templateUrl: '../app/collection-window.component.html'
+  templateUrl: '../app/collection-window.component.html',
+  providers: [ { provide: NG_VALIDATORS, useValue: checkDateRange, multi: false}]
 })
 export class CollectionWindowComponent implements OnInit {
-  private theDatesRaw : Date[];
+
+  private theDatesRaw  = { start: new Date(Date.now()), end: new Date(Date.now()) } ;
 
   @Input()
   measurement : MeasuresComponent;
@@ -22,15 +28,13 @@ export class CollectionWindowComponent implements OnInit {
 
   dataCollection: FormGroup;
   constructor(private _fb: FormBuilder) {
-    var currentDate = new Date(Date.now());
-    this.theDatesRaw = [currentDate, currentDate];
-    this.theDatesRaw[1].setFullYear(this.theDatesRaw[1].getFullYear() + 5);
+    this.theDatesRaw.end.setFullYear(this.theDatesRaw.end.getFullYear() + 5);
     this.theDates = {
-      "starting" : this.theDatesRaw[0].toISOString().substring(0, 10),
-      "ending": this.theDatesRaw[1].toISOString().substring(0, 10),
-      "placeHolder": (this.theDatesRaw[0].toISOString().substring(5,7)).concat('/')
-        .concat(this.theDatesRaw[0].toISOString().substring(8, 10)).concat('/')
-        .concat(this.theDatesRaw[0].toISOString().substring(0, 4))
+      "starting" : this.theDatesRaw.start.toISOString().substring(0, 10),
+      "ending": this.theDatesRaw.end.toISOString().substring(0, 10),
+      "placeHolder": (this.theDatesRaw.start.toISOString().substring(5,7)).concat('/')
+        .concat(this.theDatesRaw.start.toISOString().substring(8, 10)).concat('/')
+        .concat(this.theDatesRaw.start.toISOString().substring(0, 4))
     } ;
   }
 
@@ -43,8 +47,8 @@ export class CollectionWindowComponent implements OnInit {
 
   initCollectionWindowFields() {
     return this._fb.group( {
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: ['', [Validators.required, checkDateRange]],
+      endDate: ['', [Validators.required, checkDateRange]],
       collectingData: [false],
       dataToCollect: this.measurement,
       needFcpsData: [false],

@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import { CollectionWindowComponent } from './collection-window';
+import { CollectionWindowComponent } from './collection-window.component';
 import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {StatisticalPowerComponent} from "./statistical-power.component";
 import {Hypothesis} from "./hypothesis";

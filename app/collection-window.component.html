@@ -14,38 +14,48 @@
               </div>
               <div class="panel-body" [formGroupName]="i">
                 <div class="form-group col-xs-12">
-                  <label>Start of Collection Window:
-                    <input type="date" class="form-control col-xs-6" formControlName="startDate" [(ngModel)]="collection.startDate" step="1" min="theDates.starting" max="theDates.ending">
-                  </label>
-                  <label>End of Collection Window:
-                    <input type="date" class="form-control col-xs-6" formControlName="endDate" step="1" [(ngModel)]="collection.endDate" min="{{collection.startDate}}" max="theDates.ending">
-                  </label>
-                </div>
-                <div>
-                  <label>Do you need to collect new data in this window?
-                    <input type="checkbox" class="col-xs-6" formControlName="collectingData" [(ngModel)]="collection.collectingData">
-                  </label>
-                  <label>Do you need data from FCPS in this window?
-                    <input type="checkbox" class="col-xs-6" formControlName="needFcpsData" [(ngModel)]="collection.needFcpsData">
-                  </label>
-                </div>
-                <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.collectingData.value">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <span><strong>Measures</strong></span>
-                    </div>
-                    <div class="panel-body">
-                      <measures></measures>
+                  <div class="col-xs-6">
+                    <label for="startDate">Start of Collection Window:</label>
+                    <input type="date" class="form-control col-xs-6" id="startDate" defaultValue="{{theDatesRaw.start}}" formControlName="startDate" [(ngModel)]="collection.startDate" step="1" min="theDates.starting" max="theDates.ending">
+                    <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.startDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.startDate.pristine" class="alert alert-danger" style="font-size: 12px">
+                      The data collection can not begin prior to today.
                     </div>
                   </div>
-                </div>
-                <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.needFcpsData.value">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <span><strong>Existing Data</strong></span>
+                  <div class="col-xs-6">
+                    <label for="endDate">End of Collection Window:</label>
+                    <input type="date" class="form-control col-xs-6" id="endDate" formControlName="endDate" step="1" [(ngModel)]="collection.endDate" min="{{collection.startDate}}" max="theDates.ending">
+                    <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.endDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.endDate.pristine" class="alert alert-danger" style="font-size: 12px">
+                      The data collection cannot end on this date.  Must either be after today or before five years from today.
                     </div>
-                    <div class="panel-body">
-                      <existing-data></existing-data>
+                  </div>
+                  <div class="col-xs-6">
+                    <label for="collectingData">Do you need to collect new data in this window?</label>
+                    <input type="checkbox" id="collectingData" class="form-control" formControlName="collectingData" [(ngModel)]="collection.collectingData">
+                  </div>
+                  <div class="col-xs-6">
+                    <label for="needFcpsData">Do you need data from FCPS in this window?</label>
+                    <input type="checkbox" class="form-control" id="needFcpsData" formControlName="needFcpsData" [(ngModel)]="collection.needFcpsData">
+                  </div>
+                </div>
+                <div class="form-group col-xs-12">
+                  <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.collectingData.value">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <span><strong>Measures</strong></span>
+                      </div>
+                      <div class="panel-body">
+                        <measures></measures>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.needFcpsData.value">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <span><strong>Existing Data</strong></span>
+                      </div>
+                      <div class="panel-body">
+                        <existing-data></existing-data>
+                      </div>
                     </div>
                   </div>
                 </div>

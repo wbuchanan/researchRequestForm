@@ -1,21 +1,32 @@
 <div class="container">
   <form [formGroup]="institution" novalidate>
     <div class="form-group col-xs-12">
-      <div class="col-xs-6">
-        <label>Institution Name:</label>
-        <input type="text" class="form-control" formControlName="name" [(ngModel)]="inst.name">
-        <div *ngIf="!institution.controls.name.valid && !institution.controls.name.pristine" class="alert alert-danger" style="font-size: 12px">
-          Must supply a valid institution name.
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span>Institution Information</span>
+        </div>
+        <div class="panel-body">
+          <div class="col-xs-12">
+            <div class="form-group col-xs-6">
+              <label>Institution Name:</label>
+              <input type="text" class="form-control" formControlName="name" [(ngModel)]="inst.name">
+              <div *ngIf="!institution.controls.name.valid && !institution.controls.name.pristine" class="alert alert-danger" style="font-size: 12px">
+                Must supply a valid institution name.
+              </div>
+            </div>
+            <div class="form-group col-xs-6">
+              <label>Department Name:</label>
+              <input type="text" class="form-control" formControlName="department" [(ngModel)]="inst.department">
+              <div *ngIf="!institution.controls.department.valid && !institution.controls.department.pristine" class="alert alert-danger" style="font-size: 12px">
+                Must supply a valid department/office name.
+              </div>
+            </div>
+            <div class="form-group">
+              <address></address>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-xs-6">
-        <label>Department Name:</label>
-        <input type="text" class="form-control" formControlName="department" [(ngModel)]="inst.department">
-        <div *ngIf="!institution.controls.department.valid && !institution.controls.department.pristine" class="alert alert-danger" style="font-size: 12px">
-          Must supply a valid department/office name.
-        </div>
-      </div>
-     <address></address>
     </div>
   </form>
 </div>

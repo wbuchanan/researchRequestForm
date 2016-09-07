@@ -5,8 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require('@angular/core');
+var collection_window_component_1 = require('./collection-window.component');
 var forms_1 = require('@angular/forms');
+var statistical_power_component_1 = require("./statistical-power.component");
 var hypothesis_1 = require("./hypothesis");
 var HypothesisComponent = (function () {
     function HypothesisComponent(_fb) {
@@ -42,16 +47,19 @@ var HypothesisComponent = (function () {
         return this.myHypotheses;
     };
     __decorate([
-        core_1.Input()
-    ], HypothesisComponent.prototype, "collection");
+        core_1.Input(), 
+        __metadata('design:type', collection_window_component_1.CollectionWindowComponent)
+    ], HypothesisComponent.prototype, "collection", void 0);
     __decorate([
-        core_1.Input()
-    ], HypothesisComponent.prototype, "statPower");
+        core_1.Input(), 
+        __metadata('design:type', statistical_power_component_1.StatisticalPowerComponent)
+    ], HypothesisComponent.prototype, "statPower", void 0);
     HypothesisComponent = __decorate([
         core_1.Component({
             selector: 'hypothesis',
             templateUrl: '../app/hypothesis.component.html'
-        })
+        }), 
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], HypothesisComponent);
     return HypothesisComponent;
 }());

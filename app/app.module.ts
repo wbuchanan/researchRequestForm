@@ -20,11 +20,13 @@ import { StatisticalPowerComponent }    from "./statistical-power.component";
 import { PersonComponent }              from "./person.component";
 import { InstitutionComponent }         from "./institution.component";
 import {HypothesisComponent} from "./hypothesis.component";
+import {StatusComponent} from "./status.component";
 
 
 @NgModule({
   imports: [ BrowserModule, ReactiveFormsModule ],
   declarations: [ AppComponent, MeasuresComponent, AddressComponent, CollectionWindowComponent, ContactComponent,
+                  StatusComponent,
                   ExistingDataComponent, PhoneComponent, EmailComponent, DistrictSponsorComponent, HypothesisComponent,
                   SponsorComponent, InstitutionComponent, PersonComponent, PeopleComponent, StatisticalPowerComponent],
   bootstrap: [ AppComponent ]

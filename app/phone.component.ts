@@ -7,6 +7,7 @@ import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} fro
     templateUrl: '../app/phone.component.html'
 })
 export class PhoneComponent implements OnInit {
+
     public phoneTypes = [ "home", "mobile", "office", "fax" ];
     phone: FormGroup;
     private phones : Phone[] = new Array(new Phone());

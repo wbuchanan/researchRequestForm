@@ -26,7 +26,7 @@ var MeasuresComponent = (function () {
     };
     MeasuresComponent.prototype.initMeasureFields = function () {
         return this._fb.group({
-            name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9]+')]],
+            name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9]{2,}.*')]],
             unitOfMeasurement: ['', forms_1.Validators.required],
             references: [''],
             pilot: [false, forms_1.Validators.required],
