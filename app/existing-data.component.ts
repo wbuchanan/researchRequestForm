@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { ExistingData } from './existing-data';
 import { FormBuilder, FormGroup} from '@angular/forms';
 
@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup} from '@angular/forms';
     templateUrl: '../app/existing-data.component.html'
 })
 export class ExistingDataComponent implements OnInit {
+  @Output() currentData: EventEmitter<ExistingData> = new EventEmitter<ExistingData>();
   existingData: FormGroup;
   private existing: ExistingData = new ExistingData();
   constructor(private _fb: FormBuilder) { }

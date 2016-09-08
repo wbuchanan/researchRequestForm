@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var ExistingDataComponent = (function () {
     function ExistingDataComponent(_fb) {
         this._fb = _fb;
+        this.currentData = new core_1.EventEmitter();
         this.existing = new existing_data_1.ExistingData();
     }
     ExistingDataComponent.prototype.ngOnInit = function () {
@@ -29,6 +30,10 @@ var ExistingDataComponent = (function () {
     ExistingDataComponent.prototype.getExistingDataRequest = function () {
         return this.existing;
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ExistingDataComponent.prototype, "currentData", void 0);
     ExistingDataComponent = __decorate([
         core_1.Component({
             selector: 'existing-data',

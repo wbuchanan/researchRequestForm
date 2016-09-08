@@ -52,7 +52,7 @@ var MeasuresComponent = (function () {
         this.addMeasures.emit(this.getMeasurementTools());
     };
     __decorate([
-        core_1.Output, 
+        core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], MeasuresComponent.prototype, "addMeasures", void 0);
     MeasuresComponent = __decorate([
