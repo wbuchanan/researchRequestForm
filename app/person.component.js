@@ -16,6 +16,7 @@ var forms_1 = require('@angular/forms');
 var PersonComponent = (function () {
     function PersonComponent(_fb) {
         this._fb = _fb;
+        this.thePerson = new core_1.EventEmitter();
     }
     PersonComponent.prototype.ngOnInit = function () {
         this.person = this._fb.group({
@@ -37,6 +38,10 @@ var PersonComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', institution_component_1.InstitutionComponent)
     ], PersonComponent.prototype, "inst", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], PersonComponent.prototype, "thePerson", void 0);
     PersonComponent = __decorate([
         core_1.Component({
             selector: 'person',

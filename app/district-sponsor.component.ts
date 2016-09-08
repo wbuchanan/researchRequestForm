@@ -10,11 +10,9 @@ import {DistrictSponsor} from "./district-sponsor";
 })
 export class DistrictSponsorComponent implements OnInit {
 
-  @Input()
-  peeps: PeopleComponent;
+  @Input() peeps: PeopleComponent;
 
-  @Input()
-  contactInformation: ContactComponent;
+  @Input() contactInformation: ContactComponent;
 
   districtSponsor: FormGroup;
 

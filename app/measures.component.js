@@ -45,11 +45,8 @@ var MeasuresComponent = (function () {
         var control = this.measures.controls['measure'];
         control.removeAt(i);
     };
-    MeasuresComponent.prototype.getMeasurementTools = function () {
-        return this.measurement;
-    };
-    MeasuresComponent.prototype.update = function () {
-        this.addMeasures.emit(this.getMeasurementTools());
+    MeasuresComponent.prototype.updateMeasures = function () {
+        this.addMeasures.emit(this.measurement);
     };
     __decorate([
         core_1.Output(), 

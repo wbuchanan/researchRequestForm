@@ -1,6 +1,6 @@
 <form [formGroup]="phone" novalidate>
   <div class="form-group">
-    <div formArrayName="phoneNumbers" (change)="update()">
+    <div formArrayName="phoneNumbers" (change)="updatePhoneNumbers()">
       <div *ngFor="let address of phone.controls.phoneNumbers.controls; let i=index" class="panel panel-default">
         <div class="panel-heading">
           <span>Phone Number {{i + 1}}</span>

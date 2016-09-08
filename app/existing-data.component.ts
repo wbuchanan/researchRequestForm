@@ -22,12 +22,8 @@ export class ExistingDataComponent implements OnInit {
       });
   }
 
-  public getExistingDataRequest() : ExistingData {
-    return this.existing;
-  }
-
-  public update() : void {
-    this.currentData.emit( this.getExistingDataRequest() );
+  public updateExistingData() : void {
+    this.currentData.emit( this.existing );
   }
 
 }

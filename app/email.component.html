@@ -1,6 +1,6 @@
 <form [formGroup]="email" novalidate>
   <div class="form-group">
-    <div formArrayName="emailAddresses" (change)="update()">
+    <div formArrayName="emailAddresses" (change)="updateEmailAddresses()">
       <div *ngFor="let address of email.controls.emailAddresses.controls; let i=index" class="panel panel-default">
         <div class="panel-heading">
           <span>Email Address {{i + 1}}</span>

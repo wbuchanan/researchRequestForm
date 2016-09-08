@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Contact } from './contact';
 import { PhoneComponent } from './phone.component';
 import { EmailComponent } from './email.component';
@@ -14,6 +14,7 @@ export class ContactComponent implements OnInit {
 
   @Input() email: EmailComponent;
   @Input() phone: PhoneComponent;
+  @Output() contactInfo: EventEmitter<Contact> = new EventEmitter<Contact>();
 
   private contacts: Contact = new Contact();
 
@@ -33,8 +34,8 @@ export class ContactComponent implements OnInit {
     this.contacts.phoneNumbers = phone;
   }
 
-  public getContacts() : Contact {
-    return this.contacts;
+  public update() : void {
+    this.contactInfo.emit( this.contacts );
   }
 
 }

@@ -45,12 +45,8 @@ export class MeasuresComponent implements OnInit {
     control.removeAt(i);
   }
 
-  public getMeasurementTools() : Measures[] {
-    return this.measurement;
-  }
-
-  public update() : void {
-    this.addMeasures.emit( this.getMeasurementTools() );
+  public updateMeasures() : void {
+    this.addMeasures.emit( this.measurement );
   }
 
 }

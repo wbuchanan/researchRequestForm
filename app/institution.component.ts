@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Address } from './address';
 import { AddressComponent } from './address.component';
 import { Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
@@ -9,6 +9,8 @@ import {Institution} from "./institution";
     templateUrl: '../app/institution.component.html'
 })
 export class InstitutionComponent {
+  @Output() institutionData: EventEmitter<Institution> = new EventEmitter<Institution>();
+
   @Input addy : AddressComponent;
   institution: FormGroup;
   inst: Institution = new Institution();
@@ -29,8 +31,8 @@ export class InstitutionComponent {
     this.inst.address = addressObject;
   }
 
-  getInstitution() : Institution {
-    return this.inst;
+  getInstitution() : void {
+    this.inst;
   }
 
 }

@@ -1,19 +1,27 @@
-<form [formGroup]="people" novalidate class="form-group col-xs-12">
-  <div class="form-group col-xs-12">
-    <div class="col-xs-4">
-      <label for="firstName">First Name:</label>
-      <input type="text" [(ngModel)]="person.firstName" class="form-control" formControlName="firstName" placeholder="John">
-      <div *ngIf="!people.controls.firstName.valid && !people.controls.firstName.pristine" class="alert alert-danger" style="font-size: 12px;">First Name should be between 2 and 40 characters</div>
+<div (change)="update()">
+  <form [formGroup]="people" novalidate>
+    <div class="form-group col-xs-12">
+      <div class="col-xs-4">
+        <label for="firstName">First Name:</label>
+        <input type="text" [(ngModel)]="person.firstName" id="firstName" class="form-control" formControlName="firstName" placeholder="John">
+        <div *ngIf="!people.controls.firstName.valid && !people.controls.firstName.pristine" class="alert alert-danger" style="font-size: 12px;">
+          First Name should be between 2 and 40 characters
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <label for="lastName">Last Name:</label>
+        <input type="text" [(ngModel)]="person.lastName" id="lastName" class="form-control" formControlName="lastName" placeholder="Doe">
+        <div *ngIf="!people.controls.lastName.valid && !people.controls.lastName.pristine" class="alert alert-danger" style="font-size: 12px;">
+          Last Name should be between 2 and 40 characters
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" [(ngModel)]="person.jobTitle" id="jobTitle" class="form-control" formControlName="jobTitle" placeholder="Teacher">
+        <div *ngIf="!people.controls.jobTitle.valid && !people.controls.jobTitle.pristine" class="alert alert-danger" style="font-size: 12px;">
+          Job Title should be between 2 and 40 characters
+        </div>
+      </div>
     </div>
-    <div class="col-xs-4">
-      <label>Last Name:</label>
-      <input type="text" [(ngModel)]="person.lastName" class="form-control" formControlName="lastName" placeholder="Doe">
-      <div *ngIf="!people.controls.lastName.valid && !people.controls.lastName.pristine" class="alert alert-danger" style="font-size: 12px;">Last Name should be between 2 and 40 characters</div>
-    </div>
-    <div class="col-xs-4">
-      <label for="jobTitle">Job Title:</label>
-      <input type="text" [(ngModel)]="person.jobTitle" class="form-control" formControlName="jobTitle" placeholder="Teacher">
-      <div *ngIf="!people.controls.jobTitle.valid && !people.controls.jobTitle.pristine" class="alert alert-danger" style="font-size: 12px;">Job Title should be between 2 and 40 characters</div>
-    </div>
-  </div>
-</form>
+  </form>
+</div>

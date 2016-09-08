@@ -7,20 +7,27 @@ import { Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
     templateUrl: '../app/people.component.html'
 })
 export class PeopleComponent implements OnInit {
-    people: FormGroup;
-    private person: People = new People();
 
-    constructor(private _fb: FormBuilder) { }
-    ngOnInit() {
-        this.people = this._fb.group( {
-            firstName: ['', [Validators.required, Validators.minLength(2)]],
-            lastName: ['', [Validators.required, Validators.minLength(2)]],
-            jobTitle: ['', [Validators.required, Validators.minLength(2)]]
-        });
-    }
+  @Output() peeps: EventEmitter<People> = new EventEmitter<People>();
 
-    getPerson(): People {
-      return this.person;
-    }
+  people: FormGroup;
+  private person: People = new People();
+
+  constructor(private _fb: FormBuilder) { }
+  ngOnInit() {
+      this.people = this._fb.group( {
+          firstName: ['', [Validators.required, Validators.minLength(2)]],
+          lastName: ['', [Validators.required, Validators.minLength(2)]],
+          jobTitle: ['', [Validators.required, Validators.minLength(2)]]
+      });
+  }
+
+  getPerson(): People {
+    return this.person;
+  }
+
+  update() : void {
+    this.peeps.emit( this.getPerson() );
+  }
 
 }

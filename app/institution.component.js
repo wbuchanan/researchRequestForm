@@ -15,6 +15,7 @@ var institution_1 = require("./institution");
 var InstitutionComponent = (function () {
     function InstitutionComponent(_fb) {
         this._fb = _fb;
+        this.institutionData = new core_1.EventEmitter();
         this.inst = new institution_1.Institution();
     }
     InstitutionComponent.prototype.ngOnInit = function () {
@@ -28,8 +29,12 @@ var InstitutionComponent = (function () {
         this.inst.address = addressObject;
     };
     InstitutionComponent.prototype.getInstitution = function () {
-        return this.inst;
+        this.inst;
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], InstitutionComponent.prototype, "institutionData", void 0);
     __decorate([
         core_1.Input, 
         __metadata('design:type', address_component_1.AddressComponent)

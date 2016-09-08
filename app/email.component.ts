@@ -48,12 +48,8 @@ export class EmailComponent implements OnInit, OnChanges {
     control.removeAt(i);
   }
 
-  public getEmailAddresses() : Email[] {
-    return this.emails;
-  }
-
-  public update() : void {
-    this.emailAdded.emit( this.getEmailAddresses() );
+  public updateEmailAddresses() : void {
+    this.emailAdded.emit( this.emails );
   }
 
 

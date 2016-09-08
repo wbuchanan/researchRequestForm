@@ -86,11 +86,8 @@ var AddressComponent = (function () {
             zipCode: ['', [forms_1.Validators.required, forms_1.Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
         });
     };
-    AddressComponent.prototype.getAddress = function () {
-        return this.address;
-    };
-    AddressComponent.prototype.update = function () {
-        this.enterAddress.emit(this.getAddress());
+    AddressComponent.prototype.updateAddress = function () {
+        this.enterAddress.emit(this.address);
     };
     __decorate([
         core_1.Output(), 

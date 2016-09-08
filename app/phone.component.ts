@@ -59,12 +59,9 @@ export class PhoneComponent implements OnInit, OnChanges {
     control.removeAt(i);
   }
 
-  public getPhoneNumbers() : Phone[] {
-    return this.phones;
-  }
 
-  public update() : void {
-    this.phoneAdded.emit( this.getPhoneNumbers() );
+  public updatePhoneNumbers() : void {
+    this.phoneAdded.emit( this.phones );
   }
 
 }

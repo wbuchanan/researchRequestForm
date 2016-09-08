@@ -16,6 +16,7 @@ var forms_1 = require('@angular/forms');
 var ContactComponent = (function () {
     function ContactComponent(_fb) {
         this._fb = _fb;
+        this.contactInfo = new core_1.EventEmitter();
         this.contacts = new contact_1.Contact();
     }
     ContactComponent.prototype.ngOnInit = function () {
@@ -29,8 +30,8 @@ var ContactComponent = (function () {
     ContactComponent.prototype.phoneAdded = function (phone) {
         this.contacts.phoneNumbers = phone;
     };
-    ContactComponent.prototype.getContacts = function () {
-        return this.contacts;
+    ContactComponent.prototype.update = function () {
+        this.contactInfo.emit(this.contacts);
     };
     __decorate([
         core_1.Input(), 
@@ -40,6 +41,10 @@ var ContactComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', phone_component_1.PhoneComponent)
     ], ContactComponent.prototype, "phone", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ContactComponent.prototype, "contactInfo", void 0);
     ContactComponent = __decorate([
         core_1.Component({
             selector: 'contactInformation',

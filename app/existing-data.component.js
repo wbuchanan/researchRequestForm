@@ -27,11 +27,8 @@ var ExistingDataComponent = (function () {
             districtLevel: ['']
         });
     };
-    ExistingDataComponent.prototype.getExistingDataRequest = function () {
-        return this.existing;
-    };
-    ExistingDataComponent.prototype.update = function () {
-        this.currentData.emit(this.getExistingDataRequest());
+    ExistingDataComponent.prototype.updateExistingData = function () {
+        this.currentData.emit(this.existing);
     };
     __decorate([
         core_1.Output(), 

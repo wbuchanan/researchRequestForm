@@ -1,5 +1,5 @@
     <form [formGroup]="measures" novalidate>
-      <div formArrayName="measure" (change)="update()">
+      <div formArrayName="measure" (change)="updateMeasures()">
         <div *ngFor="let address of measures.controls.measure.controls; let i=index">
           <div class="panel panel-default">
             <div class="panel-heading">

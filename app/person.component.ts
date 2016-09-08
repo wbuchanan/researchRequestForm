@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { PeopleComponent } from './people.component';
 import { ContactComponent } from './contact.component';
 import { InstitutionComponent } from './institution.component';
@@ -15,6 +15,8 @@ export class PersonComponent implements OnInit {
   @Input() contacts: ContactComponent;
   @Input() inst: InstitutionComponent;
 
+  @Output() thePerson: EventEmitter<Person> = new EventEmitter<Person>();
+
   person: FormGroup;
   constructor(private _fb: FormBuilder) { }
   ngOnInit() {
@@ -25,5 +27,7 @@ export class PersonComponent implements OnInit {
       jobLocation: this.inst
     });
   }
+
+
 
 }

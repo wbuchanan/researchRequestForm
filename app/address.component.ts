@@ -87,12 +87,8 @@ export class AddressComponent implements OnInit {
       });
   }
 
-  public getAddress() : Address {
-    return this.address;
-  }
-
-  public update() : void {
-    this.enterAddress.emit( this.getAddress() );
+  public updateAddress() : void {
+    this.enterAddress.emit( this.address );
   }
 
 }

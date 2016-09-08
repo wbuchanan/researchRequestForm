@@ -42,11 +42,8 @@ var EmailComponent = (function () {
         var control = this.email.controls['emailAddresses'];
         control.removeAt(i);
     };
-    EmailComponent.prototype.getEmailAddresses = function () {
-        return this.emails;
-    };
-    EmailComponent.prototype.update = function () {
-        this.emailAdded.emit(this.getEmailAddresses());
+    EmailComponent.prototype.updateEmailAddresses = function () {
+        this.emailAdded.emit(this.emails);
     };
     __decorate([
         core_1.Output(), 

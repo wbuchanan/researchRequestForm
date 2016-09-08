@@ -45,11 +45,8 @@ var PhoneComponent = (function () {
         var control = this.phone.controls['phoneNumbers'];
         control.removeAt(i);
     };
-    PhoneComponent.prototype.getPhoneNumbers = function () {
-        return this.phones;
-    };
-    PhoneComponent.prototype.update = function () {
-        this.phoneAdded.emit(this.getPhoneNumbers());
+    PhoneComponent.prototype.updatePhoneNumbers = function () {
+        this.phoneAdded.emit(this.phones);
     };
     __decorate([
         core_1.Input(), 
