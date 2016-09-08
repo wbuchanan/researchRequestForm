@@ -14,10 +14,8 @@ export class ContactComponent implements OnInit {
 
   @Input() email: EmailComponent;
   @Input() phone: PhoneComponent;
-  @Input() emailAddresses: Email[];
-  @Input() phoneNumbers: Phone[];
 
-  contacts: Contact = new Contact();
+  private contacts: Contact = new Contact();
 
   contactInformation: FormGroup;
   constructor(private _fb: FormBuilder) { }
@@ -25,22 +23,9 @@ export class ContactComponent implements OnInit {
     this.contactInformation = this._fb.group( {
         emailAddresses: this.email,
         phoneNumbers: this.phone } );
-
-    this.contactInformation.controls['emailAddresses'].valueChanges.subscribe(
-      (form: any) => {
-        let x = new Array(new Email());
-        x = form;
-        this.contacts.emailAddresses = x;
-      }
-    );
-
-    this.contactInformation.controls['phoneNumbers'].valueChanges.subscribe(
-      (form: Phone[]) => { this.contacts.phoneNumbers }
-    );
-
   }
 
-  emailAdded(email : Email[]) {
+  emailAdded(email) {
     this.contacts.emailAddresses = email;
   }
 

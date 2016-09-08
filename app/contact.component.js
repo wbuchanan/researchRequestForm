@@ -13,23 +13,15 @@ var contact_1 = require('./contact');
 var phone_component_1 = require('./phone.component');
 var email_component_1 = require('./email.component');
 var forms_1 = require('@angular/forms');
-var email_1 = require("./email");
 var ContactComponent = (function () {
     function ContactComponent(_fb) {
         this._fb = _fb;
         this.contacts = new contact_1.Contact();
     }
     ContactComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.contactInformation = this._fb.group({
             emailAddresses: this.email,
             phoneNumbers: this.phone });
-        this.contactInformation.controls['emailAddresses'].valueChanges.subscribe(function (form) {
-            var x = new Array(new email_1.Email());
-            x = form;
-            _this.contacts.emailAddresses = x;
-        });
-        this.contactInformation.controls['phoneNumbers'].valueChanges.subscribe(function (form) { _this.contacts.phoneNumbers; });
     };
     ContactComponent.prototype.emailAdded = function (email) {
         this.contacts.emailAddresses = email;
@@ -48,14 +40,6 @@ var ContactComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', phone_component_1.PhoneComponent)
     ], ContactComponent.prototype, "phone", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], ContactComponent.prototype, "emailAddresses", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], ContactComponent.prototype, "phoneNumbers", void 0);
     ContactComponent = __decorate([
         core_1.Component({
             selector: 'contactInformation',
