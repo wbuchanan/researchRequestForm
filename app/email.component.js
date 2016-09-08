@@ -49,18 +49,6 @@ var EmailComponent = (function () {
         this.emailAdded.emit(this.getEmailAddresses());
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], EmailComponent.prototype, "emailType", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], EmailComponent.prototype, "userName", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], EmailComponent.prototype, "domain", void 0);
-    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], EmailComponent.prototype, "emailAdded", void 0);

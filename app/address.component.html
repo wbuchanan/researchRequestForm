@@ -1,64 +1,64 @@
-<div class="container col-xs-12">
-  <form [formGroup]="physicalAddress" novalidate>
+<div (change)="update()">
+  <form [formGroup]="physicalAddress">
    <div class="form-group col-xs-2">
     <label for="streetNumber">Street Number:</label>
-    <input type="text" class="form-control" id="streetNumber" [(ngModel)]="addy.streetNumber" formControlName="streetNumber" size="5" placeholder="701">
+    <input type="text" class="form-control" id="streetNumber" [(ngModel)]="address.streetNumber" formControlName="streetNumber" size="5" placeholder="701">
    </div>
    <div class="col-xs-2">
       <label for="streetDirection">Street Direction:</label>
-      <select class="form-control" id="streetDirection" formControlName="streetDirection" [(ngModel)]="addy.streetDirection" placeholder="E">
+      <select class="form-control" id="streetDirection" formControlName="streetDirection" [(ngModel)]="address.streetDirection" placeholder="E">
        <option *ngFor="let x of directions" [value]="x">{{x}}</option>
       </select>
    </div>
    <div class="form-group col-xs-5">
      <label for="streetName">Street Name:</label>
-     <input type="text" class="form-control" id="streetName" formControlName="streetName"  [(ngModel)]="addy.streetName" placeholder="Main">
+     <input type="text" class="form-control" id="streetName" formControlName="streetName"  [(ngModel)]="address.streetName" placeholder="Main">
    </div>
    <div class="form-group col-xs-3">
      <label>Street Type:</label>
-      <select class="form-control" formControlName="streetType"  [(ngModel)]="addy.streetType" placeholder="STREET">
+      <select class="form-control" formControlName="streetType"  [(ngModel)]="address.streetType" placeholder="STREET">
         <option *ngFor="let y of streetTypes" [value]="y.value">{{y.key}}</option>
       </select>
     </div>
     <div class="col-xs-12">
       <div class="form-group col-xs-4">
         <label for="secondLine">Do you need a second address line?</label>
-        <input type="checkbox" formControlName="secondLine" id="secondLine" [(ngModel)]="addy.secondLine">
+        <input type="checkbox" formControlName="secondLine" id="secondLine" [(ngModel)]="address.secondLine">
       </div>
       <div class="form-group col-xs-5" *ngIf="physicalAddress.controls.secondLine.value">
         <label for="unitType">Unit Type:</label>
-          <select class="form-control" id="unitType" formControlName="unitType"  [(ngModel)]="addy.unitType">
+          <select class="form-control" id="unitType" formControlName="unitType"  [(ngModel)]="address.unitType">
             <option *ngFor="let z of secUnits" [value]="z.value">{{z.key}}</option>
           </select>
       </div>
       <div class="form-group col-xs-3" *ngIf="physicalAddress.controls.secondLine.value">
         <label for="unitNumber">Unit Number:</label>
-        <input type="text" class="form-control" id="unitNumber" formControlName="unitNumber" size="5"  [(ngModel)]="addy.unitNumber">
+        <input type="text" class="form-control" id="unitNumber" formControlName="unitNumber" size="5" [(ngModel)]="address.unitNumber">
       </div>
     </div>
     <div class="form-group col-xs-4">
       <label for="city">City:</label>
-      <input type="text" class="form-control" id="city" formControlName="city"  [(ngModel)]="addy.city" placeholder="Lexington">
+      <input type="text" class="form-control" id="city" formControlName="city"  [(ngModel)]="address.city" placeholder="Lexington">
     </div>
     <div class="form-group col-xs-5">
       <label for="state">State:</label>
-        <select class="form-control" formControlName="state" id="state" [(ngModel)]="addy.state" placeholder="KENTUCKY">
+        <select class="form-control" formControlName="state" id="state" [(ngModel)]="address.state" placeholder="KENTUCKY">
           <option *ngFor="let st of cszips" [value]="st.stusps">{{st.statenm}}</option>
         </select>
     </div>
     <div class="form-group col-xs-3">
       <label for="zipCode">Zip Code:</label>
-      <input type="text" class="form-control" id="zipCode" formControlName="zipCode" [(ngModel)]="addy.zipCode" placeholder="40502">
+      <input type="text" class="form-control" id="zipCode" formControlName="zipCode" [(ngModel)]="address.zipCode" placeholder="40502">
       <div *ngIf="!physicalAddress.controls.zipCode.valid && !physicalAddress.controls.zipCode.pristine" class="alert alert-danger" style="font-size: 12px;">
         Zip Code should only contain 5 digits or 9 digits with a hyphen separating the 5th and 6th digit.
       </div>
     </div>
   </form>
-  <!--
-  <div class="margin-20">
-  <div>myForm details:-</div>
-  <pre>Is myForm valid?: <br>{{physicalAddress.valid | json}}</pre>
-  <pre>form value: <br>{{addy | json}}</pre>
-  </div>
-  -->
 </div>
+<!--
+<div class="margin-20">
+<div>myForm details:-</div>
+<pre>Is myForm valid?: <br>{{physicalAddress.valid | json}}</pre>
+<pre>form value: <br>{{addy | json}}</pre>
+</div>
+-->

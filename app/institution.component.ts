@@ -9,24 +9,28 @@ import {Institution} from "./institution";
     templateUrl: '../app/institution.component.html'
 })
 export class InstitutionComponent {
-    institution: FormGroup;
-    private addy: AddressComponent;
-    private inst: Institution = new Institution();
+  @Input addy : AddressComponent;
+  institution: FormGroup;
+  inst: Institution = new Institution();
 
-    @Input() name: string;
-    @Input() department: string;
+  constructor(private _fb: FormBuilder) {
 
-    constructor(private _fb: FormBuilder) { }
-    ngOnInit() {
-        this.institution = this._fb.group( {
-            name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+')]],
-            department: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
-            address: this.addy
-        });
-    }
+  }
 
-    getInstitution() : Institution {
-      return this.inst;
-    }
+  ngOnInit() {
+      this.institution = this._fb.group( {
+          name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
+          department: ['', [Validators.required, Validators.pattern('^[a-zA-Z ,]{4,}')]],
+          address: this.addy
+      });
+  }
+
+  enterAddress(addressObject) {
+    this.inst.address = addressObject;
+  }
+
+  getInstitution() : Institution {
+    return this.inst;
+  }
 
 }

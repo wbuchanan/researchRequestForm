@@ -16,6 +16,7 @@ var street_type_abbreviations_1 = require('../app/street-type-abbreviations');
 var AddressComponent = (function () {
     function AddressComponent(_fb) {
         this._fb = _fb;
+        this.enterAddress = new core_1.EventEmitter();
         this.directions = ['', 'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
         this.secUnits = secondary_units_1.SECONDARY_UNITS;
         this.streetTypes = street_type_abbreviations_1.STREET_TYPES;
@@ -69,7 +70,7 @@ var AddressComponent = (function () {
             { "statenm": "WEST VIRGINIA", "stusps": "WV" },
             { "statenm": "WISCONSIN", "stusps": "WI" },
             { "statenm": "WYOMING", "stusps": "WY" }];
-        this.addy = new address_1.Address();
+        this.address = new address_1.Address();
     }
     AddressComponent.prototype.ngOnInit = function () {
         this.physicalAddress = this._fb.group({
@@ -86,48 +87,15 @@ var AddressComponent = (function () {
         });
     };
     AddressComponent.prototype.getAddress = function () {
-        return this.addy;
+        return this.address;
+    };
+    AddressComponent.prototype.update = function () {
+        this.enterAddress.emit(this.getAddress());
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "streetNumber", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "streetDirection", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "streetName", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "streetType", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "unitType", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "unitNumber", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "city", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "state", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], AddressComponent.prototype, "zipCode", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], AddressComponent.prototype, "secondLine", void 0);
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], AddressComponent.prototype, "enterAddress", void 0);
     AddressComponent = __decorate([
         core_1.Component({
             selector: 'address',

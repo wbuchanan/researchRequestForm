@@ -8,6 +8,7 @@ import { UNIT_OF_MEASUREMENT } from './unitsOfMeasurement';
   templateUrl: '../app/measures.component.html'
 })
 export class MeasuresComponent implements OnInit {
+  @Output addMeasures : EventEmitter<Measures[]> = new EventEmitter<Measures[]>();
 
   timeUnits = [ "seconds", "minutes", "hours", "class periods", "days"];
   measures: FormGroup;
@@ -46,5 +47,10 @@ export class MeasuresComponent implements OnInit {
   public getMeasurementTools() : Measures[] {
     return this.measurement;
   }
+
+  public update() : void {
+    this.addMeasures.emit( this.getMeasurementTools() );
+  }
+
 
 }

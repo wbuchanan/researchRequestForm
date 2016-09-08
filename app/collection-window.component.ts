@@ -17,11 +17,9 @@ export class CollectionWindowComponent implements OnInit {
 
   private theDatesRaw  = { start: new Date(Date.now()), end: new Date(Date.now()) } ;
 
-  @Input()
-  measurement : MeasuresComponent;
+  @Input() measurement : MeasuresComponent;
 
-  @Input()
-  existing: ExistingDataComponent;
+  @Input() existing: ExistingDataComponent;
 
   public theDates : {};
   private collection: CollectionWindow[] = new Array(new CollectionWindow());

@@ -15,6 +15,7 @@ var unitsOfMeasurement_1 = require('./unitsOfMeasurement');
 var MeasuresComponent = (function () {
     function MeasuresComponent(_fb) {
         this._fb = _fb;
+        this.addMeasures = new core_1.EventEmitter();
         this.timeUnits = ["seconds", "minutes", "hours", "class periods", "days"];
         this.units = unitsOfMeasurement_1.UNIT_OF_MEASUREMENT;
         this.measurement = new Array(new measures_1.Measures());
@@ -47,6 +48,13 @@ var MeasuresComponent = (function () {
     MeasuresComponent.prototype.getMeasurementTools = function () {
         return this.measurement;
     };
+    MeasuresComponent.prototype.update = function () {
+        this.addMeasures.emit(this.getMeasurementTools());
+    };
+    __decorate([
+        core_1.Output, 
+        __metadata('design:type', core_1.EventEmitter)
+    ], MeasuresComponent.prototype, "addMeasures", void 0);
     MeasuresComponent = __decorate([
         core_1.Component({
             selector: 'measures',

@@ -8,9 +8,6 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 })
 export class EmailComponent implements OnInit, OnChanges {
 
-  @Input() emailType: string;
-  @Input() userName: string;
-  @Input() domain: string;
   @Output() emailAdded: EventEmitter<Email[]> = new EventEmitter<Email[]>();
 
   public emailTypes = [ "home", "work", "other" ];

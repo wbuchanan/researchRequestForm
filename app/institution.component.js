@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var address_component_1 = require('./address.component');
 var forms_1 = require('@angular/forms');
 var institution_1 = require("./institution");
 var InstitutionComponent = (function () {
@@ -18,22 +19,21 @@ var InstitutionComponent = (function () {
     }
     InstitutionComponent.prototype.ngOnInit = function () {
         this.institution = this._fb.group({
-            name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9]+')]],
-            department: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z]+')]],
+            name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
+            department: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z ,]{4,}')]],
             address: this.addy
         });
+    };
+    InstitutionComponent.prototype.enterAddress = function (addressObject) {
+        this.inst.address = addressObject;
     };
     InstitutionComponent.prototype.getInstitution = function () {
         return this.inst;
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InstitutionComponent.prototype, "name", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InstitutionComponent.prototype, "department", void 0);
+        core_1.Input, 
+        __metadata('design:type', address_component_1.AddressComponent)
+    ], InstitutionComponent.prototype, "addy", void 0);
     InstitutionComponent = __decorate([
         core_1.Component({
             selector: 'institution',
