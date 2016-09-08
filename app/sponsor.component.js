@@ -13,21 +13,36 @@ var people_component_1 = require('./people.component');
 var contact_component_1 = require('./contact.component');
 var institution_component_1 = require('./institution.component');
 var forms_1 = require('@angular/forms');
+var sponsor_1 = require("./sponsor");
 var SponsorComponent = (function () {
     function SponsorComponent(_fb) {
         this._fb = _fb;
+        this.financialSponsor = new core_1.EventEmitter();
+        this.sponsorship = new sponsor_1.Sponsor();
         this.durUnits = ["days", "weeks", "months", "years"];
     }
     SponsorComponent.prototype.ngOnInit = function () {
         this.sponsor = this._fb.group({
-            person: this.peeps,
+            poc: this.peeps,
             contactInfo: this.contacts,
-            jobLocation: this.inst,
+            institutionalAffiliation: this.inst,
             fundingAmount: [, forms_1.Validators.required],
             fundingDuration: [, forms_1.Validators.required],
             fundingDurationUnits: ['', forms_1.Validators.required],
             projectStaffSize: []
         });
+    };
+    SponsorComponent.prototype.bindPersonObject = function (person) {
+        this.sponsorship.poc = person;
+    };
+    SponsorComponent.prototype.bindContactInformation = function (contactInfo) {
+        this.sponsorship.contactInfo = contactInfo;
+    };
+    SponsorComponent.prototype.bindInstitutionInformation = function (institution) {
+        this.sponsorship.institutionalAffiliation = institution;
+    };
+    SponsorComponent.prototype.updateFinancialSponsor = function () {
+        this.financialSponsor.emit(this.sponsorship);
     };
     __decorate([
         core_1.Input(), 
@@ -41,6 +56,10 @@ var SponsorComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', institution_component_1.InstitutionComponent)
     ], SponsorComponent.prototype, "inst", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SponsorComponent.prototype, "financialSponsor", void 0);
     SponsorComponent = __decorate([
         core_1.Component({
             selector: 'financial-sponsor',

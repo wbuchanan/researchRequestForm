@@ -1,29 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="margin-20">
-        <h4>Research/Financial Sponsor</h4>
-        <p>The person listed below should be the point of contact for the funding organization, their contact information, and the organization providing the financial support for the project</p>
-      </div>
-      <people></people>
-      <contactInformation></contactInformation>
-      <institution></institution>
-      <form [formGroup]="sponsor" novalidate class="panel panel-default">
-        <div class="form-group col-xs-12">
-          <label>Amount of Funding (in $):
-            <input type="number" class="form-control col-xs-3" formControlName="fundingAmount" step="1" min="0.00" max="50000000.00">
-          </label>
-          <label>Funding duration:
-            <input type="number" class="form-control col-xs-3" formControlName="fundingDuration" step="1" min="0" max="51">
-            <select formControlName="fundingDurationUnits" class="form-control col-xs-3">
-              <option *ngFor="let duropt of durUnits" [value]="duropt">{{duropt}}</option>
-            </select>
-          </label>
-          <label>Project Staff Members:
-            <input type="number" class="form-control col-xs-3" formControlName="projectStaffSize" step="1" min="1" max="1000">
-          </label>
-        </div>
-      </form>
+<div (change)="updateFinancialSponsor()">
+  <h4>Research/Financial Sponsor</h4>
+  <p>The person listed below should be the point of contact for the funding organization, their contact information, and the organization providing the financial support for the project</p>
+  <people (peeps)="bindPersonObject($event)"></people>
+  <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
+  <institution (institutionData)="bindInstitutionInformation($event)"></institution>
+  <form [formGroup]="sponsor" novalidate class="panel panel-default">
+    <div class="form-group col-xs-3">
+      <label for="fundingAmount">Amount of Funding (in $):</label>
+      <input type="number" class="form-control" id="fundingAmount" [(ngModel)]="sponsorship.fundingAmount" formControlName="fundingAmount" step="1" min="0.00" max="50000000.00">
     </div>
-  </div>
+    <div class="form-group col-xs-3">
+      <label for="fundingDuration">Duration:</label>
+      <input type="number" class="form-control" id="fundingDuration" [(ngModel)]="sponsorship.fundingDuration" formControlName="fundingDuration" step="1" min="0" max="51">
+    </div>
+    <div class="form-group col-xs-3">
+      <label for="durationUnits">Units of Time:</label>
+      <select id="durationUnits" [(ngModel)]="sponsorship.fundingDurationUnits" formControlName="fundingDurationUnits" class="form-control">
+        <option *ngFor="let duropt of durUnits" [value]="duropt">{{duropt}}</option>
+      </select>
+    </div>
+    <div class="form-group col-xs-3">
+      <label for="staffSize">Project Staff Members:</label>
+      <input type="number" id="staffSize" [(ngModel)]="sponsorship.projectStaffSize" class="form-control" formControlName="projectStaffSize" step="1" min="1" max="1000">
+    </div>
+  </form>
 </div>
+<pre>{{sponsorship | json}}</pre>

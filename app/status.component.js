@@ -49,7 +49,7 @@ var StatusComponent = (function () {
         control.removeAt(i);
     };
     StatusComponent.prototype.updateStatus = function () {
-        (this.statuses);
+        this.theStatus.emit(this.statuses);
     };
     __decorate([
         core_1.Input(), 

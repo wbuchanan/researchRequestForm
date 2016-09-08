@@ -57,7 +57,7 @@ export class StatusComponent implements OnInit {
   }
 
   public updateStatus() : void {
-    ( this.statuses );
+    this.theStatus.emit( this.statuses );
   }
 
 }
