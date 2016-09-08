@@ -1,5 +1,5 @@
 ///<reference path="date-range.validator.ts"/>
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { CollectionWindow } from './collection-window';
 import { MeasuresComponent } from './measures.component';
 import { ExistingDataComponent } from './existing-data.component';
@@ -20,6 +20,8 @@ export class CollectionWindowComponent implements OnInit {
   @Input() measurement : MeasuresComponent;
 
   @Input() existing: ExistingDataComponent;
+
+  @Output() outputWindows: EventEmitter<CollectionWindow[]> = new EventEmitter<CollectionWindow[]>();
 
   public theDates : {};
   private collection: CollectionWindow[] = new Array(new CollectionWindow());
@@ -66,8 +68,20 @@ export class CollectionWindowComponent implements OnInit {
     control.removeAt(i);
   }
 
-  getCollectionWindows() : CollectionWindow[] {
+  addMeasures(i: number, measures) {
+    this.collection[i].dataToCollect = measures;
+  }
+
+  currentData(i: number, existsData) {
+    this.collection[i].fcpsData = existsData;
+  }
+
+  public getCollectionWindows() : CollectionWindow[] {
     return this.collection;
+  }
+
+  public update() : void {
+    this.outputWindows.emit( this.getCollectionWindows() );
   }
 
 }

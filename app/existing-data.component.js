@@ -30,6 +30,9 @@ var ExistingDataComponent = (function () {
     ExistingDataComponent.prototype.getExistingDataRequest = function () {
         return this.existing;
     };
+    ExistingDataComponent.prototype.update = function () {
+        this.currentData.emit(this.getExistingDataRequest());
+    };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)

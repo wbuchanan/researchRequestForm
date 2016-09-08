@@ -1,75 +1,72 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="margin-20">
-        <h4>Add Data Collection Window</h4>
-      </div>
-      <form [formGroup]="dataCollection" novalidate >
-        <div class="form-group">
-          <div formArrayName="collectionWindow">
-            <div *ngFor="let address of dataCollection.controls.collectionWindow.controls; let i=index" class="panel panel-default">
-              <div class="panel-heading">
-                <span>Collection Window {{i + 1}}</span>
-                <span class="glyphicon glyphicon-remove pull-right" *ngIf="dataCollection.controls.collectionWindow.controls.length > 1" (click)="removeCollectionWindowFields(i)"></span>
+<div class="col-xs-12">
+  <div class="margin-20">
+    <h4>Add Data Collection Window</h4>
+  </div>
+  <form [formGroup]="dataCollection" novalidate >
+    <div class="form-group">
+      <div formArrayName="collectionWindow" (change)="update()">
+        <div *ngFor="let address of dataCollection.controls.collectionWindow.controls; let i=index" class="panel panel-default">
+          <div class="panel-heading">
+            <span>Collection Window {{i + 1}}</span>
+            <span class="glyphicon glyphicon-remove pull-right" *ngIf="dataCollection.controls.collectionWindow.controls.length > 1" (click)="removeCollectionWindowFields(i)"></span>
+          </div>
+          <div class="panel-body" [formGroupName]="i">
+            <div class="form-group col-xs-12">
+              <div class="col-xs-6">
+                <label for="startDate">Start of Collection Window:</label>
+                <input type="date" class="form-control col-xs-6" id="startDate" defaultValue="{{theDatesRaw.start}}" formControlName="startDate" [(ngModel)]="collection[i].startDate" step="1" min="theDates.starting" max="theDates.ending">
+                <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.startDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.startDate.pristine" class="alert alert-danger" style="font-size: 12px">
+                  The data collection can not begin prior to today.
+                </div>
               </div>
-              <div class="panel-body" [formGroupName]="i">
-                <div class="form-group col-xs-12">
-                  <div class="col-xs-6">
-                    <label for="startDate">Start of Collection Window:</label>
-                    <input type="date" class="form-control col-xs-6" id="startDate" defaultValue="{{theDatesRaw.start}}" formControlName="startDate" [(ngModel)]="collection.startDate" step="1" min="theDates.starting" max="theDates.ending">
-                    <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.startDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.startDate.pristine" class="alert alert-danger" style="font-size: 12px">
-                      The data collection can not begin prior to today.
-                    </div>
+              <div class="col-xs-6">
+                <label for="endDate">End of Collection Window:</label>
+                <input type="date" class="form-control col-xs-6" id="endDate" formControlName="endDate" step="1" [(ngModel)]="collection[i].endDate" min="{{collection.startDate}}" max="theDates.ending">
+                <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.endDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.endDate.pristine" class="alert alert-danger" style="font-size: 12px">
+                  The data collection cannot end on this date.  Must either be after today or before five years from today.
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <label for="collectingData">Do you need to collect new data in this window?</label>
+                <input type="checkbox" id="collectingData" class="form-control" formControlName="collectingData" [(ngModel)]="collection[i].collectingData">
+              </div>
+              <div class="col-xs-6">
+                <label for="needFcpsData">Do you need data from FCPS in this window?</label>
+                <input type="checkbox" class="form-control" id="needFcpsData" formControlName="needFcpsData" [(ngModel)]="collection[i].needFcpsData">
+              </div>
+            </div>
+            <div class="form-group col-xs-12">
+              <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.collectingData.value">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span><strong>Measures</strong></span>
                   </div>
-                  <div class="col-xs-6">
-                    <label for="endDate">End of Collection Window:</label>
-                    <input type="date" class="form-control col-xs-6" id="endDate" formControlName="endDate" step="1" [(ngModel)]="collection.endDate" min="{{collection.startDate}}" max="theDates.ending">
-                    <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.endDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.endDate.pristine" class="alert alert-danger" style="font-size: 12px">
-                      The data collection cannot end on this date.  Must either be after today or before five years from today.
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="collectingData">Do you need to collect new data in this window?</label>
-                    <input type="checkbox" id="collectingData" class="form-control" formControlName="collectingData" [(ngModel)]="collection.collectingData">
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="needFcpsData">Do you need data from FCPS in this window?</label>
-                    <input type="checkbox" class="form-control" id="needFcpsData" formControlName="needFcpsData" [(ngModel)]="collection.needFcpsData">
+                  <div class="panel-body">
+                    <measures (addMeasures)="addMeasures(i, $event)"></measures>
                   </div>
                 </div>
-                <div class="form-group col-xs-12">
-                  <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.collectingData.value">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <span><strong>Measures</strong></span>
-                      </div>
-                      <div class="panel-body">
-                        <measures></measures>
-                      </div>
-                    </div>
+              </div>
+              <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.needFcpsData.value">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span><strong>Existing Data</strong></span>
                   </div>
-                  <div *ngIf="dataCollection.controls.collectionWindow.controls[i].controls.needFcpsData.value">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <span><strong>Existing Data</strong></span>
-                      </div>
-                      <div class="panel-body">
-                        <existing-data></existing-data>
-                      </div>
-                    </div>
+                  <div class="panel-body">
+                    <existing-data (currentData)="currentData(i, $event)"></existing-data>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
-      <div class="margin-20">
-        <a (click)="addCollectionWindowFields()" style="cursor: default">
-          Add another data collection window +
-        </a>
       </div>
-
     </div>
+  </form>
+  <div class="margin-20">
+    <a (click)="addCollectionWindowFields()" style="cursor: default">
+      Add another data collection window +
+    </a>
   </div>
 </div>
+<pre>{{collection | json}}</pre>
+

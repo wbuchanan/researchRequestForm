@@ -19,6 +19,7 @@ var CollectionWindowComponent = (function () {
     function CollectionWindowComponent(_fb) {
         this._fb = _fb;
         this.theDatesRaw = { start: new Date(Date.now()), end: new Date(Date.now()) };
+        this.outputWindows = new core_1.EventEmitter();
         this.collection = new Array(new collection_window_1.CollectionWindow());
         this.theDatesRaw.end.setFullYear(this.theDatesRaw.end.getFullYear() + 5);
         this.theDates = {
@@ -54,8 +55,17 @@ var CollectionWindowComponent = (function () {
         var control = this.dataCollection.controls['collectionWindow'];
         control.removeAt(i);
     };
+    CollectionWindowComponent.prototype.addMeasures = function (i, measures) {
+        this.collection[i].dataToCollect = measures;
+    };
+    CollectionWindowComponent.prototype.currentData = function (i, existsData) {
+        this.collection[i].fcpsData = existsData;
+    };
     CollectionWindowComponent.prototype.getCollectionWindows = function () {
         return this.collection;
+    };
+    CollectionWindowComponent.prototype.update = function () {
+        this.outputWindows.emit(this.getCollectionWindows());
     };
     __decorate([
         core_1.Input(), 
@@ -65,6 +75,10 @@ var CollectionWindowComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', existing_data_component_1.ExistingDataComponent)
     ], CollectionWindowComponent.prototype, "existing", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], CollectionWindowComponent.prototype, "outputWindows", void 0);
     CollectionWindowComponent = __decorate([
         core_1.Component({
             selector: 'collection-window',
