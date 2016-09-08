@@ -5,7 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require('@angular/core');
+var address_component_1 = require('./address.component');
 var forms_1 = require('@angular/forms');
 var institution_1 = require("./institution");
 var InstitutionComponent = (function () {
@@ -28,16 +32,19 @@ var InstitutionComponent = (function () {
         this.institutionData.emit(this.inst);
     };
     __decorate([
-        core_1.Output()
-    ], InstitutionComponent.prototype, "institutionData");
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], InstitutionComponent.prototype, "institutionData", void 0);
     __decorate([
-        core_1.Input()
-    ], InstitutionComponent.prototype, "addy");
+        core_1.Input(), 
+        __metadata('design:type', address_component_1.AddressComponent)
+    ], InstitutionComponent.prototype, "addy", void 0);
     InstitutionComponent = __decorate([
         core_1.Component({
             selector: 'institution',
             templateUrl: '../app/institution.component.html'
-        })
+        }), 
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], InstitutionComponent);
     return InstitutionComponent;
 }());

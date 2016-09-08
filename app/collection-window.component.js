@@ -61,11 +61,8 @@ var CollectionWindowComponent = (function () {
     CollectionWindowComponent.prototype.currentData = function (i, existsData) {
         this.collection[i].fcpsData = existsData;
     };
-    CollectionWindowComponent.prototype.getCollectionWindows = function () {
-        return this.collection;
-    };
-    CollectionWindowComponent.prototype.update = function () {
-        this.outputWindows.emit(this.getCollectionWindows());
+    CollectionWindowComponent.prototype.updateCollectionWindow = function () {
+        this.outputWindows.emit(this.collection);
     };
     __decorate([
         core_1.Input(), 

@@ -76,12 +76,8 @@ export class CollectionWindowComponent implements OnInit {
     this.collection[i].fcpsData = existsData;
   }
 
-  public getCollectionWindows() : CollectionWindow[] {
-    return this.collection;
-  }
-
-  public update() : void {
-    this.outputWindows.emit( this.getCollectionWindows() );
+  public updateCollectionWindow() : void {
+    this.outputWindows.emit( this.collection );
   }
 
 }

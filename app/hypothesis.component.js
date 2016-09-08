@@ -16,6 +16,8 @@ var hypothesis_1 = require("./hypothesis");
 var HypothesisComponent = (function () {
     function HypothesisComponent(_fb) {
         this._fb = _fb;
+        this.methods = ["Quantitative", "Qualitative", "Mixed Methods"];
+        this.hypothesisEmitter = new core_1.EventEmitter();
         this.myHypotheses = new Array(new hypothesis_1.Hypothesis());
     }
     HypothesisComponent.prototype.ngOnInit = function () {
@@ -25,26 +27,31 @@ var HypothesisComponent = (function () {
     };
     HypothesisComponent.prototype.initHypothesisFields = function () {
         return this._fb.group({
-            isQuantitative: [true, forms_1.Validators.required],
             researchQuestion: ['', forms_1.Validators.required],
             methodology: ['', forms_1.Validators.required],
-            statisticalModel: ['', forms_1.Validators.required],
-            dataToCollect: this.collection,
-            power: this.statPower
+            analysis: ['', forms_1.Validators.required],
+            dataRequirements: this.collection,
+            statisticalPower: this.statPower
         });
     };
-    HypothesisComponent.prototype.addCollectionWindowFields = function () {
+    HypothesisComponent.prototype.addHypothesisFields = function () {
         this.myHypotheses.push(new hypothesis_1.Hypothesis());
         var control = this.hypotheses.controls['hypothesis'];
         control.push(this.initHypothesisFields());
     };
-    HypothesisComponent.prototype.removeCollectionWindowFields = function (i) {
+    HypothesisComponent.prototype.removeHypothesisFields = function (i) {
         this.myHypotheses.pop();
         var control = this.hypotheses.controls['hypothesis'];
         control.removeAt(i);
     };
-    HypothesisComponent.prototype.getHypotheses = function () {
-        return this.myHypotheses;
+    HypothesisComponent.prototype.bindCollectionWindows = function (i, window) {
+        this.myHypotheses[i].dataRequirements = window;
+    };
+    HypothesisComponent.prototype.bindStatisticalPower = function (i, power) {
+        this.myHypotheses[i].statisticalPower = power;
+    };
+    HypothesisComponent.prototype.updateHypotheses = function () {
+        this.hypothesisEmitter.emit(this.myHypotheses);
     };
     __decorate([
         core_1.Input(), 
@@ -54,6 +61,10 @@ var HypothesisComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', statistical_power_component_1.StatisticalPowerComponent)
     ], HypothesisComponent.prototype, "statPower", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], HypothesisComponent.prototype, "hypothesisEmitter", void 0);
     HypothesisComponent = __decorate([
         core_1.Component({
             selector: 'hypothesis',
