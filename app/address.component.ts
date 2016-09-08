@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import { Address } from '../app/address';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { SECONDARY_UNITS } from '../app/secondary-units';
@@ -9,6 +9,19 @@ import { STREET_TYPES } from '../app/street-type-abbreviations';
     templateUrl: '../app/address.component.html'
 })
 export class AddressComponent implements OnInit {
+
+  @Input() streetNumber: string;
+  @Input() streetDirection: string;
+  @Input() streetName: string;
+  @Input() streetType: string;
+  @Input() unitType: string;
+  @Input() unitNumber: string;
+  @Input() city: string;
+  @Input() state: string;
+  @Input() zipCode: string;
+  @Input() secondLine: boolean;
+
+
     public directions = [ '', 'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
     public secUnits = SECONDARY_UNITS;
     public streetTypes = STREET_TYPES;

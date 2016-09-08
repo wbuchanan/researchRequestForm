@@ -88,6 +88,46 @@ var AddressComponent = (function () {
     AddressComponent.prototype.getAddress = function () {
         return this.addy;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "streetNumber", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "streetDirection", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "streetName", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "streetType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "unitType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "unitNumber", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "city", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "state", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AddressComponent.prototype, "zipCode", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AddressComponent.prototype, "secondLine", void 0);
     AddressComponent = __decorate([
         core_1.Component({
             selector: 'address',

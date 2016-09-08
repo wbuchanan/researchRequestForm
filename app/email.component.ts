@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, OnChanges} from '@angular/core';
 import { Email } from './email';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
@@ -6,40 +6,58 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
     selector: 'email',
     templateUrl: '../app/email.component.html'
 })
-export class EmailComponent implements OnInit {
-    public emailTypes = [ "home", "work", "other" ];
-    email: FormGroup;
-    private emails: Email[] = new Array(new Email());
+export class EmailComponent implements OnInit, OnChanges {
 
-    constructor(private _fb: FormBuilder) { }
-    ngOnInit() {
-        this.email = this._fb.group( {
-            emailAddresses: this._fb.array([ this.initEmailFields() ])
-        });
-    }
+  @Input() emailType: string;
+  @Input() userName: string;
+  @Input() domain: string;
+  @Output() emailAdded: EventEmitter<Email[]> = new EventEmitter<Email[]>();
 
-    initEmailFields() {
-        return this._fb.group({
-            emailType: ['', Validators.required],
-            userName: ['', Validators.required],
-            domain: ['', [Validators.required, Validators.pattern('^.*((\.com)|(\.net)|(\.us)|(\.gov)|(\.edu)|(\.org))$')]]
-        });
-    }
+  public emailTypes = [ "home", "work", "other" ];
+  email: FormGroup;
+  private emails: Email[] = new Array(new Email());
 
-    addEmailFields() {
-      this.emails.push(new Email());
-      const control = <FormArray>this.email.controls['emailAddresses'];
-      control.push(this.initEmailFields());
-    }
+  constructor(private _fb: FormBuilder) {
 
-    removeEmailFields(i: number) {
-      this.emails.pop();
-      const control = <FormArray>this.email.controls['emailAddresses'];
-      control.removeAt(i);
-    }
+  }
 
-    public getEmailAddresses() : Email[] {
-      return this.emails;
-    }
+  ngOnChange() {
+
+  }
+
+  ngOnInit() {
+      this.email = this._fb.group( {
+          emailAddresses: this._fb.array([ this.initEmailFields() ])
+      });
+  }
+
+  initEmailFields() {
+      return this._fb.group({
+          emailType: ['', Validators.required],
+          userName: ['', Validators.required],
+          domain: ['', [Validators.required, Validators.pattern('^.*((\.com)|(\.net)|(\.us)|(\.gov)|(\.edu)|(\.org))$')]]
+      });
+  }
+
+  addEmailFields() {
+    this.emails.push(new Email());
+    const control = <FormArray>this.email.controls['emailAddresses'];
+    control.push(this.initEmailFields());
+  }
+
+  removeEmailFields(i: number) {
+    this.emails.pop();
+    const control = <FormArray>this.email.controls['emailAddresses'];
+    control.removeAt(i);
+  }
+
+  public getEmailAddresses() : Email[] {
+    return this.emails;
+  }
+
+  public update() : void {
+    this.emailAdded.emit( this.getEmailAddresses() );
+  }
+
 
 }

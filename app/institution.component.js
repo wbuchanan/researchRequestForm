@@ -26,6 +26,14 @@ var InstitutionComponent = (function () {
     InstitutionComponent.prototype.getInstitution = function () {
         return this.inst;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InstitutionComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InstitutionComponent.prototype, "department", void 0);
     InstitutionComponent = __decorate([
         core_1.Component({
             selector: 'institution',

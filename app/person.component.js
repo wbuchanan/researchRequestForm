@@ -18,10 +18,10 @@ var PersonComponent = (function () {
         this._fb = _fb;
     }
     PersonComponent.prototype.ngOnInit = function () {
-        this.people = this._fb.group({
+        this.person = this._fb.group({
             person: this.peeps,
+            isFCPS: [true],
             contactInfo: this.contacts,
-            isFCPS: [false, forms_1.Validators.required],
             jobLocation: this.inst
         });
     };

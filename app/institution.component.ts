@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import { Address } from './address';
 import { AddressComponent } from './address.component';
 import { Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
@@ -12,6 +12,9 @@ export class InstitutionComponent {
     institution: FormGroup;
     private addy: AddressComponent;
     private inst: Institution = new Institution();
+
+    @Input() name: string;
+    @Input() department: string;
 
     constructor(private _fb: FormBuilder) { }
     ngOnInit() {

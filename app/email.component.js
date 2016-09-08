@@ -14,9 +14,12 @@ var forms_1 = require('@angular/forms');
 var EmailComponent = (function () {
     function EmailComponent(_fb) {
         this._fb = _fb;
+        this.emailAdded = new core_1.EventEmitter();
         this.emailTypes = ["home", "work", "other"];
         this.emails = new Array(new email_1.Email());
     }
+    EmailComponent.prototype.ngOnChange = function () {
+    };
     EmailComponent.prototype.ngOnInit = function () {
         this.email = this._fb.group({
             emailAddresses: this._fb.array([this.initEmailFields()])
@@ -42,6 +45,25 @@ var EmailComponent = (function () {
     EmailComponent.prototype.getEmailAddresses = function () {
         return this.emails;
     };
+    EmailComponent.prototype.update = function () {
+        this.emailAdded.emit(this.getEmailAddresses());
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], EmailComponent.prototype, "emailType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], EmailComponent.prototype, "userName", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], EmailComponent.prototype, "domain", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], EmailComponent.prototype, "emailAdded", void 0);
     EmailComponent = __decorate([
         core_1.Component({
             selector: 'email',

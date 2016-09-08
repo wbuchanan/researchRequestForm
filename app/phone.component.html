@@ -1,6 +1,6 @@
-<form [formGroup]="phone" novalidate (ngSubmit)="save(phone)">
+<form [formGroup]="phone" novalidate>
   <div class="form-group">
-    <div formArrayName="phoneNumbers">
+    <div formArrayName="phoneNumbers" (change)="update()">
       <div *ngFor="let address of phone.controls.phoneNumbers.controls; let i=index" class="panel panel-default">
         <div class="panel-heading">
           <span>Phone Number {{i + 1}}</span>
@@ -8,14 +8,14 @@
         </div>
         <div class="panel-body" [formGroupName]="i">
           <div class="form-group col-xs-6">
-            <label>Phone Type:</label>
-            <select class="form-control" formControlName="phoneType" [(ngModel)]="phones[i].phoneType">
+            <label for="phoneType">Phone Type:</label>
+            <select class="form-control" id="phoneType"formControlName="phoneType" [(ngModel)]="phones[i].phoneType">
               <option *ngFor="let m of phoneTypes" [value]="m">{{m}}</option>
             </select>
           </div>
           <div class="form-group col-xs-6">
             <label for="countryCode">Country Code:</label>
-            <input type="text" class="form-control" formControlName="countryCode" [(ngModel)]="phones[i].countryCode">
+            <input type="text" class="form-control" id="countryCode" formControlName="countryCode" [(ngModel)]="phones[i].countryCode">
             <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.countryCode.valid && !phone.controls.phoneNumbers.controls[i].controls.countryCode.pristine" class="alert alert-danger" style="font-size: 12px">
               Invalid country code.
             </div>
@@ -51,8 +51,6 @@
             <a (click)="addPhoneFields()" style="cursor: default">
               Add another phonenumber +
             </a>
-          </div>
-          <div class="col-xs-12">
           </div>
         </div>
       </div>

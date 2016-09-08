@@ -1,22 +1,21 @@
-<div class="container">
-  <div [formGroup]="contactInformation" novalidate>
-    <div class="form-group col-xs-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span>Contact Information</span>
-        </div>
-        <div class="panel-body">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <email></email>
-            </div>
-            <div class="form-group">
-              <phone></phone>
-            </div>
+<div [formGroup]="contactInformation" novalidate>
+  <div class="form-group col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span>Contact Information</span>
+      </div>
+      <div class="panel-body">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <email (emailAdded)="emailAdded($event)"></email>
+          </div>
+          <div class="form-group">
+            <phone (phoneAdded)="phoneAdded($event)"></phone>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <pre>{{contacts | json}}</pre>
 </div>
 

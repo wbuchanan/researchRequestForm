@@ -16,6 +16,7 @@ import {StatusComponent} from "./status.component";
   templateUrl: '../app/app.component.html'
 })
 export class AppComponent {
+
   @Input()
   measures: MeasuresComponent;
 

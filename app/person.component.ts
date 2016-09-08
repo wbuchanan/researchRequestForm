@@ -11,22 +11,17 @@ import { Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 })
 export class PersonComponent implements OnInit {
 
-  @Input()
-  peeps: PeopleComponent;
+  @Input() peeps: PeopleComponent;
+  @Input() contacts: ContactComponent;
+  @Input() inst: InstitutionComponent;
 
-  @Input()
-  contacts: ContactComponent;
-
-  @Input()
-  inst: InstitutionComponent;
-
-  people: FormGroup;
+  person: FormGroup;
   constructor(private _fb: FormBuilder) { }
   ngOnInit() {
-    this.people = this._fb.group( {
+    this.person = this._fb.group( {
       person : this.peeps,
+      isFCPS: [true],
       contactInfo: this.contacts,
-      isFCPS: [false, Validators.required],
       jobLocation: this.inst
     });
   }
