@@ -19,7 +19,7 @@ This is a container component that houses the email and phone components.
 Still in progress, but this would be the route that would be used for internal requests for existing data/reports.
 
 ## District Sponsor
-
+This is a component used to have requestors identify program office staff at the district level to sponsor their research.  This allows the data, research, and accountability office to avoid making unilateral decisions about research partnerships and gives more decision making power/authority to staff with the contextual knowledge/background needed to evaluate how well the project fits and aligns with existing efforts.
 
 ## Email
 Contains three fields: email type, username, and domain.  End users can provide as many email addresses as they would like.
