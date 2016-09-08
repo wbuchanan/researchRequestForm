@@ -30,7 +30,7 @@ var ContactComponent = (function () {
     ContactComponent.prototype.phoneAdded = function (phone) {
         this.contacts.phoneNumbers = phone;
     };
-    ContactComponent.prototype.update = function () {
+    ContactComponent.prototype.updateContactInfo = function () {
         this.contactInfo.emit(this.contacts);
     };
     __decorate([

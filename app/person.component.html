@@ -1,4 +1,4 @@
-<div class="container">
+<div (change)="updateRequestor()">
   <form [formGroup]="person" novalidate>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -6,17 +6,20 @@
       </div>
       <div class="panel-body">
         <div class="form-group col-xs-9">
-          <people></people>
+          <people (peeps)="bindPersonObject($event)"></people>
         </div>
         <div class="form-group col-xs-3">
           <label for="isFCPS">Are you an FCPS Employee?</label>
-          <input type="checkbox" class="form-control" id="isFCPS" formControlName="isFCPS">
+          <input type="checkbox" class="form-control" id="isFCPS" [(ngModel)]="peep.isFCPS" formControlName="isFCPS">
+        </div>
+        <div class="form-group col-xs-12">
+          <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
         </div>
         <div class="form-group col-xs-12" *ngIf="!person.controls.isFCPS.value">
-          <contactInformation></contactInformation>
-          <institution></institution>
+          <institution (institutionData)="bindInstitutionInformation($event)"></institution>
         </div>
       </div>
     </div>
   </form>
 </div>
+<pre>{{peep | json}}</pre>

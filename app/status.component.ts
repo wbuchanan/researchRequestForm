@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Status } from './status';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { PeopleComponent } from "./people.component";
@@ -19,8 +19,9 @@ export class StatusComponent implements OnInit {
   statusCategories = [ "Submitted", "In Progress", "Awaiting Approval", "Assigned", "Rejected",
                         "Forward to Other Department", "Additional Information Required", "Completed"];
 
-  @Input()
-  assignee: PeopleComponent;
+  @Input() assignee: PeopleComponent;
+
+  @Output() theStatus: EventEmitter<Status[]> = new EventEmitter<Status[]>();
 
   constructor(private _fb: FormBuilder) {
     var x = new Date(Date.now());
@@ -55,8 +56,8 @@ export class StatusComponent implements OnInit {
     control.removeAt(i);
   }
 
-  public getStatus() : Status[] {
-    return this.statuses;
+  public updateStatus() : void {
+    ( this.statuses );
   }
 
 }

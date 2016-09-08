@@ -22,12 +22,8 @@ export class PeopleComponent implements OnInit {
       });
   }
 
-  getPerson(): People {
-    return this.person;
-  }
-
-  update() : void {
-    this.peeps.emit( this.getPerson() );
+  updatePeople() : void {
+    this.peeps.emit( this.person );
   }
 
 }

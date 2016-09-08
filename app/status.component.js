@@ -19,6 +19,7 @@ var StatusComponent = (function () {
         this.statuses = new Array(new status_1.Status());
         this.statusCategories = ["Submitted", "In Progress", "Awaiting Approval", "Assigned", "Rejected",
             "Forward to Other Department", "Additional Information Required", "Completed"];
+        this.theStatus = new core_1.EventEmitter();
         var x = new Date(Date.now());
         this.today = x.toISOString().substring(0, 10);
     }
@@ -47,13 +48,17 @@ var StatusComponent = (function () {
         var control = this.statusForm.controls['status'];
         control.removeAt(i);
     };
-    StatusComponent.prototype.getStatus = function () {
-        return this.statuses;
+    StatusComponent.prototype.updateStatus = function () {
+        (this.statuses);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', people_component_1.PeopleComponent)
     ], StatusComponent.prototype, "assignee", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], StatusComponent.prototype, "theStatus", void 0);
     StatusComponent = __decorate([
         core_1.Component({
             selector: 'status',

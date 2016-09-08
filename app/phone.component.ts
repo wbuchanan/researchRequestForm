@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Phone } from './phone';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 
@@ -6,14 +6,8 @@ import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} fro
     selector: 'phone',
     templateUrl: '../app/phone.component.html'
 })
-export class PhoneComponent implements OnInit, OnChanges {
+export class PhoneComponent implements OnInit {
 
-  @Input() phoneType: string;
-  @Input() countryCode: string;
-  @Input() areaCode: string;
-  @Input() exchangeCode: string;
-  @Input() subscriberNumber: string;
-  @Input() extension: string;
   @Output() phoneAdded: EventEmitter<Phone[]> = new EventEmitter<Phone[]>();
 
   public phoneTypes = [ "home", "mobile", "office", "fax" ];
@@ -23,11 +17,6 @@ export class PhoneComponent implements OnInit, OnChanges {
   constructor(private _fb: FormBuilder) {
 
   }
-
-  ngOnChange() {
-
-  }
-
 
   ngOnInit() {
     this.phone = this._fb.group( {

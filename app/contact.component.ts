@@ -34,7 +34,7 @@ export class ContactComponent implements OnInit {
     this.contacts.phoneNumbers = phone;
   }
 
-  public update() : void {
+  public updateContactInfo() : void {
     this.contactInfo.emit( this.contacts );
   }
 

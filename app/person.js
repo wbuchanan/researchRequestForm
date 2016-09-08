@@ -1,16 +1,8 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var people_1 = require('./people');
-var Person = (function (_super) {
-    __extends(Person, _super);
+var Person = (function () {
     function Person() {
-        _super.apply(this, arguments);
     }
     return Person;
-}(people_1.People));
+}());
 exports.Person = Person;
 //# sourceMappingURL=person.js.map

@@ -14,6 +14,8 @@ var forms_1 = require('@angular/forms');
 var StatisticalPowerComponent = (function () {
     function StatisticalPowerComponent(_fb) {
         this._fb = _fb;
+        // Emits the Statistical Power object
+        this.superPowers = new core_1.EventEmitter();
         this.power = new statistical_power_1.StatisticalPower();
     }
     StatisticalPowerComponent.prototype.ngOnInit = function () {
@@ -25,9 +27,13 @@ var StatisticalPowerComponent = (function () {
             minimalDetectableEffect: [, forms_1.Validators.required]
         });
     };
-    StatisticalPowerComponent.prototype.getPower = function () {
-        return this.power;
+    StatisticalPowerComponent.prototype.updateStatisticalPower = function () {
+        this.superPowers.emit(this.power);
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], StatisticalPowerComponent.prototype, "superPowers", void 0);
     StatisticalPowerComponent = __decorate([
         core_1.Component({
             selector: 'statistical-power',

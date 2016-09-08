@@ -11,7 +11,7 @@ import {Institution} from "./institution";
 export class InstitutionComponent {
   @Output() institutionData: EventEmitter<Institution> = new EventEmitter<Institution>();
 
-  @Input addy : AddressComponent;
+  @Input() addy : AddressComponent;
   institution: FormGroup;
   inst: Institution = new Institution();
 
@@ -31,8 +31,8 @@ export class InstitutionComponent {
     this.inst.address = addressObject;
   }
 
-  getInstitution() : void {
-    this.inst;
+  updateInstitution() : void {
+    this.institutionData.emit( this.inst );
   }
 
 }

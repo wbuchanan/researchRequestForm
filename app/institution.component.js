@@ -28,15 +28,15 @@ var InstitutionComponent = (function () {
     InstitutionComponent.prototype.enterAddress = function (addressObject) {
         this.inst.address = addressObject;
     };
-    InstitutionComponent.prototype.getInstitution = function () {
-        this.inst;
+    InstitutionComponent.prototype.updateInstitution = function () {
+        this.institutionData.emit(this.inst);
     };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], InstitutionComponent.prototype, "institutionData", void 0);
     __decorate([
-        core_1.Input, 
+        core_1.Input(), 
         __metadata('design:type', address_component_1.AddressComponent)
     ], InstitutionComponent.prototype, "addy", void 0);
     InstitutionComponent = __decorate([

@@ -12,19 +12,33 @@ var core_1 = require('@angular/core');
 var people_component_1 = require('./people.component');
 var contact_component_1 = require('./contact.component');
 var institution_component_1 = require('./institution.component');
+var person_1 = require('./person');
 var forms_1 = require('@angular/forms');
 var PersonComponent = (function () {
     function PersonComponent(_fb) {
         this._fb = _fb;
-        this.thePerson = new core_1.EventEmitter();
+        this.requestor = new core_1.EventEmitter();
+        this.peep = new person_1.Person();
     }
     PersonComponent.prototype.ngOnInit = function () {
         this.person = this._fb.group({
             person: this.peeps,
             isFCPS: [true],
             contactInfo: this.contacts,
-            jobLocation: this.inst
+            institutionalAffiliation: this.inst
         });
+    };
+    PersonComponent.prototype.bindPersonObject = function (person) {
+        this.peep.person = person;
+    };
+    PersonComponent.prototype.bindContactInformation = function (contactInfo) {
+        this.peep.contactInfo = contactInfo;
+    };
+    PersonComponent.prototype.bindInstitutionInformation = function (institution) {
+        this.peep.institutionalAffiliation = institution;
+    };
+    PersonComponent.prototype.updateRequestor = function () {
+        this.requestor.emit(this.peep);
     };
     __decorate([
         core_1.Input(), 
@@ -41,7 +55,7 @@ var PersonComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], PersonComponent.prototype, "thePerson", void 0);
+    ], PersonComponent.prototype, "requestor", void 0);
     PersonComponent = __decorate([
         core_1.Component({
             selector: 'person',

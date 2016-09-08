@@ -18,8 +18,6 @@ var PhoneComponent = (function () {
         this.phoneTypes = ["home", "mobile", "office", "fax"];
         this.phones = new Array(new phone_1.Phone());
     }
-    PhoneComponent.prototype.ngOnChange = function () {
-    };
     PhoneComponent.prototype.ngOnInit = function () {
         this.phone = this._fb.group({
             phoneNumbers: this._fb.array([this.initPhoneFields()])
@@ -48,30 +46,6 @@ var PhoneComponent = (function () {
     PhoneComponent.prototype.updatePhoneNumbers = function () {
         this.phoneAdded.emit(this.phones);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PhoneComponent.prototype, "phoneType", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PhoneComponent.prototype, "countryCode", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PhoneComponent.prototype, "areaCode", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PhoneComponent.prototype, "exchangeCode", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PhoneComponent.prototype, "subscriberNumber", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PhoneComponent.prototype, "extension", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { StatisticalPower } from './statistical-power';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -7,6 +7,10 @@ import { ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angula
     templateUrl: '../app/statistical-power.component.html'
 })
 export class StatisticalPowerComponent implements OnInit {
+
+  // Emits the Statistical Power object
+  @Output() superPowers : EventEmitter<StatisticalPower> = new EventEmitter<StatisticalPower>();
+
   private power: StatisticalPower = new StatisticalPower();
   statPower: FormGroup;
   constructor(private _fb: FormBuilder) { }
@@ -20,8 +24,8 @@ export class StatisticalPowerComponent implements OnInit {
       });
   }
 
-  public getPower() : StatisticalPower {
-    return this.power;
+  public updateStatisticalPower() : void {
+    this.superPowers.emit( this.power );
   }
 
 }
