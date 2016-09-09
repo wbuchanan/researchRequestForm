@@ -23,11 +23,12 @@ import { HypothesisComponent }          from "./hypothesis.component";
 import { StatusComponent }              from "./status.component";
 import { HttpModule, JsonpModule }      from '@angular/http';
 import { ResearchRequestComponent }     from "./research-request.component";
+import { DataRequestComponent }         from "./data-request.component";
 
 @NgModule({
   imports: [ BrowserModule, ReactiveFormsModule, HttpModule, JsonpModule ],
   declarations: [ AppComponent, MeasuresComponent, AddressComponent, CollectionWindowComponent, ContactComponent,
-                  StatusComponent, ResearchRequestComponent,
+                  StatusComponent, ResearchRequestComponent, DataRequestComponent,
                   ExistingDataComponent, PhoneComponent, EmailComponent, DistrictSponsorComponent, HypothesisComponent,
                   SponsorComponent, InstitutionComponent, PersonComponent, PeopleComponent, StatisticalPowerComponent],
   bootstrap: [ AppComponent ]
