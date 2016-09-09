@@ -10,13 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var people_component_1 = require("./people.component");
-var contact_component_1 = require("./contact.component");
 var district_sponsor_1 = require("./district-sponsor");
 var DistrictSponsorComponent = (function () {
     function DistrictSponsorComponent(_fb) {
         this._fb = _fb;
         this.sendDistrictSponsor = new core_1.EventEmitter();
+        this.phoneTypes = ["home", "mobile", "office", "fax"];
+        this.emailTypes = ["home", "work", "other"];
         this.levels = ['Senior Director', 'Director', 'Associate Director'];
         this.offices = ['Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
             'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Evaluation'];
@@ -24,30 +24,27 @@ var DistrictSponsorComponent = (function () {
     }
     DistrictSponsorComponent.prototype.ngOnInit = function () {
         this.districtSponsor = this._fb.group({
-            person: this.peeps,
-            contactInformation: this.contactInformation,
+            firstName: ['', [forms_1.Validators.required, forms_1.Validators.minLength(2)]],
+            lastName: ['', [forms_1.Validators.required, forms_1.Validators.minLength(2)]],
+            jobTitle: ['', [forms_1.Validators.required, forms_1.Validators.minLength(2)]],
+            emailType: ['work', forms_1.Validators.required],
+            userName: ['', forms_1.Validators.required],
+            domain: ['fayette.kyschools.us', [forms_1.Validators.required, forms_1.Validators.pattern('^.*((\.com)|(\.net)|(\.us)|(\.gov)|(\.edu)|(\.org))$')]],
+            phoneType: ['office', forms_1.Validators.required],
+            areaCode: ['859', [forms_1.Validators.required, forms_1.Validators.pattern('[0-9]{3}')]],
+            exchangeCode: ['381', [forms_1.Validators.required, forms_1.Validators.pattern('[0-9]{3}')]],
+            subscriberNumber: ['', [forms_1.Validators.required, forms_1.Validators.pattern('[0-9]{4}')]],
             office: ['', forms_1.Validators.required],
             level: ['', forms_1.Validators.required],
             delegated: [false, forms_1.Validators.required]
         });
     };
-    DistrictSponsorComponent.prototype.bindPersonInfo = function (sponsor) {
-        this.distSponsor.person = sponsor;
-    };
-    DistrictSponsorComponent.prototype.bindContactInformation = function (contact) {
-        this.distSponsor.contactInfo = contact;
+    DistrictSponsorComponent.prototype.makeUserName = function () {
+        return this.distSponsor.firstName.concat('.').concat(this.distSponsor.lastName);
     };
     DistrictSponsorComponent.prototype.updateDistrictSponsor = function () {
         this.sendDistrictSponsor.emit(this.distSponsor);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', people_component_1.PeopleComponent)
-    ], DistrictSponsorComponent.prototype, "peeps", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', contact_component_1.ContactComponent)
-    ], DistrictSponsorComponent.prototype, "contactInformation", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
