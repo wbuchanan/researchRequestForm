@@ -1,11 +1,11 @@
 <div (change)="updateDistrictSponsor()">
   <div class="form-group">
     <div class="panel panel-default">
-      <form [formGroup]="districtSponsor" novalidate>
-        <div class="panel-heading">
-          <span>District Co-Sponsor Information</span>
-        </div>
-        <div class="panel-body">
+      <div class="panel-heading">
+        <span>District Co-Sponsor Information</span>
+      </div>
+      <div class="panel-body">
+        <form [formGroup]="districtSponsor" novalidate>
           <div class="form-group">
             <people (peeps)="bindPersonInfo($event)"></people>
           </div>
@@ -30,8 +30,8 @@
               <input type="checkbox" formControlName="delegated" class="form-control" [(ngModel)]="distSponsor.delegated">
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>

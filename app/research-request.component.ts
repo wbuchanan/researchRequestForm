@@ -66,6 +66,13 @@ export class ResearchRequestComponent implements OnInit {
     this.theRequest.emit( this.request );
   }
 
+  submitted: boolean = false;
+
+  submit() : void {
+    this.submitted = true;
+  }
+
+  /*
   submit() : Observable<ResearchRequest> {
     let body = JSON.stringify(this.request);
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -89,5 +96,7 @@ export class ResearchRequestComponent implements OnInit {
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
   }
+
+  */
 
 }

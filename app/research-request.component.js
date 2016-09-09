@@ -23,6 +23,7 @@ var ResearchRequestComponent = (function () {
         this.theRequest = new core_1.EventEmitter();
         this.backendURL = 'localhost:9200/';
         this.request = new research_request_1.ResearchRequest();
+        this.submitted = false;
     }
     ResearchRequestComponent.prototype.ngOnInit = function () {
         this.researchRequest = this._fb.group({
@@ -54,23 +55,7 @@ var ResearchRequestComponent = (function () {
         this.theRequest.emit(this.request);
     };
     ResearchRequestComponent.prototype.submit = function () {
-        var body = JSON.stringify(this.request);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.backendURL, body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    ResearchRequestComponent.prototype.extractData = function (res) {
-        var body = res.json();
-        return body.data || {};
-    };
-    ResearchRequestComponent.prototype.handleError = function (error) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        var errMsg = (error.message) ? error.message :
-            error.status ? error.status + " - " + error.statusText : 'Server error';
-        console.error(errMsg); // log to console instead
+        this.submitted = true;
     };
     __decorate([
         core_1.Input(), 
