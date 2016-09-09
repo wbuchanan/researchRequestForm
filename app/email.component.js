@@ -18,8 +18,6 @@ var EmailComponent = (function () {
         this.emailTypes = ["home", "work", "other"];
         this.emails = new Array(new email_1.Email());
     }
-    EmailComponent.prototype.ngOnChange = function () {
-    };
     EmailComponent.prototype.ngOnInit = function () {
         this.email = this._fb.group({
             emailAddresses: this._fb.array([this.initEmailFields()])

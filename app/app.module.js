@@ -30,14 +30,16 @@ var person_component_1 = require("./person.component");
 var institution_component_1 = require("./institution.component");
 var hypothesis_component_1 = require("./hypothesis.component");
 var status_component_1 = require("./status.component");
+var http_1 = require('@angular/http');
+var research_request_component_1 = require("./research-request.component");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, http_1.JsonpModule],
             declarations: [app_component_1.AppComponent, measures_component_1.MeasuresComponent, address_component_1.AddressComponent, collection_window_component_1.CollectionWindowComponent, contact_component_1.ContactComponent,
-                status_component_1.StatusComponent,
+                status_component_1.StatusComponent, research_request_component_1.ResearchRequestComponent,
                 existing_data_component_1.ExistingDataComponent, phone_component_1.PhoneComponent, email_component_1.EmailComponent, district_sponsor_component_1.DistrictSponsorComponent, hypothesis_component_1.HypothesisComponent,
                 sponsor_component_1.SponsorComponent, institution_component_1.InstitutionComponent, person_component_1.PersonComponent, people_component_1.PeopleComponent, statistical_power_component_1.StatisticalPowerComponent],
             bootstrap: [app_component_1.AppComponent]

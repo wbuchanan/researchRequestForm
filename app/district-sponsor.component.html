@@ -1,4 +1,4 @@
-<div class="container">
+<div (change)="updateDistrictSponsor()">
   <div class="form-group">
     <div class="panel panel-default">
       <form [formGroup]="districtSponsor" novalidate>
@@ -7,10 +7,10 @@
         </div>
         <div class="panel-body">
           <div class="form-group">
-            <people></people>
+            <people (peeps)="bindPersonInfo($event)"></people>
           </div>
           <div class="form-group">
-            <contactInformation></contactInformation>
+            <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
           </div>
           <div class="form-group col-xs-12">
             <div class="col-xs-4">

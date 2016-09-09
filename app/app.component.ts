@@ -9,7 +9,7 @@ import {SponsorComponent} from "./sponsor.component";
 import {PhoneComponent} from "./phone.component";
 import {HypothesisComponent} from "./hypothesis.component";
 import {StatusComponent} from "./status.component";
-
+import {ResearchRequestComponent} from "./research-request.component";
 
 @Component({
   selector: 'app-root',
@@ -46,6 +46,9 @@ export class AppComponent {
 
   @Input()
   statuses: StatusComponent;
+
+  @Input()
+  researchRequest: ResearchRequestComponent;
 
   constructor() { }
 

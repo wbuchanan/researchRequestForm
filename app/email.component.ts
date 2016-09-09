@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output, OnChanges} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Email } from './email';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
     selector: 'email',
     templateUrl: '../app/email.component.html'
 })
-export class EmailComponent implements OnInit, OnChanges {
+export class EmailComponent implements OnInit {
 
   @Output() emailAdded: EventEmitter<Email[]> = new EventEmitter<Email[]>();
 
@@ -15,10 +15,6 @@ export class EmailComponent implements OnInit, OnChanges {
   private emails: Email[] = new Array(new Email());
 
   constructor(private _fb: FormBuilder) {
-
-  }
-
-  ngOnChange() {
 
   }
 

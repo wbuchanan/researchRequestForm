@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import {PeopleComponent} from "./people.component";
 import {ContactComponent} from "./contact.component";
@@ -13,7 +13,7 @@ export class DistrictSponsorComponent implements OnInit {
   @Input() peeps: PeopleComponent;
 
   @Input() contactInformation: ContactComponent;
-
+  @Output() sendDistrictSponsor: EventEmitter<DistrictSponsor> = new EventEmitter<DistrictSponsor>();
   districtSponsor: FormGroup;
 
   levels = [ 'Senior Director', 'Director', 'Associate Director'];
@@ -33,8 +33,16 @@ export class DistrictSponsorComponent implements OnInit {
     });
   }
 
-  public getDistrictSponsor() : DistrictSponsor {
-    return this.distSponsor;
+  bindPersonInfo(sponsor) {
+    this.distSponsor.person = sponsor;
+  }
+
+  bindContactInformation(contact) {
+    this.distSponsor.contactInfo = contact;
+  }
+
+  public updateDistrictSponsor() : void {
+    this.sendDistrictSponsor.emit( this.distSponsor );
   }
 
 }

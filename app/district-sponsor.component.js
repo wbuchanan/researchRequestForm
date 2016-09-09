@@ -16,6 +16,7 @@ var district_sponsor_1 = require("./district-sponsor");
 var DistrictSponsorComponent = (function () {
     function DistrictSponsorComponent(_fb) {
         this._fb = _fb;
+        this.sendDistrictSponsor = new core_1.EventEmitter();
         this.levels = ['Senior Director', 'Director', 'Associate Director'];
         this.offices = ['Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
             'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Evaluation'];
@@ -30,8 +31,14 @@ var DistrictSponsorComponent = (function () {
             delegated: [false, forms_1.Validators.required]
         });
     };
-    DistrictSponsorComponent.prototype.getDistrictSponsor = function () {
-        return this.distSponsor;
+    DistrictSponsorComponent.prototype.bindPersonInfo = function (sponsor) {
+        this.distSponsor.person = sponsor;
+    };
+    DistrictSponsorComponent.prototype.bindContactInformation = function (contact) {
+        this.distSponsor.contactInfo = contact;
+    };
+    DistrictSponsorComponent.prototype.updateDistrictSponsor = function () {
+        this.sendDistrictSponsor.emit(this.distSponsor);
     };
     __decorate([
         core_1.Input(), 
@@ -41,6 +48,10 @@ var DistrictSponsorComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', contact_component_1.ContactComponent)
     ], DistrictSponsorComponent.prototype, "contactInformation", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DistrictSponsorComponent.prototype, "sendDistrictSponsor", void 0);
     DistrictSponsorComponent = __decorate([
         core_1.Component({
             selector: 'district-sponsor',

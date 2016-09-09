@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Measures } from './measures';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import { UNIT_OF_MEASUREMENT } from './unitsOfMeasurement';

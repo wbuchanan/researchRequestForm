@@ -19,6 +19,7 @@ var sponsor_component_1 = require("./sponsor.component");
 var phone_component_1 = require("./phone.component");
 var hypothesis_component_1 = require("./hypothesis.component");
 var status_component_1 = require("./status.component");
+var research_request_component_1 = require("./research-request.component");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -62,6 +63,10 @@ var AppComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', status_component_1.StatusComponent)
     ], AppComponent.prototype, "statuses", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', research_request_component_1.ResearchRequestComponent)
+    ], AppComponent.prototype, "researchRequest", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
