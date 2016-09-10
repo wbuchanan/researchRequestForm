@@ -1,26 +1,26 @@
 <div (change)="updateExistingData()">
   <form [formGroup]="existingData" novalidate>
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <label for="studentLevel">Student Level Data:</label>
       <input type="text" class="form-control" id="studentLevel" formControlName="studentLevel" [(ngModel)]="existing.studentLevel" placeholder="Student Race, Sex, and EL Status">
     </div>
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <label for="classRoomLevel">Classroom Level Data:</label>
       <input type="text" class="form-control" id="classRoomLevel" formControlName="classRoomLevel" [(ngModel)]="existing.classRoomLevel" placeholder="% of students with 5 or more absences">
     </div>
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <label for="teacherLevel">Teacher Level Data:</label>
       <input type="text" class="form-control" id="teacherLevel" formControlName="teacherLevel" [(ngModel)]="existing.teacherLevel" placeholder="NBCT Indicator">
     </div>
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <label for="gradeLevel">Grade Level Data:</label>
       <input type="text" class="form-control" id="gradeLevel" formControlName="gradeLevel" [(ngModel)]="existing.gradeLevel" placeholder="Average MAP Math Score in grade 5">
     </div>
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <label for="schoolLevel">School Level Data:</label>
       <input type="text" class="form-control" id="schoolLevel" formControlName="schoolLevel" [(ngModel)]="existing.schoolLevel" placeholder="% of Homeless/Highly Mobile Students">
     </div>
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <label for="districtLevel">District Level Data:</label>
       <input type="text" class="form-control" id="districtLevel" formControlName="districtLevel" [(ngModel)]="existing.districtLevel" placeholder="% of students with disabilities">
     </div>

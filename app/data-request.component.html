@@ -5,14 +5,14 @@
     </div>
     <div class="panel-body">
       <form [formGroup]="dataRequest" novalidate>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <person (requestor)="bindPersonObject($event)"></person>
         </div>
-        <div class="form-group col-xs-4">
+        <div class="form-group col-md-4">
           <label for="existingReport">Check this box if you are requesting an existing report</label>
           <input type="checkbox" id="existingReport" formControlName="existingReport" [(ngModel)]="request.existingReport">
         </div>
-        <div class="form-group col-xs-8">
+        <div class="form-group col-md-8">
           <label for="researchQuestion">What is the question you are trying to answer with these data?</label>
           <textarea rows="5" cols="80" formControlName="researchQuestion" id="researchQuestion" [(ngModel)]="request.researchQuestion"></textarea>
           <div *ngIf="!dataRequest.controls.researchQuestion.valid && !dataRequest.controls.researchQuestion.pristine" class="alert alert-danger">
@@ -22,7 +22,7 @@
         <div *ngIf="!dataRequest.controls.existingReport.value">
           <existing-data (currentData)="bindExistingData($event)"></existing-data>
         </div>
-        <div class="form-group col-xs-12" *ngIf="dataRequest.controls.existingReport.value">
+        <div class="form-group col-md-12" *ngIf="dataRequest.controls.existingReport.value">
           <label for="existingReportName">Name/Description of Existing Report</label>
           <input type="text" id="existingReportName" formControlName="existingReportName" [(ngModel)]="request.existingReportName" class="form-control">
         </div>

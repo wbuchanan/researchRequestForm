@@ -8,29 +8,29 @@
             <span class="glyphicon glyphicon-remove pull-right" *ngIf="hypotheses.controls.hypothesis.controls.length > 1" (click)="removeHypothesisFields(i)"></span>
           </div>
           <div class="panel-body" [formGroupName]="i">
-            <div class="form-group col-xs-12">
-              <div class="col-xs-4">
+            <div class="form-group col-md-12">
+              <div class="col-md-4">
                 <label for="rq">Research Question:</label>
                 <input type="text" class="form-control" id="rq" formControlName="researchQuestion" [(ngModel)]="myHypotheses[i].researchQuestion">
                 <div *ngIf="!hypotheses.controls.hypothesis.controls[i].controls.researchQuestion.valid && !hypotheses.controls.hypothesis.controls[i].controls.researchQuestion.pristine" class="alert alert-danger" style="font-size: 12px">
                   Must provide a valid and testable research question.
                 </div>
               </div>
-              <div class="col-xs-4">
+              <div class="col-md-4">
                 <label for="methods">Methodology:</label>
                 <select class="form-control" id="methods" formControlName="methodology" [(ngModel)]="myHypotheses[i].methodology">
                   <option *ngFor="let x of methods" [value]="x">{{x}}</option>
                 </select>
               </div>
-              <div class="col-xs-4">
+              <div class="col-md-4">
                 <label for="analysis">Describe how you plan to analyze the data to address this question:</label>
                 <textarea rows="5" cols="35" id="analysis" class="form-control" formControlName="analysis" [(ngModel)]="myHypotheses[i].analysis"></textarea>
               </div>
             </div>
-            <div class="form-group col-xs-12">
+            <div class="form-group col-md-12">
               <collection-window (outputWindows)="bindCollectionWindows(i, $event)"></collection-window>
             </div>
-            <div class="form-group col-xs-12" *ngIf="hypotheses.controls.hypothesis.controls[i].controls.methodology.value !== 'Qualitative'">
+            <div class="form-group col-md-12" *ngIf="hypotheses.controls.hypothesis.controls[i].controls.methodology.value !== 'Qualitative'">
                 <statistical-power (superPowers)="bindStatisticalPower(i, $event)"></statistical-power>
               </div>
             </div>

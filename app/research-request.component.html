@@ -5,49 +5,49 @@
     </div>
     <div class="panel-body">
       <form [formGroup]="researchRequest" novalidate>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <label for="projectTitle">Title of Research Project:</label>
           <input type="text" id="projectTitle" formControlName="projectTitle" [(ngModel)]="request.projectTitle" class="form-control">
           <div *ngIf="!researchRequest.controls.projectTitle.valid && !researchRequest.controls.projectTitle.pristine" class="alert alert-danger">
             Must supply a valid project title.
           </div>
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <label for="problemStatement">Statement of the Problem:</label>
           <textarea rows="5" cols="80" id="problemStatement" formControlName="problemStatement" [(ngModel)]="request.problemStatement" class="form-control"></textarea>
           <div *ngIf="!researchRequest.controls.problemStatement.valid && !researchRequest.controls.problemStatement.pristine" class="alert alert-danger">
             Must supply a valid problem statement
           </div>
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <label for="litReview">Brief Literature Review:</label>
           <textarea rows="5" cols="80" id="litReview" formControlName="litReview" [(ngModel)]="request.litReview" class="form-control"></textarea>
           <div *ngIf="!researchRequest.controls.litReview.valid && !researchRequest.controls.litReview.pristine" class="alert alert-danger">
             Must provide a brief literature review.
           </div>
         </div>
-        <div class="form-group col-xs-4">
+        <div class="form-group col-md-4">
           <label for="irbApproved">Has this proposal been approved by your IRB?</label>
           <input type="checkbox" formControlName="irbApproved" id="irbApproved" [(ngModel)]="request.irbApproved" class="form-control">
         </div>
-        <div class="form-group col-xs-4">
+        <div class="form-group col-md-4">
           <label for="irbConditionalOnFCPS">Is IRB approval conditional on FCPS approval?</label>
           <input type="checkbox" formControlName="irbConditionalOnFCPS" id="irbConditionalOnFCPS" [(ngModel)]="request.irbConditionalOnFCPS" class="form-control">
         </div>
-        <div class="form-group col-xs-4">
+        <div class="form-group col-md-4">
           <label for="sponsoredResearch">Is this research supported by any external funding?</label>
           <input type="checkbox" id="sponsoredResearch" formControlName="sponsoredResearch" [(ngModel)]="request.sponsoredResearch" class="form-control">
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <person (requestor)="bindPersonObject($event)"></person>
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <district-sponsor (sendDistrictSponsor)="bindDistrictSponsor($event)"></district-sponsor>
         </div>
-        <div class="form-group col-xs-12" *ngIf="researchRequest.controls.sponsoredResearch.value">
+        <div class="form-group col-md-12" *ngIf="researchRequest.controls.sponsoredResearch.value">
           <financial-sponsor (financialSponsor)="bindFinancialSponsor($event)"></financial-sponsor>
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <hypothesis (hypothesisEmitter)="bindHypotheses($event)"></hypothesis>
         </div>
       </form>

@@ -1,12 +1,12 @@
 <div (change)="updateContactInfo()">
   <div [formGroup]="contactInformation" novalidate>
-    <div class="form-group col-xs-12">
+    <div class="form-group col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
           <span>Contact Information</span>
         </div>
         <div class="panel-body">
-          <div class="col-xs-12">
+          <div class="col-md-12">
             <div class="form-group">
               <email (emailAdded)="emailAdded($event)"></email>
             </div>

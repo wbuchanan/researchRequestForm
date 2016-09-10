@@ -2,9 +2,6 @@
  * Created by billy on 9/1/16.
  */
 "use strict";
-/**
- * Created by billy on 8/20/16.
- */
 exports.STREET_TYPES = [{ "value": "ALY", "key": "ALLEY" },
     { "value": "ANX", "key": "ANEX" },
     { "value": "ARC", "key": "ARCADE" },

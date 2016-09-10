@@ -4,31 +4,31 @@
       <span>Research/Financial Sponsor</span>
     </div>
     <div class="panel-body">
-      <div class="form-group col-xs-12">
+      <div class="form-group col-md-12">
         <people (peeps)="bindPersonObject($event)"></people>
       </div>
-      <div class="form-group col-xs-12">
+      <div class="form-group col-md-12">
         <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
       </div>
-      <div class="form-group col-xs-12">
+      <div class="form-group col-md-12">
         <institution (institutionData)="bindInstitutionInformation($event)"></institution>
       </div>
       <form [formGroup]="sponsor" novalidate>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-md-3">
           <label for="fundingAmount">Amount of Funding (in $):</label>
           <input type="number" class="form-control" id="fundingAmount" [(ngModel)]="sponsorship.fundingAmount" formControlName="fundingAmount" step="1" min="0.00" max="50000000.00">
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-md-3">
           <label for="fundingDuration">Duration:</label>
           <input type="number" class="form-control" id="fundingDuration" [(ngModel)]="sponsorship.fundingDuration" formControlName="fundingDuration" step="1" min="0" max="51">
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-md-3">
           <label for="durationUnits">Units of Time:</label>
           <select id="durationUnits" [(ngModel)]="sponsorship.fundingDurationUnits" formControlName="fundingDurationUnits" class="form-control">
             <option *ngFor="let duropt of durUnits" [value]="duropt">{{duropt}}</option>
           </select>
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-md-3">
           <label for="staffSize">Project Staff Members:</label>
           <input type="number" id="staffSize" [(ngModel)]="sponsorship.projectStaffSize" class="form-control" formControlName="projectStaffSize" step="1" min="1" max="1000">
         </div>

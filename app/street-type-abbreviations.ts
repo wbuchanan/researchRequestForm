@@ -2,10 +2,6 @@
  * Created by billy on 9/1/16.
  */
 
-/**
- * Created by billy on 8/20/16.
- */
-
 export const STREET_TYPES = [ { "value" : "ALY", "key" : "ALLEY" },
     { "value" : "ANX", "key" : "ANEX" },
     { "value" : "ARC", "key" : "ARCADE" },

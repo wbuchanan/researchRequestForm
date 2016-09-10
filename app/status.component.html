@@ -7,25 +7,25 @@
           <span class="glyphicon glyphicon-remove pull-right" *ngIf="statusForm.controls.status.controls.length > 1" (click)="removeStatusFields(i)"></span>
         </div>
         <div class="panel-body" [formGroupName]="i">
-          <div class="form-group col-xs-4">
+          <div class="form-group col-md-4">
             <label>Status Open Date:</label>
             <input type="date" formControlName="openedDate" class="form-control" [(ngModel)]="statuses[i].openedDate" max="{{today}}">
             <div *ngIf="!statusForm.controls.status.controls[i].controls.openedDate.valid && !statusForm.controls.status.controls[i].controls.openedDate.pristine" class="alert alert-danger" style="font-size: 12px">
               Must enter valid opening date for this Status.  Must occur today or in the past.
             </div>
           </div>
-          <div class="form-group col-xs-4">
+          <div class="form-group col-md-4">
             <label>Status Close Date:</label>
             <input type="date" formControlName="closedDate" class="form-control" [(ngModel)]="statuses[i].closedDate" min="{{statusForm.controls.status.controls[i].controls.openedDate.value}}">
           </div>
-          <div class="form-group col-xs-4">
+          <div class="form-group col-md-4">
             <label>Status:</label>
             <select formControlName="statusCategory" [(ngModel)]="statuses[i].statusCategory" class="form-control">
               <option *ngFor="let sc of statusCategories" [value]="sc">{{sc}}</option>
             </select>
           </div>
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading">
               <span>Assigned To:</span>
@@ -36,18 +36,18 @@
           </div>
         </div>
         <div class="panel-body" [formGroupName]="i">
-          <div class="form-group col-xs-6">
+          <div class="form-group col-md-6">
             <label>Comments for Client Update</label>
             <textarea rows="5" cols="80" class="form-control" formControlName="emailBody" [(ngModel)]="statuses[i].emailBody"></textarea>
             <div class="alert alert-danger" style="font-size: 12px" *ngIf="!statusForm.controls.status.controls[i].controls.emailBody.valid && !statusForm.controls.status.controls[i].controls.emailBody.pristine">
               Must provide text to include in update to client.
             </div>
           </div>
-          <div class="form-group col-xs-6">
+          <div class="form-group col-md-6">
             <label>Internal Comments</label>
             <textarea rows="5" cols="80" class="form-control" formControlName="internalNotes" [(ngModel)]="statuses[i].internalNotes"></textarea>
           </div>
-          <div class="col-xs-12">
+          <div class="col-md-12">
             <a (click)="addStatusFields()" style="cursor: default">
               Update the Status +
             </a>
