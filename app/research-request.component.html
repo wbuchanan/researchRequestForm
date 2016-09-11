@@ -30,7 +30,7 @@
           <label for="irbApproved">Has this proposal been approved by your IRB?</label>
           <input type="checkbox" formControlName="irbApproved" id="irbApproved" [(ngModel)]="request.irbApproved" class="form-control">
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-4" *ngIf="!researchRequest.controls.irbApproved.value">
           <label for="irbConditionalOnFCPS">Is IRB approval conditional on FCPS approval?</label>
           <input type="checkbox" formControlName="irbConditionalOnFCPS" id="irbConditionalOnFCPS" [(ngModel)]="request.irbConditionalOnFCPS" class="form-control">
         </div>

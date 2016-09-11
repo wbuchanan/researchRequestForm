@@ -26,6 +26,8 @@ export class ResearchRequestComponent implements OnInit {
 
   private backendURL : string = 'localhost:9200/';
 
+  degreeLevels: [ 'Doctorate', 'Masters', 'Bachelors' ];
+
   private request: ResearchRequest = new ResearchRequest();
   researchRequest: FormGroup;
 
@@ -42,7 +44,9 @@ export class ResearchRequestComponent implements OnInit {
       financialSponsor: this.finSponsor,
       hypotheses: this.hypothesisArray,
       irbApproved: [false],
-      irbConditionalOnFCPS: [false]
+      irbConditionalOnFCPS: [false],
+      forDegree: [false],
+      degreeLevel: ['']
     });
   }
 

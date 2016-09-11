@@ -36,7 +36,9 @@ var ResearchRequestComponent = (function () {
             financialSponsor: this.finSponsor,
             hypotheses: this.hypothesisArray,
             irbApproved: [false],
-            irbConditionalOnFCPS: [false]
+            irbConditionalOnFCPS: [false],
+            forDegree: [false],
+            degreeLevel: ['']
         });
     };
     ResearchRequestComponent.prototype.bindPersonObject = function (person) {
