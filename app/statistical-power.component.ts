@@ -12,7 +12,10 @@ export class StatisticalPowerComponent implements OnInit {
   @Output() superPowers : EventEmitter<StatisticalPower> = new EventEmitter<StatisticalPower>();
 
   private power: StatisticalPower = new StatisticalPower();
+  private helpInfo: string[] = ['', ''];
+  private gpowerLink: string[] = ['', ''];
   statPower: FormGroup;
+  private helpClass: string = '';
   constructor(private _fb: FormBuilder) { }
   ngOnInit() {
       this.statPower = this._fb.group( {
@@ -26,6 +29,18 @@ export class StatisticalPowerComponent implements OnInit {
 
   public updateStatisticalPower() : void {
     this.superPowers.emit( this.power );
+  }
+
+  public displayHelpInfo() : void {
+    this.helpInfo = ['For assistance computing statistical power, you can use', 'freely available software for statistical power computations.';
+    this.gpowerLink = ['http://www.gpower.hhu.de/en.html', 'GPower*3'];
+    this.helpClass = 'alert alert-warning';
+  }
+
+  public undisplayHelpInfo() : void {
+    this.helpInfo = ['', ''];
+    this.gpowerLink = ['', ''];
+    this.helpClass = '';
   }
 
 }

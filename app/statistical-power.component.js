@@ -17,6 +17,9 @@ var StatisticalPowerComponent = (function () {
         // Emits the Statistical Power object
         this.superPowers = new core_1.EventEmitter();
         this.power = new statistical_power_1.StatisticalPower();
+        this.helpInfo = ['', ''];
+        this.gpowerLink = ['', ''];
+        this.helpClass = '';
     }
     StatisticalPowerComponent.prototype.ngOnInit = function () {
         this.statPower = this._fb.group({
@@ -29,6 +32,16 @@ var StatisticalPowerComponent = (function () {
     };
     StatisticalPowerComponent.prototype.updateStatisticalPower = function () {
         this.superPowers.emit(this.power);
+    };
+    StatisticalPowerComponent.prototype.displayHelpInfo = function () {
+        this.helpInfo = ['For assistance computing statistical power, you can use', 'freely available software for statistical power computations.',
+            this.gpowerLink = ['http://www.gpower.hhu.de/en.html', 'GPower*3'],
+            this.helpClass = 'alert alert-warning'];
+    };
+    StatisticalPowerComponent.prototype.undisplayHelpInfo = function () {
+        this.helpInfo = ['', ''];
+        this.gpowerLink = ['', ''];
+        this.helpClass = '';
     };
     __decorate([
         core_1.Output(), 
