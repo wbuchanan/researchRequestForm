@@ -1,6 +1,7 @@
 "use strict";
 var ResearchRequest = (function () {
     function ResearchRequest() {
+        this.forDegree = false;
     }
     return ResearchRequest;
 }());

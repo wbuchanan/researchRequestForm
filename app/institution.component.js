@@ -13,10 +13,10 @@ var address_component_1 = require('./address.component');
 var forms_1 = require('@angular/forms');
 var institution_1 = require("./institution");
 var InstitutionComponent = (function () {
-    function InstitutionComponent(_fb) {
-        this._fb = _fb;
+    function InstitutionComponent() {
         this.institutionData = new core_1.EventEmitter();
         this.inst = new institution_1.Institution();
+        this._fb = new forms_1.FormBuilder();
     }
     InstitutionComponent.prototype.ngOnInit = function () {
         this.institution = this._fb.group({
@@ -31,6 +31,10 @@ var InstitutionComponent = (function () {
     InstitutionComponent.prototype.updateInstitution = function () {
         this.institutionData.emit(this.inst);
     };
+    InstitutionComponent.prototype.override = function (makeValid) {
+        this.institution.
+        ;
+    };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
@@ -44,7 +48,7 @@ var InstitutionComponent = (function () {
             selector: 'institution',
             templateUrl: '../app/institution.component.html'
         }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder])
+        __metadata('design:paramtypes', [])
     ], InstitutionComponent);
     return InstitutionComponent;
 }());

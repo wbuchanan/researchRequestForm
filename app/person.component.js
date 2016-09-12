@@ -15,10 +15,11 @@ var institution_component_1 = require('./institution.component');
 var person_1 = require('./person');
 var forms_1 = require('@angular/forms');
 var PersonComponent = (function () {
-    function PersonComponent(_fb) {
-        this._fb = _fb;
+    function PersonComponent() {
         this.requestor = new core_1.EventEmitter();
+        this.componentTitle = this.title;
         this.peep = new person_1.Person();
+        this._fb = new forms_1.FormBuilder();
     }
     PersonComponent.prototype.ngOnInit = function () {
         this.person = this._fb.group({
@@ -53,6 +54,10 @@ var PersonComponent = (function () {
         __metadata('design:type', institution_component_1.InstitutionComponent)
     ], PersonComponent.prototype, "inst", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PersonComponent.prototype, "title", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], PersonComponent.prototype, "requestor", void 0);
@@ -61,7 +66,7 @@ var PersonComponent = (function () {
             selector: 'person',
             templateUrl: '../app/person.component.html'
         }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder])
+        __metadata('design:paramtypes', [])
     ], PersonComponent);
     return PersonComponent;
 }());

@@ -23,10 +23,15 @@ export class ResearchRequestComponent implements OnInit {
   @Input() finSponsor: SponsorComponent;
   @Input() hypothesisArray: HypothesisComponent;
   @Output() theRequest: EventEmitter<ResearchRequest> = new EventEmitter<ResearchRequest>();
+  @Input() academicSupervisor: PersonComponent;
+  private defInstName: string = ' ';
+  private defInstDept: string = ' ';
+  private requestorTitle: string = 'Requestor Information: ';
+  private advisorTitle: string = 'Academic Advisor Information: ';
 
   private backendURL : string = 'localhost:9200/';
 
-  degreeLevels: [ 'Doctorate', 'Masters', 'Bachelors' ];
+  private degreeLevels = [ 'Doctorate', 'Masters', 'Bachelors' ];
 
   private request: ResearchRequest = new ResearchRequest();
   researchRequest: FormGroup;
@@ -45,8 +50,9 @@ export class ResearchRequestComponent implements OnInit {
       hypotheses: this.hypothesisArray,
       irbApproved: [false],
       irbConditionalOnFCPS: [false],
-      forDegree: [false],
-      degreeLevel: ['']
+      forDegree: [],
+      degreeLevel: [''],
+      academicAdvisor: this.academicSupervisor
     });
   }
 
@@ -64,6 +70,10 @@ export class ResearchRequestComponent implements OnInit {
 
   bindHypotheses(hypotheses: Hypothesis[]) {
     this.request.hypotheses = hypotheses;
+  }
+
+  bindAcademicAdvisor(person: Person) : void {
+    this.request.academicAdvisor = person;
   }
 
   updateResearchRequest() : void {

@@ -14,8 +14,7 @@ var forms_1 = require('@angular/forms');
 var secondary_units_1 = require('../app/secondary-units');
 var street_type_abbreviations_1 = require('../app/street-type-abbreviations');
 var AddressComponent = (function () {
-    function AddressComponent(_fb) {
-        this._fb = _fb;
+    function AddressComponent() {
         this.enterAddress = new core_1.EventEmitter();
         this.directions = ['', 'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
         this.secUnits = secondary_units_1.SECONDARY_UNITS;
@@ -71,6 +70,7 @@ var AddressComponent = (function () {
             { "statenm": "WISCONSIN", "stusps": "WI" },
             { "statenm": "WYOMING", "stusps": "WY" }];
         this.address = new address_1.Address();
+        this._fb = new forms_1.FormBuilder();
     }
     AddressComponent.prototype.ngOnInit = function () {
         this.physicalAddress = this._fb.group({
@@ -98,7 +98,7 @@ var AddressComponent = (function () {
             selector: 'address',
             templateUrl: '../app/address.component.html'
         }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder])
+        __metadata('design:paramtypes', [])
     ], AddressComponent);
     return AddressComponent;
 }());

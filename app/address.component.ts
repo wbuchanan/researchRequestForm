@@ -67,8 +67,8 @@ export class AddressComponent implements OnInit {
       { "statenm": "WYOMING", "stusps" : "WY"} ];
   physicalAddress: FormGroup;
   private address: Address = new Address();
-
-  constructor(private _fb: FormBuilder) {
+  public _fb: FormBuilder = new FormBuilder();
+  constructor() {
 
   }
 

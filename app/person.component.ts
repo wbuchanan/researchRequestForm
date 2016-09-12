@@ -17,12 +17,16 @@ export class PersonComponent implements OnInit {
   @Input() peeps: PeopleComponent;
   @Input() contacts: ContactComponent;
   @Input() inst: InstitutionComponent;
+  @Input() title: string;
 
   @Output() requestor: EventEmitter<Person> = new EventEmitter<Person>();
-
+  private componentTitle: string = this.title;
   private peep: Person = new Person();
+  public _fb: FormBuilder = new FormBuilder();
   person: FormGroup;
-  constructor(private _fb: FormBuilder) { }
+  constructor() {
+  }
+
   ngOnInit() {
     this.person = this._fb.group( {
       person : this.peeps,

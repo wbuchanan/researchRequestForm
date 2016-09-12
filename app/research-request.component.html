@@ -5,21 +5,29 @@
     </div>
     <div class="panel-body">
       <form [formGroup]="researchRequest" novalidate>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
           <label for="projectTitle">Title of Research Project:</label>
           <input type="text" id="projectTitle" formControlName="projectTitle" [(ngModel)]="request.projectTitle" class="form-control">
           <div *ngIf="!researchRequest.controls.projectTitle.valid && !researchRequest.controls.projectTitle.pristine" class="alert alert-danger">
             Must supply a valid project title.
           </div>
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-3">
+          <label for="irbApproved">Has this proposal been approved by your IRB?</label>
+          <input type="checkbox" formControlName="irbApproved" id="irbApproved" [(ngModel)]="request.irbApproved" class="form-control">
+        </div>
+        <div class="form-group col-md-3" *ngIf="!researchRequest.controls.irbApproved.value">
+          <label for="irbConditionalOnFCPS">Is IRB approval conditional on FCPS approval?</label>
+          <input type="checkbox" formControlName="irbConditionalOnFCPS" id="irbConditionalOnFCPS" [(ngModel)]="request.irbConditionalOnFCPS" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
           <label for="problemStatement">Statement of the Problem:</label>
           <textarea rows="5" cols="80" id="problemStatement" formControlName="problemStatement" [(ngModel)]="request.problemStatement" class="form-control"></textarea>
           <div *ngIf="!researchRequest.controls.problemStatement.valid && !researchRequest.controls.problemStatement.pristine" class="alert alert-danger">
             Must supply a valid problem statement
           </div>
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
           <label for="litReview">Brief Literature Review:</label>
           <textarea rows="5" cols="80" id="litReview" formControlName="litReview" [(ngModel)]="request.litReview" class="form-control"></textarea>
           <div *ngIf="!researchRequest.controls.litReview.valid && !researchRequest.controls.litReview.pristine" class="alert alert-danger">
@@ -27,19 +35,24 @@
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for="irbApproved">Has this proposal been approved by your IRB?</label>
-          <input type="checkbox" formControlName="irbApproved" id="irbApproved" [(ngModel)]="request.irbApproved" class="form-control">
-        </div>
-        <div class="form-group col-md-4" *ngIf="!researchRequest.controls.irbApproved.value">
-          <label for="irbConditionalOnFCPS">Is IRB approval conditional on FCPS approval?</label>
-          <input type="checkbox" formControlName="irbConditionalOnFCPS" id="irbConditionalOnFCPS" [(ngModel)]="request.irbConditionalOnFCPS" class="form-control">
-        </div>
-        <div class="form-group col-md-4">
           <label for="sponsoredResearch">Is this research supported by any external funding?</label>
           <input type="checkbox" id="sponsoredResearch" formControlName="sponsoredResearch" [(ngModel)]="request.sponsoredResearch" class="form-control">
         </div>
+        <div class="form-group col-md-4">
+          <label for="forDegree">Is this research part of a degree requirement?</label>
+          <input type="checkbox" id="forDegree" formControlName="forDegree" [(ngModel)]="request.forDegree" class="form-control">
+        </div>
+        <div class="form-group col-md-4" *ngIf="researchRequest.controls.forDegree.value">
+          <label for="degreeLevel">Degree:</label>
+          <select formControlName="degreeLevel" id="degreeLevel" [(ngModel)]="request.degreeLevel" class="form-control">
+            <option *ngFor="let d of degreeLevels" [value]="d">{{d}}</option>
+          </select>
+        </div>
         <div class="form-group col-md-12">
-          <person (requestor)="bindPersonObject($event)"></person>
+          <person (requestor)="bindPersonObject($event)" [title]="requestorTitle"></person>
+        </div>
+        <div class="form-group col-md-12" *ngIf="researchRequest.controls.forDegree.value">
+          <person (requestor)="bindAcademicAdvisor($event)" [title]="advisorTitle"></person>
         </div>
         <div class="form-group col-md-12">
           <district-sponsor (sendDistrictSponsor)="bindDistrictSponsor($event)"></district-sponsor>

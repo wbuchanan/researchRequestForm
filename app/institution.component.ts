@@ -10,12 +10,11 @@ import {Institution} from "./institution";
 })
 export class InstitutionComponent {
   @Output() institutionData: EventEmitter<Institution> = new EventEmitter<Institution>();
-
   @Input() addy : AddressComponent;
   institution: FormGroup;
   inst: Institution = new Institution();
-
-  constructor(private _fb: FormBuilder) {
+  public _fb: FormBuilder = new FormBuilder();
+  constructor() {
 
   }
 
@@ -33,6 +32,10 @@ export class InstitutionComponent {
 
   updateInstitution() : void {
     this.institutionData.emit( this.inst );
+  }
+
+  override(makeValid: boolean) {
+    this.institution.
   }
 
 }

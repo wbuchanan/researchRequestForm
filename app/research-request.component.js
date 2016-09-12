@@ -21,7 +21,12 @@ var ResearchRequestComponent = (function () {
         this._fb = _fb;
         this.http = http;
         this.theRequest = new core_1.EventEmitter();
+        this.defInstName = ' ';
+        this.defInstDept = ' ';
+        this.requestorTitle = 'Requestor Information: ';
+        this.advisorTitle = 'Academic Advisor Information: ';
         this.backendURL = 'localhost:9200/';
+        this.degreeLevels = ['Doctorate', 'Masters', 'Bachelors'];
         this.request = new research_request_1.ResearchRequest();
         this.submitted = false;
     }
@@ -37,8 +42,9 @@ var ResearchRequestComponent = (function () {
             hypotheses: this.hypothesisArray,
             irbApproved: [false],
             irbConditionalOnFCPS: [false],
-            forDegree: [false],
-            degreeLevel: ['']
+            forDegree: [],
+            degreeLevel: [''],
+            academicAdvisor: this.academicSupervisor
         });
     };
     ResearchRequestComponent.prototype.bindPersonObject = function (person) {
@@ -52,6 +58,9 @@ var ResearchRequestComponent = (function () {
     };
     ResearchRequestComponent.prototype.bindHypotheses = function (hypotheses) {
         this.request.hypotheses = hypotheses;
+    };
+    ResearchRequestComponent.prototype.bindAcademicAdvisor = function (person) {
+        this.request.academicAdvisor = person;
     };
     ResearchRequestComponent.prototype.updateResearchRequest = function () {
         this.theRequest.emit(this.request);
@@ -79,6 +88,10 @@ var ResearchRequestComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], ResearchRequestComponent.prototype, "theRequest", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', person_component_1.PersonComponent)
+    ], ResearchRequestComponent.prototype, "academicSupervisor", void 0);
     ResearchRequestComponent = __decorate([
         core_1.Component({
             selector: 'research-request',

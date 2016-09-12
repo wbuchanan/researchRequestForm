@@ -1,33 +1,50 @@
-<div (change)="updateStatisticalPower()" (mouseover)="displayHelpInfo()" (mouseout)="undisplayHelpInfo()">
-  <div class="{{helpClass}}">{{helpInfo[0]}} <a href={{gpowerLink[0]}}>{{gpowerLink[1]}}</a> {{helpInfo[1]}}</div>
+<div (change)="updateStatisticalPower()">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <span>Statistical Power</span>
+    <div class="panel-heading"  (mouseleave)="undisplayHelpInfo()">
+      <span><strong>Statistical Power</strong>
+      <span class="glyphicon glyphicon-info-sign pull-right" (mouseenter)="displayHelpInfo()"></span></span>
+      <div> {{helpInfo[0]}} <a href={{gpowerLink[0]}}>{{gpowerLink[1]}}</a> {{helpInfo[1]}}</div>
     </div>
     <div class="panel-body">
       <form [formGroup]="statPower" novalidate>
         <div class="form-group col-md-12">
           <div class="col-md-1">
-            <label>&alpha; :</label>
+            <label>&alpha; :
+              <span (mouseover)="displayAlphaInfo()" (mouseout)="undisplayAlphaInfo()" class="glyphicon glyphicon-info-sign">
+              </span>
+            </label>
             <input type="number" class="form-control" [(ngModel)]="power.alpha" formControlName="alpha" min="0.0" max="1.0" step="0.001">
           </div>
           <div class="col-md-1">
-            <label>&beta; :</label>
+            <label>&beta; :
+              <span (mouseover)="displayBetaInfo()" (mouseout)="undisplayBetaInfo()" class="glyphicon glyphicon-info-sign">
+              </span>
+            </label>
             <input type="number" class="form-control" [(ngModel)]="power.beta" formControlName="beta" min="0.0" max="1.0" step="0.001">
           </div>
           <div class="col-md-4">
-            <label>Test Statistic:</label>
+            <label>Test Statistic:
+              <span (mouseover)="displayTestInfo()" (mouseout)="undisplayTestInfo()" class="glyphicon glyphicon-info-sign">
+              </span>
+            </label>
             <input type="text" class="form-control" [(ngModel)]="power.statistic" formControlName="statistic">
           </div>
           <div class="col-md-1">
-            <label>n:</label>
+            <label>n:
+              <span (mouseover)="displaySampleInfo()" (mouseout)="undisplaySampleInfo()" class="glyphicon glyphicon-info-sign">
+              </span>
+            </label>
             <input type="number" class="form-control" [(ngModel)]="power.totalSampleSize" formControlName="totalSampleSize" min="5" max="42000" step="1">
           </div>
           <div class="col-md-5">
-            <label>Minimal Detectable Effect Size:</label>
+            <label>Minimal Detectable Effect Size:
+              <span (mouseover)="displayMDESInfo()" (mouseout)="undisplayMDESInfo()" class="glyphicon glyphicon-info-sign">
+              </span>
+            </label>
             <input type="number" class="form-control" [(ngModel)]="power.minimalDetectableEffect" formControlName="minimalDetectableEffect" min="0.0" max="100" step="0.001">
           </div>
         </div>
+        <div class="col-xs-12">{{alphaInfo}}{{betaInfo}}{{testInfo}}{{sampleInfo}}{{mdesInfo}}</div>
       </form>
     </div>
   </div>

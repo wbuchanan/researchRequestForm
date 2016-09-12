@@ -13,4 +13,7 @@ export class ResearchRequest {
   hypotheses: Hypothesis[];
   irbApproved: boolean;
   irbConditionalOnFCPS: boolean;
+  forDegree: boolean = false;
+  degreeLevel: string;
+  academicAdvisor: Person;
 }
