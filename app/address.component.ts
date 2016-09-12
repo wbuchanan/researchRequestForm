@@ -68,6 +68,7 @@ export class AddressComponent implements OnInit {
   physicalAddress: FormGroup;
   private address: Address = new Address();
   public _fb: FormBuilder = new FormBuilder();
+  @Input() streetNumber: string;
   constructor() {
 
   }
