@@ -1,5 +1,5 @@
 export class Phone {
-  phoneType: string;
+  phoneType: string = 'office';
   countryCode: string = '001';
   areaCode: string;
   exchangeCode: string;

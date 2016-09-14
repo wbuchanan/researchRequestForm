@@ -10,7 +10,7 @@ export class EmailComponent implements OnInit {
 
   @Output() emailAdded: EventEmitter<Email[]> = new EventEmitter<Email[]>();
 
-  public emailTypes = [ "home", "work", "other" ];
+  public emailTypes = [ "home", "office", "other" ];
   email: FormGroup;
   private emails: Email[] = new Array(new Email());
 

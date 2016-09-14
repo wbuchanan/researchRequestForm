@@ -1,6 +1,6 @@
 import {Address} from "./address";
 export class Institution {
-  name: string;
-  department: string;
-  address: Address;
+  public name: string = '';
+  public department: string = '';
+  public address: Address = new Address();
 }

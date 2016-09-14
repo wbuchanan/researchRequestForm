@@ -15,8 +15,11 @@
         <div class="form-group col-md-12">
           <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
         </div>
+<!--
         <fieldset class="form-group col-md-12" [disabled]="person.controls.isFCPS.value">
-          <institution (institutionData)="bindInstitutionInformation($event)" ></institution>
+-->
+        <fieldset class="form-group col-md-12">
+          <institution (institutionData)="bindInstitutionInformation($event)" (change)="updateRequestor()" [isEmployee]="person.controls.isFCPS.value" [externalInstitution]="defaultInst"></institution>
         </fieldset>
       </div>
     </div>

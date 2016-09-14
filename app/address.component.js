@@ -5,13 +5,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require('@angular/core');
 var address_1 = require('../app/address');
 var forms_1 = require('@angular/forms');
 var secondary_units_1 = require('../app/secondary-units');
 var street_type_abbreviations_1 = require('../app/street-type-abbreviations');
 var AddressComponent = (function () {
-    function AddressComponent() {
+    function AddressComponent(_fb) {
+        this._fb = _fb;
         this.enterAddress = new core_1.EventEmitter();
         this.directions = ['', 'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
         this.secUnits = secondary_units_1.SECONDARY_UNITS;
@@ -67,36 +71,42 @@ var AddressComponent = (function () {
             { "statenm": "WISCONSIN", "stusps": "WI" },
             { "statenm": "WYOMING", "stusps": "WY" }];
         this.address = new address_1.Address();
-        this._fb = new forms_1.FormBuilder();
+        this.address = this.externalAddress;
     }
     AddressComponent.prototype.ngOnInit = function () {
         this.physicalAddress = this._fb.group({
-            streetNumber: ['', forms_1.Validators.pattern('[^\\s]')],
-            streetDirection: [''],
-            streetName: [''],
-            streetType: [''],
-            secondLine: [false],
-            unitType: [''],
-            unitNumber: [''],
-            city: ['', forms_1.Validators.required],
-            state: ['', forms_1.Validators.required],
-            zipCode: ['', [forms_1.Validators.required, forms_1.Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
+            streetNumber: [this.externalAddress.streetNumber || ''],
+            streetDirection: [this.externalAddress.streetDirection || ''],
+            streetName: [this.externalAddress.streetName || ''],
+            streetType: [this.externalAddress.streetType || ''],
+            secondLine: [this.externalAddress.secondLine || false],
+            unitType: [this.externalAddress.unitType || ''],
+            unitNumber: [this.externalAddress.unitNumber || ''],
+            city: [this.externalAddress.city || '', forms_1.Validators.required],
+            state: [this.externalAddress.state || '', forms_1.Validators.required],
+            zipCode: [this.externalAddress.zipCode || '', [forms_1.Validators.required, forms_1.Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
         });
+    };
+    AddressComponent.prototype.ngOnChanges = function (changes) {
+        this.address = changes['externalAddress'].currentValue;
     };
     AddressComponent.prototype.updateAddress = function () {
         this.enterAddress.emit(this.address);
     };
     __decorate([
-        core_1.Output()
-    ], AddressComponent.prototype, "enterAddress");
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], AddressComponent.prototype, "enterAddress", void 0);
     __decorate([
-        Input()
-    ], AddressComponent.prototype, "streetNumber");
+        core_1.Input(), 
+        __metadata('design:type', address_1.Address)
+    ], AddressComponent.prototype, "externalAddress", void 0);
     AddressComponent = __decorate([
         core_1.Component({
             selector: 'address',
             templateUrl: '../app/address.component.html'
-        })
+        }), 
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], AddressComponent);
     return AddressComponent;
 }());

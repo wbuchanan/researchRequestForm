@@ -1,4 +1,4 @@
-<div (change)="updateInstitution()">
+<div (change)="updateInstitution(isEmployee)">
   <form [formGroup]="institution" novalidate>
     <div class="form-group col-md-12">
       <div class="panel panel-default">
@@ -9,20 +9,20 @@
           <div class="col-md-12">
             <div class="form-group col-md-6">
               <label>Institution Name:</label>
-              <input type="text" class="form-control" formControlName="name" [(ngModel)]="inst.name">
+              <input type="text" class="form-control" formControlName="name" [(ngModel)]="inst.name" [value]="externalInstitution.name">
               <div *ngIf="!institution.controls.name.valid && !institution.controls.name.pristine" class="alert alert-danger" style="font-size: 12px">
                 Must supply a valid institution name.
               </div>
             </div>
             <div class="form-group col-md-6">
               <label>Department Name:</label>
-              <input type="text" class="form-control" formControlName="department" [(ngModel)]="inst.department">
+              <input type="text" class="form-control" formControlName="department" [(ngModel)]="inst.department" [value]="externalInstitution.department">
               <div *ngIf="!institution.controls.department.valid && !institution.controls.department.pristine" class="alert alert-danger" style="font-size: 12px">
                 Must supply a valid department/office name.
               </div>
             </div>
             <div class="form-group">
-              <address (enterAddress)="enterAddress($event)" [street></address>
+              <address (enterAddress)="enterAddress($event)" [externalAddress]="defaultAddress"></address>
             </div>
           </div>
         </div>
