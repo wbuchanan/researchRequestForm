@@ -51,7 +51,10 @@ export class PersonComponent implements OnInit {
       }
       this.updateRequestor();
     });
+  }
 
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    this.updateRequestor();
   }
 
   bindPersonObject(person: People) : void {
