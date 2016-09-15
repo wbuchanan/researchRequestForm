@@ -5,14 +5,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require('@angular/core');
+var people_component_1 = require('./people.component');
+var contact_component_1 = require('./contact.component');
+var institution_component_1 = require('./institution.component');
 var person_1 = require('./person');
+var forms_1 = require('@angular/forms');
 var institution_1 = require("./institution");
 var address_1 = require("./address");
 var PersonComponent = (function () {
     function PersonComponent(_fb) {
         this._fb = _fb;
         this.requestor = new core_1.EventEmitter();
+        this.employeeHelp = '';
         this.peep = new person_1.Person();
         this.defaultInst = new institution_1.Institution();
         this.defaultInst.name = '';
@@ -54,29 +62,41 @@ var PersonComponent = (function () {
     PersonComponent.prototype.bindInstitutionInformation = function (institution) {
         this.peep.institutionalAffiliation = institution;
     };
+    PersonComponent.prototype.displayEmployeeHelp = function () {
+        this.employeeHelp = 'Check this box if you are employed by Fayette County Public Schools.';
+    };
+    PersonComponent.prototype.undisplayEmployeeHelp = function () {
+        this.employeeHelp = '';
+    };
     PersonComponent.prototype.updateRequestor = function () {
         this.requestor.emit(this.peep);
     };
     __decorate([
-        core_1.Input()
-    ], PersonComponent.prototype, "peeps");
+        core_1.Input(), 
+        __metadata('design:type', people_component_1.PeopleComponent)
+    ], PersonComponent.prototype, "peeps", void 0);
     __decorate([
-        core_1.Input()
-    ], PersonComponent.prototype, "contacts");
+        core_1.Input(), 
+        __metadata('design:type', contact_component_1.ContactComponent)
+    ], PersonComponent.prototype, "contacts", void 0);
     __decorate([
-        core_1.Input()
-    ], PersonComponent.prototype, "inst");
+        core_1.Input(), 
+        __metadata('design:type', institution_component_1.InstitutionComponent)
+    ], PersonComponent.prototype, "inst", void 0);
     __decorate([
-        core_1.Input()
-    ], PersonComponent.prototype, "title");
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PersonComponent.prototype, "title", void 0);
     __decorate([
-        core_1.Output()
-    ], PersonComponent.prototype, "requestor");
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], PersonComponent.prototype, "requestor", void 0);
     PersonComponent = __decorate([
         core_1.Component({
             selector: 'person',
             templateUrl: '../app/person.component.html'
-        })
+        }), 
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], PersonComponent);
     return PersonComponent;
 }());

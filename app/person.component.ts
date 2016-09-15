@@ -20,7 +20,7 @@ export class PersonComponent implements OnInit {
   @Input() inst: InstitutionComponent;
   @Input() title: string;
   @Output() requestor: EventEmitter<Person> = new EventEmitter<Person>();
-
+  private employeeHelp: string = '';
   private peep: Person = new Person();
   private defaultInst: Institution = new Institution();
   private person: FormGroup;
@@ -67,6 +67,14 @@ export class PersonComponent implements OnInit {
 
   bindInstitutionInformation(institution: Institution) : void {
     this.peep.institutionalAffiliation = institution;
+  }
+
+  private displayEmployeeHelp() : void {
+    this.employeeHelp = 'Check this box if you are employed by Fayette County Public Schools.';
+  }
+
+  private undisplayEmployeeHelp() : void {
+    this.employeeHelp = '';
   }
 
   updateRequestor() : void {
