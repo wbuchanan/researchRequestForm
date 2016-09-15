@@ -15,31 +15,39 @@ var institution_component_1 = require('./institution.component');
 var person_1 = require('./person');
 var forms_1 = require('@angular/forms');
 var institution_1 = require("./institution");
+var address_1 = require("./address");
 var PersonComponent = (function () {
     function PersonComponent(_fb) {
         this._fb = _fb;
         this.requestor = new core_1.EventEmitter();
         this.peep = new person_1.Person();
         this.defaultInst = new institution_1.Institution();
+        this.defaultInst.name = '';
+        this.defaultInst.department = '';
+        this.defaultInst.address = new address_1.Address('', '', '', '', '', '', '', '', '', false);
     }
     PersonComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.person = this._fb.group({
             person: this.peeps,
-            isFCPS: [true],
+            isFCPS: [false],
             contactInfo: this.contacts,
             institutionalAffiliation: this.inst
         });
-    };
-    PersonComponent.prototype.ngOnChanges = function (changes) {
-        if (this.peep.isFCPS) {
-            this.defaultInst.name = 'Fayette County Public Schools';
-            this.defaultInst.department = 'IAAKS';
-        }
-        else {
-            this.defaultInst.name = '';
-            this.defaultInst.department = '';
-        }
-        this.updateRequestor();
+        var isEmployee = this.person.controls['isFCPS'];
+        isEmployee.valueChanges.subscribe(function (data) {
+            if (data) {
+                _this.defaultInst.name = 'Fayette County Public Schools';
+                _this.defaultInst.department = 'IAKSS';
+                _this.defaultInst.address = new address_1.Address('701', 'E', 'Main', 'ST', '', '', 'Lexington', 'KY', '40502', false);
+            }
+            else {
+                _this.defaultInst.name = '';
+                _this.defaultInst.department = '';
+                _this.defaultInst.address = new address_1.Address('', '', '', '', '', '', '', '', '', false);
+            }
+            _this.updateRequestor();
+        });
     };
     PersonComponent.prototype.bindPersonObject = function (person) {
         this.peep.person = person;

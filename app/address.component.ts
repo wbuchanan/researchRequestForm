@@ -90,6 +90,7 @@ export class AddressComponent implements OnInit {
 
   ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
     this.address = changes['externalAddress'].currentValue;
+    this.updateAddress();
   }
 
   public updateAddress() : void {

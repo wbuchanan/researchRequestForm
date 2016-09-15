@@ -5,12 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var core_1 = require('@angular/core');
 var address_1 = require('./address');
-var address_component_1 = require('./address.component');
 var forms_1 = require('@angular/forms');
 var institution_1 = require("./institution");
 var InstitutionComponent = (function () {
@@ -19,25 +15,18 @@ var InstitutionComponent = (function () {
         this.institutionData = new core_1.EventEmitter();
         this.inst = new institution_1.Institution();
         this.defaultAddress = new address_1.Address(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'KY', ' ', false);
+        this.inst = this.externalInstitution;
     }
     InstitutionComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.institution = this._fb.group({
             name: [this.externalInstitution.name || '', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
             department: [this.externalInstitution.department || '', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z ,]{4,}')]],
-            address: this.addy
-        });
-        this.institution.controls['address'].valueChanges.subscribe(function (value) {
-            _this.inst.address = value.address;
-            _this.updateInstitution();
+            address: [this.externalInstitution.address || this.addy]
         });
     };
     InstitutionComponent.prototype.ngOnChanges = function (changes) {
-        if (this.isEmployee)
-            this.defaultAddress = new address_1.Address('701', 'E', 'Main', 'ST', '', '', 'Lexington', 'KY', '40502', false);
-        else
-            this.defaultAddress = new address_1.Address('', '', '', '', '', '', '', '', '', false);
         this.inst = this.externalInstitution;
+        this.defaultAddress = this.externalInstitution.address;
         this.updateInstitution();
     };
     InstitutionComponent.prototype.enterAddress = function (addressObject) {
@@ -47,27 +36,22 @@ var InstitutionComponent = (function () {
         this.institutionData.emit(this.inst);
     };
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], InstitutionComponent.prototype, "institutionData", void 0);
+        core_1.Output()
+    ], InstitutionComponent.prototype, "institutionData");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', address_component_1.AddressComponent)
-    ], InstitutionComponent.prototype, "addy", void 0);
+        core_1.Input()
+    ], InstitutionComponent.prototype, "addy");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], InstitutionComponent.prototype, "isEmployee", void 0);
+        core_1.Input()
+    ], InstitutionComponent.prototype, "isEmployee");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', institution_1.Institution)
-    ], InstitutionComponent.prototype, "externalInstitution", void 0);
+        core_1.Input()
+    ], InstitutionComponent.prototype, "externalInstitution");
     InstitutionComponent = __decorate([
         core_1.Component({
             selector: 'institution',
             templateUrl: '../app/institution.component.html'
-        }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder])
+        })
     ], InstitutionComponent);
     return InstitutionComponent;
 }());

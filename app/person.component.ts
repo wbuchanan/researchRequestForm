@@ -19,36 +19,38 @@ export class PersonComponent implements OnInit {
   @Input() contacts: ContactComponent;
   @Input() inst: InstitutionComponent;
   @Input() title: string;
-
   @Output() requestor: EventEmitter<Person> = new EventEmitter<Person>();
+
   private peep: Person = new Person();
   private defaultInst: Institution = new Institution();
-
-  person: FormGroup;
+  private person: FormGroup;
   constructor(private _fb: FormBuilder) {
+    this.defaultInst.name = '';
+    this.defaultInst.department = '';
+    this.defaultInst.address = new Address('', '', '', '', '', '', '', '', '', false);
   }
 
   ngOnInit() {
     this.person = this._fb.group( {
       person : this.peeps,
-      isFCPS: [true],
+      isFCPS: [false],
       contactInfo: this.contacts,
       institutionalAffiliation: this.inst
     });
+    let isEmployee = this.person.controls['isFCPS'];
 
-
-  }
-
-  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-
-    if (this.peep.isFCPS) {
-      this.defaultInst.name = 'Fayette County Public Schools';
-      this.defaultInst.department = 'IAAKS';
-    } else {
-      this.defaultInst.name = '';
-      this.defaultInst.department = '';
-    }
-    this.updateRequestor();
+    isEmployee.valueChanges.subscribe((data) => {
+      if (data) {
+        this.defaultInst.name = 'Fayette County Public Schools';
+        this.defaultInst.department = 'IAKSS';
+        this.defaultInst.address = new Address('701', 'E', 'Main', 'ST', '', '', 'Lexington', 'KY', '40502', false);
+      } else {
+        this.defaultInst.name = '';
+        this.defaultInst.department = '';
+        this.defaultInst.address = new Address('', '', '', '', '', '', '', '', '', false);
+      }
+      this.updateRequestor();
+    });
 
   }
 

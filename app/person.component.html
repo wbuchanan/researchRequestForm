@@ -10,7 +10,7 @@
         </div>
         <div class="form-group col-md-3">
           <label for="isFCPS">FCPS Employee?</label>
-          <input type="checkbox" class="form-control" id="isFCPS" [(ngModel)]="peep.isFCPS" formControlName="isFCPS">
+          <input type="checkbox" class="form-control" id="isFCPS" (change)="updateRequestor()" [(ngModel)]="peep.isFCPS" formControlName="isFCPS">
         </div>
         <div class="form-group col-md-12">
           <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
@@ -19,7 +19,7 @@
         <fieldset class="form-group col-md-12" [disabled]="person.controls.isFCPS.value">
 -->
         <fieldset class="form-group col-md-12">
-          <institution (institutionData)="bindInstitutionInformation($event)" (change)="updateRequestor()" [isEmployee]="person.controls.isFCPS.value" [externalInstitution]="defaultInst"></institution>
+          <institution [externalInstitution]="defaultInst" (institutionData)="bindInstitutionInformation($event)" (change)="updateRequestor()" [isEmployee]="person.controls.isFCPS.value" ></institution>
         </fieldset>
       </div>
     </div>

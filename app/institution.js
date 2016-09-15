@@ -4,7 +4,7 @@ var Institution = (function () {
     function Institution() {
         this.name = '';
         this.department = '';
-        this.address = new address_1.Address();
+        this.address = new address_1.Address('', '', '', '', '', '', '', '', '', false);
     }
     return Institution;
 }());

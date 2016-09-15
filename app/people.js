@@ -4,6 +4,9 @@
  */
 var People = (function () {
     function People() {
+        this.firstName = '';
+        this.lastName = '';
+        this.jobTitle = '';
     }
     return People;
 }());
