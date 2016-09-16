@@ -9,7 +9,7 @@
         <div class="panel-body" [formGroupName]="i">
           <div class="form-group col-md-4">
             <label>Status Open Date:</label>
-            <input type="date" formControlName="openedDate" class="form-control" [(ngModel)]="statuses[i].openedDate" max="{{today}}">
+            <input type="date" formControlName="openedDate" class="form-control" [(ngModel)]="statuses[i].openedDate">
             <div *ngIf="!statusForm.controls.status.controls[i].controls.openedDate.valid && !statusForm.controls.status.controls[i].controls.openedDate.pristine" class="alert alert-danger" style="font-size: 12px">
               Must enter valid opening date for this Status.  Must occur today or in the past.
             </div>
@@ -28,7 +28,7 @@
         <div class="form-group col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <span>Assigned To:</span>
+              <span><strong>Assigned To:</strong></span>
             </div>
             <div class="panel-body">
               <people></people>

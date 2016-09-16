@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var status_1 = require('./status');
 var forms_1 = require('@angular/forms');
-var people_component_1 = require("./people.component");
 var date_range_validator_1 = require('./date-range.validator');
+var people_1 = require("./people");
 var StatusComponent = (function () {
     function StatusComponent(_fb) {
         this._fb = _fb;
@@ -20,8 +20,6 @@ var StatusComponent = (function () {
         this.statusCategories = ["Submitted", "In Progress", "Awaiting Approval", "Assigned", "Rejected",
             "Forward to Other Department", "Additional Information Required", "Completed"];
         this.theStatus = new core_1.EventEmitter();
-        var x = new Date(Date.now());
-        this.today = x.toISOString().substring(0, 10);
     }
     StatusComponent.prototype.ngOnInit = function () {
         this.statusForm = this._fb.group({
@@ -31,7 +29,7 @@ var StatusComponent = (function () {
     StatusComponent.prototype.initStatusFields = function () {
         return this._fb.group({
             openedDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange]],
-            closedDate: ['', [date_range_validator_1.checkDateRange]],
+            closedDate: [''],
             statusCategory: ['', forms_1.Validators.required],
             assignedTo: this.assignee,
             emailBody: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^([\w]+ ){10,}')]],
@@ -52,13 +50,13 @@ var StatusComponent = (function () {
         this.theStatus.emit(this.statuses);
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', people_component_1.PeopleComponent)
-    ], StatusComponent.prototype, "assignee", void 0);
-    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], StatusComponent.prototype, "theStatus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', people_1.People)
+    ], StatusComponent.prototype, "assignee", void 0);
     StatusComponent = __decorate([
         core_1.Component({
             selector: 'status',
