@@ -24,8 +24,6 @@ export class ResearchRequestComponent implements OnInit {
   @Input() hypothesisArray: HypothesisComponent;
   @Output() theRequest: EventEmitter<ResearchRequest> = new EventEmitter<ResearchRequest>();
   @Input() academicSupervisor: PersonComponent;
-  private defInstName: string = ' ';
-  private defInstDept: string = ' ';
   private requestorTitle: string = 'Requestor Information: ';
   private advisorTitle: string = 'Academic Advisor Information: ';
 

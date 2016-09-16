@@ -20,31 +20,42 @@
               Invalid country code.
             </div>
           </div>
-          <div class="form-group col-md-12">
-            <div class="col-md-2"><strong>Phone Number:</strong></div>
-            <div class="col-md-2">
-              <input type="text" class="form-control" formControlName="areaCode" placeholder="###"  [(ngModel)]="phones[i].areaCode">
-              <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.areaCode.valid && !phone.controls.phoneNumbers.controls[i].controls.areaCode.pristine" class="alert alert-danger" style="font-size: 12px">
-                Invalid area code.
+          <label for="phoneNumber">Phone Number: </label>
+          <div class="form-group col-md-12" id="phoneNumber">
+            <div class="col-md-3">
+              <div class="input-group">
+                <span class="input-group-addon">(</span>
+                <input type="text" class="form-control" id="areaCode" formControlName="areaCode" placeholder="###" [(ngModel)]="phones[i].areaCode">
+                <span class="input-group-addon">)</span>
+                <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.areaCode.valid && !phone.controls.phoneNumbers.controls[i].controls.areaCode.pristine" class="alert alert-danger" style="font-size: 12px">
+                  Invalid area code.
+                </div>
               </div>
             </div>
-            <div class="col-md-2">
-              <input type="text" class="form-control" formControlName="exchangeCode" placeholder="###"  [(ngModel)]="phones[i].exchangeCode">
-              <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.exchangeCode.valid && !phone.controls.phoneNumbers.controls[i].controls.exchangeCode.pristine" class="alert alert-danger" style="font-size: 12px">
-                Invalid exchange code.
+            <div class="col-md-3">
+              <div class="input-group">
+                <span class="input-group-addon"> </span>
+                <input type="text" class="form-control" formControlName="exchangeCode" placeholder="###"  [(ngModel)]="phones[i].exchangeCode">
+                <span class="input-group-addon"> - </span>
+                <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.exchangeCode.valid && !phone.controls.phoneNumbers.controls[i].controls.exchangeCode.pristine" class="alert alert-danger" style="font-size: 12px">
+                  Invalid exchange code.
+                </div>
               </div>
             </div>
-            <div class="col-md-2">
-              <input type="text" class="form-control" formControlName="subscriberNumber" placeholder="####"  [(ngModel)]="phones[i].subscriberNumber">
-              <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.valid && !phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.pristine" class="alert alert-danger" style="font-size: 12px">
-                Invalid subscriber number.
+            <div class="col-md-3">
+              <div class="input-group">
+                <span class="input-group-addon"> </span>
+                <input type="text" class="form-control" formControlName="subscriberNumber" placeholder="####"  [(ngModel)]="phones[i].subscriberNumber">
+                <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.valid && !phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.pristine" class="alert alert-danger" style="font-size: 12px">
+                  Invalid subscriber number.
+                </div>
               </div>
             </div>
-            <div class="col-md-2">
-              <strong>Extension:</strong>
-            </div>
-            <div class="col-md-2">
-              <input type="text" class="form-control" formControlName="extension" [(ngModel)]="phones[i].extension">
+            <div class="col-md-3">
+              <div class="input-group">
+                <span class="input-group-addon">ext.</span>
+                <input type="text" class="form-control" formControlName="extension" [(ngModel)]="phones[i].extension">
+             </div>
             </div>
           </div>
           <div class="col-md-12">

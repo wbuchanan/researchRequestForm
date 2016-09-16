@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, OnChanges, Output, SimpleChange} from '@angular/core';
 import { PeopleComponent } from './people.component';
 import { ContactComponent } from './contact.component';
 import { InstitutionComponent } from './institution.component';
@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {Contact} from "./contact";
 import {People} from "./people";
 import {Institution} from "./institution";
+import {Address} from "./address";
 
 @Component({
   selector: 'person',
@@ -18,22 +19,42 @@ export class PersonComponent implements OnInit {
   @Input() contacts: ContactComponent;
   @Input() inst: InstitutionComponent;
   @Input() title: string;
-
   @Output() requestor: EventEmitter<Person> = new EventEmitter<Person>();
-  private componentTitle: string = this.title;
+  private employeeHelp: string = '';
   private peep: Person = new Person();
-  public _fb: FormBuilder = new FormBuilder();
-  person: FormGroup;
-  constructor() {
+  private defaultInst: Institution = new Institution();
+  private person: FormGroup;
+  constructor(private _fb: FormBuilder) {
+    this.defaultInst.name = '';
+    this.defaultInst.department = '';
+    this.defaultInst.address = new Address('', '', '', '', '', '', '', '', '', false);
   }
 
   ngOnInit() {
     this.person = this._fb.group( {
       person : this.peeps,
-      isFCPS: [true],
+      isFCPS: [false],
       contactInfo: this.contacts,
       institutionalAffiliation: this.inst
     });
+    let isEmployee = this.person.controls['isFCPS'];
+
+    isEmployee.valueChanges.subscribe((data) => {
+      if (data) {
+        this.defaultInst.name = 'Fayette County Public Schools';
+        this.defaultInst.department = 'IAKSS';
+        this.defaultInst.address = new Address('701', 'E', 'Main', 'ST', '', '', 'Lexington', 'KY', '40502', false);
+      } else {
+        this.defaultInst.name = '';
+        this.defaultInst.department = '';
+        this.defaultInst.address = new Address('', '', '', '', '', '', '', '', '', false);
+      }
+      this.updateRequestor();
+    });
+  }
+
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    this.updateRequestor();
   }
 
   bindPersonObject(person: People) : void {
@@ -46,6 +67,14 @@ export class PersonComponent implements OnInit {
 
   bindInstitutionInformation(institution: Institution) : void {
     this.peep.institutionalAffiliation = institution;
+  }
+
+  private displayEmployeeHelp() : void {
+    this.employeeHelp = 'Check this box if you are employed by Fayette County Public Schools.';
+  }
+
+  private undisplayEmployeeHelp() : void {
+    this.employeeHelp = '';
   }
 
   updateRequestor() : void {

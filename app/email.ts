@@ -1,5 +1,5 @@
 export class Email {
-  emailType: string;
-  userName: string;
-  domain: string;
+  emailType: string = 'office';
+  userName: string = '';
+  domain: string = '';
 }

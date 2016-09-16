@@ -5,24 +5,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var core_1 = require('@angular/core');
 var research_request_1 = require("./research-request");
 var forms_1 = require("@angular/forms");
-var person_component_1 = require("./person.component");
-var district_sponsor_component_1 = require("./district-sponsor.component");
-var sponsor_component_1 = require("./sponsor.component");
-var hypothesis_component_1 = require("./hypothesis.component");
-var http_1 = require("@angular/http");
 var ResearchRequestComponent = (function () {
     function ResearchRequestComponent(_fb, http) {
         this._fb = _fb;
         this.http = http;
         this.theRequest = new core_1.EventEmitter();
-        this.defInstName = ' ';
-        this.defInstDept = ' ';
         this.requestorTitle = 'Requestor Information: ';
         this.advisorTitle = 'Academic Advisor Information: ';
         this.backendURL = 'localhost:9200/';
@@ -69,35 +59,28 @@ var ResearchRequestComponent = (function () {
         this.submitted = true;
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', person_component_1.PersonComponent)
-    ], ResearchRequestComponent.prototype, "requestingPerson", void 0);
+        core_1.Input()
+    ], ResearchRequestComponent.prototype, "requestingPerson");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', district_sponsor_component_1.DistrictSponsorComponent)
-    ], ResearchRequestComponent.prototype, "distSponsor", void 0);
+        core_1.Input()
+    ], ResearchRequestComponent.prototype, "distSponsor");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', sponsor_component_1.SponsorComponent)
-    ], ResearchRequestComponent.prototype, "finSponsor", void 0);
+        core_1.Input()
+    ], ResearchRequestComponent.prototype, "finSponsor");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', hypothesis_component_1.HypothesisComponent)
-    ], ResearchRequestComponent.prototype, "hypothesisArray", void 0);
+        core_1.Input()
+    ], ResearchRequestComponent.prototype, "hypothesisArray");
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], ResearchRequestComponent.prototype, "theRequest", void 0);
+        core_1.Output()
+    ], ResearchRequestComponent.prototype, "theRequest");
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', person_component_1.PersonComponent)
-    ], ResearchRequestComponent.prototype, "academicSupervisor", void 0);
+        core_1.Input()
+    ], ResearchRequestComponent.prototype, "academicSupervisor");
     ResearchRequestComponent = __decorate([
         core_1.Component({
             selector: 'research-request',
             templateUrl: '../app/research-request.component.html'
-        }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder, http_1.Http])
+        })
     ], ResearchRequestComponent);
     return ResearchRequestComponent;
 }());

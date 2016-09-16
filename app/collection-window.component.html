@@ -18,7 +18,7 @@
               </div>
               <div class="col-md-6">
                 <label for="endDate">End of Collection Window:</label>
-                <input type="date" class="form-control col-md-6" id="endDate" formControlName="endDate" step="1" [(ngModel)]="collection[i].endDate" min="{{collection.startDate}}" max="theDates.ending">
+                <input type="date" class="form-control col-md-6" id="endDate" formControlName="endDate" step="1" [(ngModel)]="collection[i].endDate" min="{{collection[i].startDate}}" max="theDates.ending">
                 <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.endDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.endDate.pristine" class="alert alert-danger" style="font-size: 12px">
                   The data collection cannot end on this date.  Must either be after today or before five years from today.
                 </div>

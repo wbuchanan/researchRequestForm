@@ -9,14 +9,21 @@
           <people (peeps)="bindPersonObject($event)"></people>
         </div>
         <div class="form-group col-md-3">
-          <label for="isFCPS">FCPS Employee?</label>
-          <input type="checkbox" class="form-control" id="isFCPS" [(ngModel)]="peep.isFCPS" formControlName="isFCPS">
+          <label for="isFCPS">FCPS Employee?
+            <span (mouseover)="displayEmployeeHelp()" (mouseout)="undisplayEmployeeHelp()" class="glyphicon glyphicon-question-sign">
+              </span>
+          </label>
+          <input type="checkbox" class="form-control" id="isFCPS" (change)="updateRequestor()" [(ngModel)]="peep.isFCPS" formControlName="isFCPS">
+          <div *ngIf="employeeHelp !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{employeeHelp}}</div>
         </div>
         <div class="form-group col-md-12">
           <contactInformation (contactInfo)="bindContactInformation($event)"></contactInformation>
         </div>
+<!--
         <fieldset class="form-group col-md-12" [disabled]="person.controls.isFCPS.value">
-          <institution (institutionData)="bindInstitutionInformation($event)" ></institution>
+-->
+        <fieldset class="form-group col-md-12">
+          <institution [externalInstitution]="defaultInst" (institutionData)="bindInstitutionInformation($event)" (change)="updateRequestor()" [isEmployee]="person.controls.isFCPS.value" ></institution>
         </fieldset>
       </div>
     </div>

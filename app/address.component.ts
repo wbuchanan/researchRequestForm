@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, OnChanges, Input, SimpleChange} from '@angular/core';
 import { Address } from '../app/address';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { SECONDARY_UNITS } from '../app/secondary-units';
@@ -67,24 +67,30 @@ export class AddressComponent implements OnInit {
       { "statenm": "WYOMING", "stusps" : "WY"} ];
   physicalAddress: FormGroup;
   private address: Address = new Address();
-  public _fb: FormBuilder = new FormBuilder();
-  constructor() {
+  @Input() externalAddress: Address;
 
+  constructor(private _fb: FormBuilder) {
+    this.address = this.externalAddress;
   }
 
   ngOnInit() {
       this.physicalAddress = this._fb.group( {
-          streetNumber: ['', Validators.pattern('[^\\s]')],
-          streetDirection: [''],
-          streetName: [''],
-          streetType: [''],
-          secondLine: [false],
-          unitType: [''],
-          unitNumber: [''],
-          city: ['', Validators.required],
-          state: ['', Validators.required],
-          zipCode: ['', [Validators.required, Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
+          streetNumber: [this.externalAddress.streetNumber || ''],
+          streetDirection: [this.externalAddress.streetDirection || ''],
+          streetName: [this.externalAddress.streetName || ''],
+          streetType: [this.externalAddress.streetType || ''],
+          secondLine: [this.externalAddress.secondLine || false],
+          unitType: [this.externalAddress.unitType || ''],
+          unitNumber: [this.externalAddress.unitNumber || ''],
+          city: [this.externalAddress.city || '', Validators.required],
+          state: [this.externalAddress.state || '', Validators.required],
+          zipCode: [this.externalAddress.zipCode || '', [Validators.required, Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
       });
+  }
+
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    this.address = changes['externalAddress'].currentValue;
+    this.updateAddress();
   }
 
   public updateAddress() : void {

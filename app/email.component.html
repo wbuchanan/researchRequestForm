@@ -13,21 +13,26 @@
               <option *ngFor="let m of emailTypes" [value]="m">{{m}}</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
-            <label for="userName">User Name:</label>
-            <input type="text" class="form-control" id="userName" formControlName="userName" [(ngModel)]="emails[i].userName">
-            <div *ngIf="!email.controls.emailAddresses.controls[i].controls.userName.valid && !email.controls.emailAddresses.controls[i].controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid User Name
+          <label for="emailAddress">Email Address: </label>
+          <div class="form-group col-md-8" id="emailAddress">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-addon">User name:</span>
+                <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="John.Doe" [(ngModel)]="emails[i].userName">
+                <span class="input-group-addon">@</span>
+                <div *ngIf="!email.controls.emailAddresses.controls[i].controls.userName.valid && !email.controls.emailAddresses.controls[i].controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
+                  Invalid User Name
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="form-group col-md-1">
-            <span><strong>@</strong></span>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="domain">Domain:</label>
-            <input type="text" class="form-control" id="domain" formControlName="domain" [(ngModel)]="emails[i].domain">
-            <div *ngIf="!email.controls.emailAddresses.controls[i].controls.domain.valid && !email.controls.emailAddresses.controls[i].controls.domain.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-addon">Domain:</span>
+                <input type="text" class="form-control" id="domain" placeholder="fayette.kyschools.us" formControlName="domain" [(ngModel)]="emails[i].domain">
+                <div *ngIf="!email.controls.emailAddresses.controls[i].controls.domain.valid && !email.controls.emailAddresses.controls[i].controls.domain.pristine" class="alert alert-danger" style="font-size: 12px">
+                  Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-12">
