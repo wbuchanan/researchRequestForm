@@ -48,56 +48,76 @@
           </div>
 
           <!-- Email Address -->
-          <div class="form-group col-md-4">
-            <label for="emailType">Email Type:</label>
-            <select class="form-control" id="emailType" formControlName="emailType" [(ngModel)]="distSponsor.emailType">
-              <option *ngFor="let m of emailTypes" [value]="m">{{m}}</option>
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="userName">User Name:</label>
-            <input type="text" class="form-control" id="userName" formControlName="userName" [(ngModel)]="distSponsor.userName" [value]="makeUserName()">
-            <div *ngIf="!districtSponsor.controls.userName.valid && !districtSponsor.controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid User Name
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label for="emailType">Email Type:</label>
+              <select class="form-control" id="emailType" formControlName="emailType" [(ngModel)]="distSponsor.emailType">
+                <option *ngFor="let m of emailTypes" [value]="m">{{m}}</option>
+              </select>
             </div>
-          </div>
-          <div class="form-group col-md-1">
-            <span><strong>@</strong></span>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="domain">Domain:</label>
-            <input type="text" class="form-control" id="domain" formControlName="domain" [(ngModel)]="distSponsor.domain">
-            <div *ngIf="!districtSponsor.controls.domain.valid && !districtSponsor.controls.domain.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
+            <label for="emailAddress">Email Address: </label>
+            <div class="form-group col-md-8" id="emailAddress">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <span class="input-group-addon">User name:</span>
+                  <input type="text" class="form-control" id="userName" formControlName="userName" [(ngModel)]="distSponsor.userName" [value]="makeUserName()">
+                  <span class="input-group-addon">@</span>
+                  <div *ngIf="!districtSponsor.controls.userName.valid && !districtSponsor.controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
+                    Invalid User Name
+                  </div>
+                </div>
+              </div>
+             <div class="col-md-6">
+               <div class="input-group">
+                <span class="input-group-addon">Domain:</span>
+                <input type="text" class="form-control" id="domain" formControlName="domain" [(ngModel)]="distSponsor.domain">
+                <div *ngIf="!districtSponsor.controls.domain.valid && !districtSponsor.controls.domain.pristine" class="alert alert-danger" style="font-size: 12px">
+                  Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
+                </div>
+               </div>
+             </div>
             </div>
           </div>
 
           <!-- Phone Number -->
-          <div class="form-group col-md-3">
-            <label for="phoneType">Phone Type:</label>
-            <select class="form-control" id="phoneType" formControlName="phoneType" [(ngModel)]="distSponsor.phoneType">
-              <option *ngFor="let m of phoneTypes" [value]="m">{{m}}</option>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <label for="areaCode">Phone Number:</label>
-            <input type="text" class="form-control" id="areaCode" formControlName="areaCode"  [(ngModel)]="distSponsor.areaCode">
-            <div *ngIf="!districtSponsor.controls.areaCode.valid && !districtSponsor.controls.areaCode.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid area code.
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="phoneType">Phone Type:</label>
+              <select class="form-control" id="phoneType" formControlName="phoneType" [(ngModel)]="distSponsor.phoneType">
+                <option *ngFor="let m of phoneTypes" [value]="m">{{m}}</option>
+              </select>
             </div>
-          </div>
-          <div class="col-md-3">
-            <label for="exchangeCode">  </label>
-            <input type="text" id="exchangeCode" class="form-control" formControlName="exchangeCode" [(ngModel)]="distSponsor.exchangeCode">
-            <div *ngIf="!districtSponsor.controls.exchangeCode.valid && !districtSponsor.controls.exchangeCode.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid exchange code.
-            </div>
-          </div>
-          <div class="col-md-3">
-            <label for="subscriberNumber">  </label>
-            <input type="text" id="subscriberNumber" class="form-control" formControlName="subscriberNumber" placeholder="####" [(ngModel)]="distSponsor.subscriberNumber">
-            <div *ngIf="!districtSponsor.controls.subscriberNumber.valid && !districtSponsor.controls.subscriberNumber.pristine" class="alert alert-danger" style="font-size: 12px">
-              Invalid subscriber number.
+            <label for="phoneNumber">Phone Number:</label>
+            <div class="form-group col-md-9" id="phoneNumber">
+              <div class="col-md-4">
+                <div class="input-group">
+                  <span class="input-group-addon">(</span>
+                  <input type="text" class="form-control" id="areaCode" formControlName="areaCode" [(ngModel)]="distSponsor.areaCode">
+                  <span class="input-group-addon">)</span>
+                  <div *ngIf="!districtSponsor.controls.areaCode.valid && !districtSponsor.controls.areaCode.pristine" class="alert alert-danger" style="font-size: 12px">
+                    Invalid area code.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <span class="input-group-addon"> </span>
+                  <input type="text" id="exchangeCode" class="form-control" formControlName="exchangeCode" [(ngModel)]="distSponsor.exchangeCode">
+                  <span class="input-group-addon"> - </span>
+                  <div *ngIf="!districtSponsor.controls.exchangeCode.valid && !districtSponsor.controls.exchangeCode.pristine" class="alert alert-danger" style="font-size: 12px">
+                    Invalid exchange code.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <span class="input-group-addon"> </span>
+                  <input type="text" id="subscriberNumber" class="form-control" formControlName="subscriberNumber" placeholder="####" [(ngModel)]="distSponsor.subscriberNumber">
+                  <div *ngIf="!districtSponsor.controls.subscriberNumber.valid && !districtSponsor.controls.subscriberNumber.pristine" class="alert alert-danger" style="font-size: 12px">
+                    Invalid subscriber number.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </form>
