@@ -8,40 +8,40 @@
     <div class="panel-body">
       <form [formGroup]="statPower" novalidate>
         <div class="form-group col-md-12">
-          <div class="col-md-1">
+          <div class="col-md-2">
             <label>&alpha; :
               <span (mouseover)="displayAlphaInfo()" (mouseout)="undisplayAlphaInfo()" class="glyphicon glyphicon-info-sign pull-right">
               </span>
             </label>
             <input type="number" class="form-control" [(ngModel)]="power.alpha" formControlName="alpha" min="0.0" max="1.0" step="0.001">
           </div>
-          <div class="col-md-1">
+          <div class="col-md-2">
             <label>&beta; :
               <span (mouseover)="displayBetaInfo()" (mouseout)="undisplayBetaInfo()" class="glyphicon glyphicon-info-sign pull-right">
               </span>
             </label>
             <input type="number" class="form-control" [(ngModel)]="power.beta" formControlName="beta" min="0.0" max="1.0" step="0.001">
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Test Statistic:
               <span (mouseover)="displayTestInfo()" (mouseout)="undisplayTestInfo()" class="glyphicon glyphicon-info-sign pull-right">
               </span>
             </label>
             <input type="text" class="form-control" [(ngModel)]="power.statistic" formControlName="statistic">
           </div>
-          <div class="col-md-1">
+          <div class="col-md-2">
             <label>n:
               <span (mouseover)="displaySampleInfo()" (mouseout)="undisplaySampleInfo()" class="glyphicon glyphicon-info-sign pull-right">
               </span>
             </label>
             <input type="number" class="form-control" [(ngModel)]="power.totalSampleSize" formControlName="totalSampleSize" min="5" max="42000" step="1">
           </div>
-          <div class="col-md-5">
-            <label>Minimal Detectable Effect Size:
+          <div class="col-md-3">
+            <label for="mdes">Minimal Detectable Effect:
               <span (mouseover)="displayMDESInfo()" (mouseout)="undisplayMDESInfo()" class="glyphicon glyphicon-info-sign pull-right">
               </span>
             </label>
-            <input type="number" class="form-control" [(ngModel)]="power.minimalDetectableEffect" formControlName="minimalDetectableEffect" min="0.0" max="100" step="0.001">
+            <input type="number" id="mdes" class="form-control" [(ngModel)]="power.minimalDetectableEffect" formControlName="minimalDetectableEffect" min="0.0" max="100" step="0.001">
           </div>
         </div>
       </form>
