@@ -21,6 +21,10 @@ var CollectionWindowComponent = (function () {
         this.theDatesRaw = { start: new Date(Date.now()), end: new Date(Date.now()) };
         this.outputWindows = new core_1.EventEmitter();
         this.collection = new Array(new collection_window_1.CollectionWindow());
+        this.openWindow = '';
+        this.closeWindow = '';
+        this.areYouCollectingData = '';
+        this.areYouRequestingData = '';
         this.theDatesRaw.end.setFullYear(this.theDatesRaw.end.getFullYear() + 5);
         this.theDates = {
             "starting": this.theDatesRaw.start.toISOString().substring(0, 10),
@@ -34,6 +38,30 @@ var CollectionWindowComponent = (function () {
         this.dataCollection = this._fb.group({
             collectionWindow: this._fb.array([this.initCollectionWindowFields()])
         });
+    };
+    CollectionWindowComponent.prototype.displayOpenWindowHelp = function () {
+        this.openWindow = 'This is the earliest date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
+    };
+    CollectionWindowComponent.prototype.undisplayOpenWindowHelp = function () {
+        this.openWindow = '';
+    };
+    CollectionWindowComponent.prototype.displayCloseWindowHelp = function () {
+        this.closeWindow = 'This is the last date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
+    };
+    CollectionWindowComponent.prototype.undisplayCloseWindowHelp = function () {
+        this.closeWindow = '';
+    };
+    CollectionWindowComponent.prototype.displayCollectingData = function () {
+        this.areYouCollectingData = 'Check this box if you plan to collect your own data for this research project.';
+    };
+    CollectionWindowComponent.prototype.undisplayCollectingData = function () {
+        this.areYouCollectingData = '';
+    };
+    CollectionWindowComponent.prototype.displayRequestingData = function () {
+        this.areYouRequestingData = 'Check this box if you need DRA to query data from FCPS data systems.';
+    };
+    CollectionWindowComponent.prototype.undisplayRequestingData = function () {
+        this.areYouRequestingData = '';
     };
     CollectionWindowComponent.prototype.initCollectionWindowFields = function () {
         return this._fb.group({

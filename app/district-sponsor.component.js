@@ -19,7 +19,7 @@ var DistrictSponsorComponent = (function () {
         this.emailTypes = ["home", "work", "other"];
         this.levels = ['Senior Director', 'Director', 'Associate Director'];
         this.offices = ['Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
-            'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Evaluation'];
+            'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Accountability'];
         this.distSponsor = new district_sponsor_1.DistrictSponsor();
     }
     DistrictSponsorComponent.prototype.ngOnInit = function () {
@@ -40,7 +40,10 @@ var DistrictSponsorComponent = (function () {
         });
     };
     DistrictSponsorComponent.prototype.makeUserName = function () {
-        return this.distSponsor.firstName.concat('.').concat(this.distSponsor.lastName);
+        if (this.distSponsor.firstName === '')
+            this.distSponsor.userName = '.';
+        else
+            this.distSponsor.userName = this.distSponsor.firstName.concat('.').concat(this.distSponsor.lastName);
     };
     DistrictSponsorComponent.prototype.updateDistrictSponsor = function () {
         this.sendDistrictSponsor.emit(this.distSponsor);

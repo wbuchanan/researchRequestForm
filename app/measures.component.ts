@@ -15,7 +15,46 @@ export class MeasuresComponent implements OnInit {
   measures: FormGroup;
   units = UNIT_OF_MEASUREMENT;
   private measurement: Measures[] = new Array(new Measures());
+
+  private helpName: string = '';
+  private helpUnitOffMeasurement: string = '';
+  private helpReferences: string = '';
+  private helpPilot: string = '';
+
   constructor(private _fb: FormBuilder) { }
+
+  displayHelpName() : void {
+    this.helpName = 'This should be the name of the measurement tool that you plan to use to collect data.';
+  }
+
+  undisplayHelpName() : void {
+    this.helpName = '';
+  }
+
+  displayHelpUnitOfMeasurement() : void {
+    this.helpUnitOffMeasurement = 'This would identify the unit at which the measurement tool is being used.  For example, an educator observation tool should list the teacher level, while an IQ test would be a student level measure.';
+  }
+
+  undisplayHelpUnitOfMeasurement() : void {
+    this.helpUnitOffMeasurement = '';
+  }
+
+  displayHelpReference(): void {
+    this.helpReferences = 'This should include the references to the literature related to the validity/reliability of the measurement instrument.';
+  }
+
+  undisplayHelpReference(): void {
+    this.helpReferences = '';
+  }
+
+  displayHelpPilot() : void {
+    this.helpPilot = 'Check this box if the measurement tool is being used for the first time in this research project';
+  }
+
+  undisplayHelpPilot() : void {
+    this.helpPilot = '';
+  }
+
   ngOnInit() {
     this.measures = this._fb.group( {
       measure: this._fb.array([ this.initMeasureFields() ])

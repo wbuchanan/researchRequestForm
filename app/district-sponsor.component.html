@@ -8,14 +8,14 @@
         <form [formGroup]="districtSponsor" novalidate>
           <div class="col-md-4">
             <label for="firstName">First Name:</label>
-            <input type="text" [(ngModel)]="distSponsor.firstName" id="firstName" class="form-control" formControlName="firstName" placeholder="Billy">
+            <input type="text" [(ngModel)]="distSponsor.firstName" id="firstName" class="form-control" formControlName="firstName" placeholder="Billy" (change)="makeUserName()">
             <div *ngIf="!districtSponsor.controls.firstName.valid && !districtSponsor.controls.firstName.pristine" class="alert alert-danger" style="font-size: 12px;">
               First Name should be between 2 and 40 characters
             </div>
           </div>
           <div class="col-md-4">
             <label for="lastName">Last Name:</label>
-            <input type="text" [(ngModel)]="distSponsor.lastName" id="lastName" class="form-control" formControlName="lastName" placeholder="Buchanan">
+            <input type="text" [(ngModel)]="distSponsor.lastName" id="lastName" class="form-control" formControlName="lastName" placeholder="Buchanan" (change)="makeUserName()">
             <div *ngIf="!districtSponsor.controls.lastName.valid && !districtSponsor.controls.lastName.pristine" class="alert alert-danger" style="font-size: 12px;">
               Last Name should be between 2 and 40 characters
             </div>
@@ -60,7 +60,7 @@
               <div class="col-md-6">
                 <div class="input-group">
                   <span class="input-group-addon">User name:</span>
-                  <input type="text" class="form-control" id="userName" formControlName="userName" [(ngModel)]="distSponsor.userName" [value]="makeUserName()">
+                  <input type="text" class="form-control" id="userName" formControlName="userName" [(ngModel)]="distSponsor.userName" [value]="distSponsor.userName">
                   <span class="input-group-addon">@</span>
                   <div *ngIf="!districtSponsor.controls.userName.valid && !districtSponsor.controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
                     Invalid User Name

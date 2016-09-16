@@ -19,7 +19,35 @@ var MeasuresComponent = (function () {
         this.timeUnits = ["seconds", "minutes", "hours", "class periods", "days"];
         this.units = unitsOfMeasurement_1.UNIT_OF_MEASUREMENT;
         this.measurement = new Array(new measures_1.Measures());
+        this.helpName = '';
+        this.helpUnitOffMeasurement = '';
+        this.helpReferences = '';
+        this.helpPilot = '';
     }
+    MeasuresComponent.prototype.displayHelpName = function () {
+        this.helpName = 'This should be the name of the measurement tool that you plan to use to collect data.';
+    };
+    MeasuresComponent.prototype.undisplayHelpName = function () {
+        this.helpName = '';
+    };
+    MeasuresComponent.prototype.displayHelpUnitOfMeasurement = function () {
+        this.helpUnitOffMeasurement = 'This would identify the unit at which the measurement tool is being used.  For example, an educator observation tool should list the teacher level, while an IQ test would be a student level measure.';
+    };
+    MeasuresComponent.prototype.undisplayHelpUnitOfMeasurement = function () {
+        this.helpUnitOffMeasurement = '';
+    };
+    MeasuresComponent.prototype.displayHelpReference = function () {
+        this.helpReferences = 'This should include the references to the literature related to the validity/reliability of the measurement instrument.';
+    };
+    MeasuresComponent.prototype.undisplayHelpReference = function () {
+        this.helpReferences = '';
+    };
+    MeasuresComponent.prototype.displayHelpPilot = function () {
+        this.helpPilot = 'Check this box if the measurement tool is being used for the first time in this research project';
+    };
+    MeasuresComponent.prototype.undisplayHelpPilot = function () {
+        this.helpPilot = '';
+    };
     MeasuresComponent.prototype.ngOnInit = function () {
         this.measures = this._fb.group({
             measure: this._fb.array([this.initMeasureFields()])

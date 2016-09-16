@@ -25,6 +25,10 @@ export class CollectionWindowComponent implements OnInit {
 
   public theDates : {};
   private collection: CollectionWindow[] = new Array(new CollectionWindow());
+  private openWindow: string = '';
+  private closeWindow: string = '';
+  private areYouCollectingData: string = '';
+  private areYouRequestingData: string = '';
 
   dataCollection: FormGroup;
   constructor(private _fb: FormBuilder) {
@@ -44,6 +48,37 @@ export class CollectionWindowComponent implements OnInit {
     });
   }
 
+  displayOpenWindowHelp() : void {
+    this.openWindow = 'This is the earliest date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
+  }
+
+  undisplayOpenWindowHelp() : void {
+    this.openWindow = '';
+  }
+
+  displayCloseWindowHelp() : void {
+    this.closeWindow = 'This is the last date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
+  }
+
+  undisplayCloseWindowHelp() : void {
+    this.closeWindow = '';
+  }
+
+  displayCollectingData() : void {
+    this.areYouCollectingData = 'Check this box if you plan to collect your own data for this research project.';
+  }
+
+  undisplayCollectingData() : void {
+    this.areYouCollectingData = '';
+  }
+
+  displayRequestingData() : void {
+    this.areYouRequestingData = 'Check this box if you need DRA to query data from FCPS data systems.';
+  }
+
+  undisplayRequestingData() : void {
+    this.areYouRequestingData = '';
+  }
 
   initCollectionWindowFields() {
     return this._fb.group( {

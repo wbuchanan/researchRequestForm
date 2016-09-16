@@ -1,28 +1,50 @@
 <div (change)="updateExistingData()">
   <form [formGroup]="existingData" novalidate>
-    <div class="col-md-4">
-      <label for="studentLevel">Student Level Data:</label>
-      <input type="text" class="form-control" id="studentLevel" formControlName="studentLevel" [(ngModel)]="existing.studentLevel" placeholder="Student Race, Sex, and EL Status">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="studentLevel">Student Level Data:
+          <span (mouseover)="displayHelpStudentLevel()" (mouseout)="undisplayHelpStudentLevel()" class="glyphicon glyphicon-info-sign pull-right"></span>
+        </label>
+        <input type="text" class="form-control" id="studentLevel" formControlName="studentLevel" [(ngModel)]="existing.studentLevel" placeholder="Student Race, Sex, and EL Status">
+        <div *ngIf="helpStudentLevel !== ''" class="alert alert-info">{{helpStudentLevel}}</div>
+      </div>
+      <div class="col-md-4">
+        <label for="classRoomLevel">Classroom Level Data:
+          <span (mouseover)="displayHelpClassRoomLevel()" (mouseout)="undisplayHelpClassRoomLevel()" class="glyphicon glyphicon-info-sign pull-right"></span>
+        </label>
+        <input type="text" class="form-control" id="classRoomLevel" formControlName="classRoomLevel" [(ngModel)]="existing.classRoomLevel" placeholder="% of students with 5 or more absences">
+        <div *ngIf="helpClassRoomLevel !== ''" class="alert alert-info">{{helpClassRoomLevel}}</div>
+      </div>
+      <div class="col-md-4">
+        <label for="teacherLevel">Teacher Level Data:
+          <span (mouseover)="displayHelpTeacherLevel()" (mouseout)="undisplayHelpTeacherLevel()" class="glyphicon glyphicon-info-sign pull-right"></span>
+        </label>
+        <input type="text" class="form-control" id="teacherLevel" formControlName="teacherLevel" [(ngModel)]="existing.teacherLevel" placeholder="NBCT Indicator">
+        <div *ngIf="helpTeacherLevel !== ''" class="alert alert-info">{{helpTeacherLevel}}</div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <label for="classRoomLevel">Classroom Level Data:</label>
-      <input type="text" class="form-control" id="classRoomLevel" formControlName="classRoomLevel" [(ngModel)]="existing.classRoomLevel" placeholder="% of students with 5 or more absences">
-    </div>
-    <div class="col-md-4">
-      <label for="teacherLevel">Teacher Level Data:</label>
-      <input type="text" class="form-control" id="teacherLevel" formControlName="teacherLevel" [(ngModel)]="existing.teacherLevel" placeholder="NBCT Indicator">
-    </div>
-    <div class="col-md-4">
-      <label for="gradeLevel">Grade Level Data:</label>
-      <input type="text" class="form-control" id="gradeLevel" formControlName="gradeLevel" [(ngModel)]="existing.gradeLevel" placeholder="Average MAP Math Score in grade 5">
-    </div>
-    <div class="col-md-4">
-      <label for="schoolLevel">School Level Data:</label>
-      <input type="text" class="form-control" id="schoolLevel" formControlName="schoolLevel" [(ngModel)]="existing.schoolLevel" placeholder="% of Homeless/Highly Mobile Students">
-    </div>
-    <div class="col-md-4">
-      <label for="districtLevel">District Level Data:</label>
-      <input type="text" class="form-control" id="districtLevel" formControlName="districtLevel" [(ngModel)]="existing.districtLevel" placeholder="% of students with disabilities">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="gradeLevel">Grade Level Data:
+          <span (mouseover)="displayHelpGradeLevel()" (mouseout)="undisplayHelpGradeLevel()" class="glyphicon glyphicon-info-sign pull-right"></span>
+        </label>
+        <input type="text" class="form-control" id="gradeLevel" formControlName="gradeLevel" [(ngModel)]="existing.gradeLevel" placeholder="Average MAP Math Score in grade 5">
+        <div *ngIf="helpGradeLevel !== ''" class="alert alert-info">{{helpGradeLevel}}</div>
+      </div>
+      <div class="col-md-4">
+        <label for="schoolLevel">School Level Data:
+          <span (mouseover)="displayHelpSchoolLevel()" (mouseout)="undisplayHelpSchoolLevel()" class="glyphicon glyphicon-info-sign pull-right"></span>
+        </label>
+        <input type="text" class="form-control" id="schoolLevel" formControlName="schoolLevel" [(ngModel)]="existing.schoolLevel" placeholder="% of Homeless/Highly Mobile Students">
+        <div *ngIf="helpSchoolLevel !== ''" class="alert alert-info">{{helpSchoolLevel}}</div>
+      </div>
+      <div class="col-md-4">
+        <label for="districtLevel">District Level Data:
+          <span (mouseover)="displayHelpDistrictLevel()" (mouseout)="undisplayHelpDistrictLevel()" class="glyphicon glyphicon-info-sign pull-right"></span>
+        </label>
+        <input type="text" class="form-control" id="districtLevel" formControlName="districtLevel" [(ngModel)]="existing.districtLevel" placeholder="% of students with disabilities">
+        <div *ngIf="helpDistrictLevel !== ''" class="alert alert-info">{{helpDistrictLevel}}</div>
+      </div>
     </div>
   </form>
 </div>

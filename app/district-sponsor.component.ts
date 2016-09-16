@@ -14,8 +14,8 @@ export class DistrictSponsorComponent implements OnInit {
   public emailTypes = [ "home", "work", "other" ];
   levels = [ 'Senior Director', 'Director', 'Associate Director'];
   offices = [ 'Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
-                      'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Evaluation' ];
-
+                      'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Accountability' ];
+  
   private distSponsor: DistrictSponsor = new DistrictSponsor();
 
   constructor(private _fb: FormBuilder) { }
@@ -37,8 +37,9 @@ export class DistrictSponsorComponent implements OnInit {
     });
   }
 
-  public makeUserName() : string {
-    return this.distSponsor.firstName.concat('.').concat(this.distSponsor.lastName);
+  public makeUserName() : void {
+    if (this.distSponsor.firstName === '') this.distSponsor.userName = '.';
+    else this.distSponsor.userName = this.distSponsor.firstName.concat('.').concat(this.distSponsor.lastName);
   }
 
   public updateDistrictSponsor() : void {
