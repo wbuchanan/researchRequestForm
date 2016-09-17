@@ -14,18 +14,18 @@ export class InstitutionComponent {
   @Input() isEmployee: boolean;
   @Input() externalInstitution: Institution;
   institution: FormGroup;
-  private inst: Institution = new Institution();
+  private inst: Institution;
   defaultAddress: Address = new Address(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'KY', ' ', false);
 
   constructor(public _fb: FormBuilder) {
-    this.inst = this.externalInstitution;
+    this.inst = this.externalInstitution !== undefined ? this.externalInstitution : new Institution();
   }
 
   ngOnInit() {
       this.institution = this._fb.group( {
-          name: [this.externalInstitution.name || '', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
-          department: [this.externalInstitution.department || '', [Validators.required, Validators.pattern('^[a-zA-Z ,]{4,}')]],
-          address: [this.externalInstitution.address || this.addy]
+          name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
+          department: ['', [Validators.required, Validators.pattern('^[a-zA-Z ,]{4,}')]],
+          address: [this.addy]
       });
   }
 

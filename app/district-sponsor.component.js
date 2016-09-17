@@ -20,8 +20,15 @@ var DistrictSponsorComponent = (function () {
         this.levels = ['Senior Director', 'Director', 'Associate Director'];
         this.offices = ['Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
             'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Accountability'];
+        this.helpDelegated = '';
         this.distSponsor = new district_sponsor_1.DistrictSponsor();
     }
+    DistrictSponsorComponent.prototype.displayHelpDelegate = function () {
+        this.helpDelegated = 'Check this box if the district cosponsor is not a Senior Director or Director';
+    };
+    DistrictSponsorComponent.prototype.undisplayHelpDelegate = function () {
+        this.helpDelegated = '';
+    };
     DistrictSponsorComponent.prototype.ngOnInit = function () {
         this.districtSponsor = this._fb.group({
             firstName: ['', [forms_1.Validators.required, forms_1.Validators.minLength(2)]],

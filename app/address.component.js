@@ -70,21 +70,20 @@ var AddressComponent = (function () {
             { "statenm": "WEST VIRGINIA", "stusps": "WV" },
             { "statenm": "WISCONSIN", "stusps": "WI" },
             { "statenm": "WYOMING", "stusps": "WY" }];
-        this.address = new address_1.Address();
-        this.address = this.externalAddress;
+        this.address = this.externalAddress !== undefined ? this.externalAddress : new address_1.Address();
     }
     AddressComponent.prototype.ngOnInit = function () {
         this.physicalAddress = this._fb.group({
-            streetNumber: [this.externalAddress.streetNumber || ''],
-            streetDirection: [this.externalAddress.streetDirection || ''],
-            streetName: [this.externalAddress.streetName || ''],
-            streetType: [this.externalAddress.streetType || ''],
-            secondLine: [this.externalAddress.secondLine || false],
-            unitType: [this.externalAddress.unitType || ''],
-            unitNumber: [this.externalAddress.unitNumber || ''],
-            city: [this.externalAddress.city || '', forms_1.Validators.required],
-            state: [this.externalAddress.state || '', forms_1.Validators.required],
-            zipCode: [this.externalAddress.zipCode || '', [forms_1.Validators.required, forms_1.Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
+            streetNumber: [''],
+            streetDirection: [''],
+            streetName: [''],
+            streetType: [''],
+            secondLine: [false],
+            unitType: [''],
+            unitNumber: [''],
+            city: ['', forms_1.Validators.required],
+            state: ['', forms_1.Validators.required],
+            zipCode: ['', [forms_1.Validators.required, forms_1.Validators.pattern('(([0-9]{5})|([0-9]{5}-[0-9]{4}))')]]
         });
     };
     AddressComponent.prototype.ngOnChanges = function (changes) {

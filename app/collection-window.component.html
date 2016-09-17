@@ -18,7 +18,7 @@
                   <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.startDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.startDate.pristine" class="alert alert-danger" style="font-size: 12px">
                     The data collection can not begin prior to today.
                   </div>
-                  <div *ngIf="openWindow !== ''" class="alert alert-info">{{openWindow}}</div>
+                  <div *ngIf="openWindow !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{openWindow}}</div>
                 </div>
                 <div class="col-md-6">
                   <label for="endDate">End of Collection Window:
@@ -28,7 +28,7 @@
                   <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.endDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.endDate.pristine" class="alert alert-danger" style="font-size: 12px">
                     The data collection cannot end on this date.  Must either be after today or before five years from today.
                   </div>
-                  <div *ngIf="closeWindow !== ''" class="alert alert-info">{{closeWindow}}</div>
+                  <div *ngIf="closeWindow !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{closeWindow}}</div>
                 </div>
               </div>
               <div class="row">
@@ -37,14 +37,14 @@
                     <span (mouseover)="displayCollectingData()" (mouseout)="undisplayCollectingData()" class="glyphicon glyphicon-info-sign pull-right"></span>
                   </label>
                   <input type="checkbox" id="collectingData" class="form-control" formControlName="collectingData" [(ngModel)]="collection[i].collectingData">
-                  <div *ngIf="areYouCollectingData !== ''" class="alert alert-info">{{areYouCollectingData}}</div>
+                  <div *ngIf="areYouCollectingData !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{areYouCollectingData}}</div>
                 </div>
                 <div class="col-md-6">
                   <label for="needFcpsData">Do you need data from FCPS in this window?
                     <span (mouseover)="displayRequestingData()" (mouseout)="undisplayRequestingData()" class="glyphicon glyphicon-info-sign pull-right"></span>
                   </label>
                   <input type="checkbox" class="form-control" id="needFcpsData" formControlName="needFcpsData" [(ngModel)]="collection[i].needFcpsData">
-                  <div *ngIf="areYouRequestingData !== ''" class="alert alert-info">{{areYouRequestingData}}</div>
+                  <div *ngIf="areYouRequestingData !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{areYouRequestingData}}</div>
                 </div>
               </div>
             </div>

@@ -15,10 +15,20 @@ export class DistrictSponsorComponent implements OnInit {
   levels = [ 'Senior Director', 'Director', 'Associate Director'];
   offices = [ 'Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
                       'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Accountability' ];
-  
+  private helpDelegated: string = '';
+
   private distSponsor: DistrictSponsor = new DistrictSponsor();
 
   constructor(private _fb: FormBuilder) { }
+
+  private displayHelpDelegate() : void {
+    this.helpDelegated = 'Check this box if the district cosponsor is not a Senior Director or Director';
+  }
+
+  private undisplayHelpDelegate() : void {
+    this.helpDelegated = '';
+  }
+
   ngOnInit() {
     this.districtSponsor = this._fb.group( {
       firstName: ['', [Validators.required, Validators.minLength(2)]],

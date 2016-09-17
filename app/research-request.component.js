@@ -25,6 +25,9 @@ var ResearchRequestComponent = (function () {
         this.advisorTitle = 'Academic Advisor Information: ';
         this.backendURL = 'localhost:9200/';
         this.degreeLevels = ['Doctorate', 'Masters', 'Bachelors'];
+        this.helpIrbApproval = '';
+        this.helpConditionalIrbApproval = '';
+        this.helpForDegree = '';
         this.request = new research_request_1.ResearchRequest();
         this.submitted = false;
     }

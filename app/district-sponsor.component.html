@@ -6,29 +6,30 @@
       </div>
       <div class="panel-body">
         <form [formGroup]="districtSponsor" novalidate>
-          <div class="col-md-4">
-            <label for="firstName">First Name:</label>
-            <input type="text" [(ngModel)]="distSponsor.firstName" id="firstName" class="form-control" formControlName="firstName" placeholder="Billy" (change)="makeUserName()">
-            <div *ngIf="!districtSponsor.controls.firstName.valid && !districtSponsor.controls.firstName.pristine" class="alert alert-danger" style="font-size: 12px;">
-              First Name should be between 2 and 40 characters
+          <div class="row">
+            <div class="col-md-4">
+              <label for="firstName">First Name:</label>
+              <input type="text" [(ngModel)]="distSponsor.firstName" id="firstName" class="form-control" formControlName="firstName" placeholder="Billy" (change)="makeUserName()">
+              <div *ngIf="!districtSponsor.controls.firstName.valid && !districtSponsor.controls.firstName.pristine" class="alert alert-danger" style="font-size: 12px;">
+                First Name should be between 2 and 40 characters
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="lastName">Last Name:</label>
+              <input type="text" [(ngModel)]="distSponsor.lastName" id="lastName" class="form-control" formControlName="lastName" placeholder="Buchanan" (change)="makeUserName()">
+              <div *ngIf="!districtSponsor.controls.lastName.valid && !districtSponsor.controls.lastName.pristine" class="alert alert-danger" style="font-size: 12px;">
+                Last Name should be between 2 and 40 characters
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="jobTitle">Job Title:</label>
+              <input type="text" [(ngModel)]="distSponsor.jobTitle" id="jobTitle" class="form-control" formControlName="jobTitle" placeholder="Director of Data, Research, and Accountability">
+              <div *ngIf="!districtSponsor.controls.jobTitle.valid && !districtSponsor.controls.jobTitle.pristine" class="alert alert-danger" style="font-size: 12px;">
+                Job Title should be between 2 and 40 characters
+              </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <label for="lastName">Last Name:</label>
-            <input type="text" [(ngModel)]="distSponsor.lastName" id="lastName" class="form-control" formControlName="lastName" placeholder="Buchanan" (change)="makeUserName()">
-            <div *ngIf="!districtSponsor.controls.lastName.valid && !districtSponsor.controls.lastName.pristine" class="alert alert-danger" style="font-size: 12px;">
-              Last Name should be between 2 and 40 characters
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="jobTitle">Job Title:</label>
-            <input type="text" [(ngModel)]="distSponsor.jobTitle" id="jobTitle" class="form-control" formControlName="jobTitle" placeholder="Director of Data, Research, and Accountability">
-            <div *ngIf="!districtSponsor.controls.jobTitle.valid && !districtSponsor.controls.jobTitle.pristine" class="alert alert-danger" style="font-size: 12px;">
-              Job Title should be between 2 and 40 characters
-            </div>
-          </div>
-
-          <div class="form-group col-md-12">
+          <div class="row">
             <div class="col-md-4">
               <label>District Office: </label>
               <select formControlName="office" class="form-control" [(ngModel)]="distSponsor.office">
@@ -42,8 +43,11 @@
               </select>
             </div>
             <div class="col-md-4">
-              <label>Was the sponsorship role delegated?</label>
+              <label>Was the sponsorship role delegated?
+                <span (mouseover)="displayHelpDelegate()" (mouseout)="undisplayHelpDelegate()" class="glyphicon glyphicon-info-sign pull-right"></span>
+              </label>
               <input type="checkbox" formControlName="delegated" class="form-control" [(ngModel)]="distSponsor.delegated">
+              <div *ngIf="helpDelegated !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpDelegated}}</div>
             </div>
           </div>
 

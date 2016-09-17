@@ -31,6 +31,10 @@ export class ResearchRequestComponent implements OnInit {
 
   private degreeLevels = [ 'Doctorate', 'Masters', 'Bachelors' ];
 
+  private helpIrbApproval: string = '';
+  private helpConditionalIrbApproval: string = '';
+  private helpForDegree: string = '';
+
   private request: ResearchRequest = new ResearchRequest();
   researchRequest: FormGroup;
 

@@ -10,21 +10,30 @@
           <div class="panel-body" [formGroupName]="i">
             <div class="form-group col-md-12">
               <div class="col-md-4">
-                <label for="rq">Research Question:</label>
+                <label for="rq">Research Question:
+                  <span (mouseover)="displayHelpResearchQuestion()" (mouseout)="undisplayHelpResearchQuestion()" class="glyphicon glyphicon-info-sign pull-right"></span>
+                </label>
                 <input type="text" class="form-control" id="rq" formControlName="researchQuestion" [(ngModel)]="myHypotheses[i].researchQuestion">
                 <div *ngIf="!hypotheses.controls.hypothesis.controls[i].controls.researchQuestion.valid && !hypotheses.controls.hypothesis.controls[i].controls.researchQuestion.pristine" class="alert alert-danger" style="font-size: 12px">
                   Must provide a valid and testable research question.
                 </div>
+                <div *ngIf="helpResearchQuestion !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpResearchQuestion}}</div>
               </div>
               <div class="col-md-4">
-                <label for="methods">Methodology:</label>
+                <label for="methods">Methodology:
+                  <span (mouseover)="displayHelpMethodology()" (mouseout)="undisplayHelpMethodology()" class="glyphicon glyphicon-info-sign pull-right"></span>
+                </label>
                 <select class="form-control" id="methods" formControlName="methodology" [(ngModel)]="myHypotheses[i].methodology">
                   <option *ngFor="let x of methods" [value]="x">{{x}}</option>
                 </select>
+                <div *ngIf="helpMethodology !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpMethodology}}</div>
               </div>
               <div class="col-md-4">
-                <label for="analysis">Describe how you plan to analyze the data to address this question:</label>
+                <label for="analysis">Describe how you plan to analyze the data to address this question:
+                  <span (mouseover)="displayHelpAnalysis()" (mouseout)="undisplayHelpAnalysis()" class="glyphicon glyphicon-info-sign pull-right"></span>
+                </label>
                 <textarea rows="5" cols="35" id="analysis" class="form-control" formControlName="analysis" [(ngModel)]="myHypotheses[i].analysis"></textarea>
+                <div *ngIf="helpAnalysis !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpAnalysis}}</div>
               </div>
             </div>
             <div class="form-group col-md-12">

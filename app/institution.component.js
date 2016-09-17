@@ -17,15 +17,14 @@ var InstitutionComponent = (function () {
     function InstitutionComponent(_fb) {
         this._fb = _fb;
         this.institutionData = new core_1.EventEmitter();
-        this.inst = new institution_1.Institution();
         this.defaultAddress = new address_1.Address(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'KY', ' ', false);
-        this.inst = this.externalInstitution;
+        this.inst = this.externalInstitution !== undefined ? this.externalInstitution : new institution_1.Institution();
     }
     InstitutionComponent.prototype.ngOnInit = function () {
         this.institution = this._fb.group({
-            name: [this.externalInstitution.name || '', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
-            department: [this.externalInstitution.department || '', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z ,]{4,}')]],
-            address: [this.externalInstitution.address || this.addy]
+            name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9 ,]{2,}')]],
+            department: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z ,]{4,}')]],
+            address: [this.addy]
         });
     };
     InstitutionComponent.prototype.ngOnChanges = function (changes) {

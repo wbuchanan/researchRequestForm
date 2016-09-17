@@ -13,7 +13,7 @@
                     <span (mouseover)="displayHelpName()" (mouseout)="undisplayHelpName()" class="glyphicon glyphicon-info-sign pull-right"></span>
                   </label>
                   <input type="text" class="form-control" formControlName="name" id="name"  [(ngModel)]="measurement[i].name" placeholder="WISC-III, Fountas & Pinnell, PALS, etc...">
-                  <div *ngIf="helpName !== ''" class="alert alert-info">{{helpName}}</div>
+                  <div *ngIf="helpName !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpName}}</div>
                   <div *ngIf="!measures.controls.measure.controls[i].controls.name.valid" class="alert alert-danger" style="font-size: 12px">
                     Must include the name of the measure being used to collect data
                   </div>
@@ -25,7 +25,7 @@
                     <select class="form-control col-md-4" id="unitOfMeasurement" formControlName="unitOfMeasurement" name="unitOfMeasurement"   [(ngModel)]="measurement[i].unitOfMeasurement">
                       <option *ngFor="let m of units" [value]="m.value">{{m.key}}</option>
                     </select>
-                    <div *ngIf="helpUnitOffMeasurement !== ''" class="alert alert-info">{{helpUnitOffMeasurement}}</div>
+                    <div *ngIf="helpUnitOffMeasurement !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpUnitOffMeasurement}}</div>
                     <div *ngIf="!measures.controls.measure.controls[i].controls.unitOfMeasurement.valid" class="alert alert-danger" style="font-size: 12px">
                       Must identify the unit of measurement at which data will be collected
                     </div>
@@ -35,7 +35,7 @@
                     <span (mouseover)="displayHelpPilot()" (mouseout)="undisplayHelpPilot()" class="glyphicon glyphicon-info-sign pull-right"></span>
                   </label>
                   <input type="checkbox" class="form-control" id="pilot" formControlName="pilot" name="pilot" [(ngModel)]="measurement[i].pilot">
-                  <div *ngIf="helpPilot !== ''" class="alert alert-info">{{helpPilot}}</div>
+                  <div *ngIf="helpPilot !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpPilot}}</div>
                 </div>
                </div>
                 <div class="col-md-12">
@@ -54,7 +54,7 @@
                     <span (mouseover)="displayHelpReference()" (mouseout)="undisplayHelpReference()" class="glyphicon glyphicon-info-sign pull-right"></span>
                   </label>
                   <textarea rows="1" cols="35" class="form-control" formControlName="references" [(ngModel)]="measurement[i].references"></textarea>
-                  <div *ngIf="helpReferences !== ''" class="alert alert-info">{{helpReferences}}</div>
+                  <div *ngIf="helpReferences !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpReferences}}</div>
                 </div>
               </div>
               <div class="col-md-12">
