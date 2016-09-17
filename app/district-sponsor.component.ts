@@ -9,11 +9,11 @@ import { DistrictSponsor } from "./district-sponsor";
 export class DistrictSponsorComponent implements OnInit {
 
   @Output() sendDistrictSponsor: EventEmitter<DistrictSponsor> = new EventEmitter<DistrictSponsor>();
-  districtSponsor: FormGroup;
-  public phoneTypes = [ "home", "mobile", "office", "fax" ];
-  public emailTypes = [ "home", "work", "other" ];
-  levels = [ 'Senior Director', 'Director', 'Associate Director'];
-  offices = [ 'Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
+  private districtSponsor: FormGroup;
+  private phoneTypes = [ "home", "mobile", "office", "fax" ];
+  private emailTypes = [ "home", "work", "other" ];
+  private levels = [ 'Senior Director', 'Director', 'Associate Director'];
+  private offices = [ 'Administrative Services', 'Operations', 'Curriculum, Instruction, & Assessment',
                       'School Leadership', 'Equity', 'Family & Community', 'Data, Research, & Accountability' ];
   private helpDelegated: string = '';
 

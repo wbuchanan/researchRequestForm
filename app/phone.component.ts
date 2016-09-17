@@ -9,21 +9,17 @@ import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} fro
 export class PhoneComponent implements OnInit {
 
   @Output() phoneAdded: EventEmitter<Phone[]> = new EventEmitter<Phone[]>();
-
-  public phoneTypes = [ "home", "mobile", "office", "fax" ];
-  phone: FormGroup;
+  private phoneTypes = [ "home", "mobile", "office", "fax" ];
+  private phone: FormGroup;
   private phones : Phone[] = new Array(new Phone());
 
-  constructor(private _fb: FormBuilder) {
-
-  }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit() {
     this.phone = this._fb.group( {
         phoneNumbers: this._fb.array([ this.initPhoneFields() ])
     });
   }
-
 
   initPhoneFields() {
     return this._fb.group({

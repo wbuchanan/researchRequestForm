@@ -12,10 +12,10 @@ export class AddressComponent implements OnInit {
 
   @Output() enterAddress : EventEmitter<Address> = new EventEmitter<Address>();
 
-  public directions = [ '', 'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
-  public secUnits = SECONDARY_UNITS;
-  public streetTypes = STREET_TYPES;
-  public cszips = [ { "statenm": "ALABAMA", "stusps" : "AL"},
+  private directions = [ '', 'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
+  private secUnits = SECONDARY_UNITS;
+  private streetTypes = STREET_TYPES;
+  private cszips = [ { "statenm": "ALABAMA", "stusps" : "AL"},
       { "statenm": "ALASKA", "stusps" : "AK"},
       { "statenm": "ARIZONA", "stusps" : "AZ"},
       { "statenm": "ARKANSAS", "stusps" : "AR"},
@@ -65,7 +65,7 @@ export class AddressComponent implements OnInit {
       { "statenm": "WEST VIRGINIA", "stusps" : "WV"},
       { "statenm": "WISCONSIN", "stusps" : "WI"},
       { "statenm": "WYOMING", "stusps" : "WY"} ];
-  physicalAddress: FormGroup;
+  private physicalAddress: FormGroup;
   private address: Address;
   @Input() externalAddress: Address;
 

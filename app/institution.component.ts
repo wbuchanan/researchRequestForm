@@ -13,9 +13,9 @@ export class InstitutionComponent {
   @Input() addy : AddressComponent;
   @Input() isEmployee: boolean;
   @Input() externalInstitution: Institution;
-  institution: FormGroup;
+  private institution: FormGroup;
   private inst: Institution;
-  defaultAddress: Address = new Address(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'KY', ' ', false);
+  private defaultAddress: Address = new Address(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'KY', ' ', false);
 
   constructor(public _fb: FormBuilder) {
     this.inst = this.externalInstitution !== undefined ? this.externalInstitution : new Institution();
@@ -42,6 +42,5 @@ export class InstitutionComponent {
   updateInstitution() : void {
     this.institutionData.emit( this.inst );
   }
-
 
 }

@@ -21,6 +21,7 @@ var hypothesis_component_1 = require("./hypothesis.component");
 var status_component_1 = require("./status.component");
 var research_request_component_1 = require("./research-request.component");
 var data_request_component_1 = require("./data-request.component");
+var email_component_1 = require("./email.component");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -72,6 +73,10 @@ var AppComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', data_request_component_1.DataRequestComponent)
     ], AppComponent.prototype, "dataRequest", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', email_component_1.EmailComponent)
+    ], AppComponent.prototype, "email", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',

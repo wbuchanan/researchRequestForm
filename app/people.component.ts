@@ -9,8 +9,7 @@ import { Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 export class PeopleComponent implements OnInit {
 
   @Output() peeps: EventEmitter<People> = new EventEmitter<People>();
-
-  people: FormGroup;
+  private people: FormGroup;
   private person: People = new People();
 
   constructor(private _fb: FormBuilder) { }

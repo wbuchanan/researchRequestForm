@@ -11,6 +11,8 @@ import {HypothesisComponent} from "./hypothesis.component";
 import {StatusComponent} from "./status.component";
 import {ResearchRequestComponent} from "./research-request.component";
 import {DataRequestComponent} from "./data-request.component";
+import {EmailComponent} from "./email.component";
+import {Data} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -18,41 +20,19 @@ import {DataRequestComponent} from "./data-request.component";
 })
 export class AppComponent {
 
-  @Input()
-  measures: MeasuresComponent;
-
-  @Input()
-  existingData: ExistingDataComponent;
-
-  @Input()
-  addy : AddressComponent;
-
-  @Input()
-  contactInformation: ContactComponent;
-
-  @Input()
-  collectionWindow: CollectionWindowComponent;
-
-  @Input()
-  districtSponsor: DistrictSponsorComponent;
-
-  @Input()
-  financialSponsor: SponsorComponent;
-
-  @Input()
-  phone: PhoneComponent;
-
-  @Input()
-  hypoetheses: HypothesisComponent;
-
-  @Input()
-  statuses: StatusComponent;
-
-  @Input()
-  researchRequest: ResearchRequestComponent;
-
-  @Input()
-  dataRequest: DataRequestComponent;
+  @Input() measures: MeasuresComponent;
+  @Input() existingData: ExistingDataComponent;
+  @Input() addy : AddressComponent;
+  @Input() contactInformation: ContactComponent;
+  @Input() collectionWindow: CollectionWindowComponent;
+  @Input() districtSponsor: DistrictSponsorComponent;
+  @Input() financialSponsor: SponsorComponent;
+  @Input() phone: PhoneComponent;
+  @Input() hypoetheses: HypothesisComponent;
+  @Input() statuses: StatusComponent;
+  @Input() researchRequest: ResearchRequestComponent;
+  @Input() dataRequest: DataRequestComponent;
+  @Input() email: EmailComponent;
 
   constructor() { }
 

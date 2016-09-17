@@ -2,7 +2,7 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Contact } from './contact';
 import { PhoneComponent } from './phone.component';
 import { EmailComponent } from './email.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Email} from "./email";
 import {Phone} from "./phone";
 
@@ -22,8 +22,9 @@ export class ContactComponent implements OnInit {
   constructor(private _fb: FormBuilder) { }
   ngOnInit() {
     this.contactInformation = this._fb.group( {
-        emailAddresses: this.email,
-        phoneNumbers: this.phone } );
+        emailAddresses: [this.email, Validators.required],
+        phoneNumbers: [this.phone, Validators.required]
+    });
   }
 
   emailAdded(email) {

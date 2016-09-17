@@ -22,8 +22,7 @@ export class StatusComponent implements OnInit {
   @Output() theStatus: EventEmitter<Status[]> = new EventEmitter<Status[]>();
   @Input() assignee: People;
 
-  constructor(private _fb: FormBuilder) {
-  }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit() {
     this.statusForm = this._fb.group( {

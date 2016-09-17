@@ -14,7 +14,7 @@ export class StatisticalPowerComponent implements OnInit {
   private power: StatisticalPower = new StatisticalPower();
   private helpInfo: string[] = ['', ''];
   private gpowerLink: string[] = ['', ''];
-  statPower: FormGroup;
+  private statPower: FormGroup;
   private helpClass: string = '';
   private alphaInfo: string = '';
   private betaInfo: string = '';

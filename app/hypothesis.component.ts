@@ -11,20 +11,18 @@ import {CollectionWindow} from "./collection-window";
   templateUrl: '../app/hypothesis.component.html'
 })
 export class HypothesisComponent implements OnInit {
-  private theDatesRaw : Date[];
-
-  private methods = ["Quantitative", "Qualitative", "Mixed Methods"];
 
   @Input() collection : CollectionWindowComponent;
   @Input() statPower: StatisticalPowerComponent;
   @Output() hypothesisEmitter: EventEmitter<Hypothesis[]> = new EventEmitter<Hypothesis[]>();
-
+  private theDatesRaw : Date[];
+  private methods = ["Quantitative", "Qualitative", "Mixed Methods"];
   private myHypotheses: Hypothesis[] = new Array(new Hypothesis());
   private helpResearchQuestion: string = '';
   private helpMethodology: string = '';
   private helpAnalysis: string = '';
-
   private hypotheses: FormGroup;
+
   constructor(private _fb: FormBuilder) { }
 
   private displayHelpResearchQuestion() : void {
@@ -64,7 +62,7 @@ export class HypothesisComponent implements OnInit {
       researchQuestion: ['', Validators.required],
       methodology: ['', Validators.required],
       analysis: ['', Validators.required],
-      dataRequirements: this.collection,
+      dataRequirements: [this.collection, Validators.required],
       statisticalPower: this.statPower
     } );
   }

@@ -22,15 +22,12 @@ export class ResearchRequestComponent implements OnInit {
   @Input() distSponsor: DistrictSponsorComponent;
   @Input() finSponsor: SponsorComponent;
   @Input() hypothesisArray: HypothesisComponent;
-  @Output() theRequest: EventEmitter<ResearchRequest> = new EventEmitter<ResearchRequest>();
   @Input() academicSupervisor: PersonComponent;
+  @Output() theRequest: EventEmitter<ResearchRequest> = new EventEmitter<ResearchRequest>();
   private requestorTitle: string = 'Requestor Information: ';
   private advisorTitle: string = 'Academic Advisor Information: ';
-
   private backendURL : string = 'localhost:9200/';
-
   private degreeLevels = [ 'Doctorate', 'Masters', 'Bachelors' ];
-
   private helpIrbApproval: string = '';
   private helpConditionalIrbApproval: string = '';
   private helpForDegree: string = '';
@@ -42,19 +39,19 @@ export class ResearchRequestComponent implements OnInit {
 
   ngOnInit() {
     this.researchRequest = this._fb.group( {
-      requestor : this.requestingPerson,
-      districtSponsor: this.distSponsor,
+      requestor : [this.requestingPerson, Validators.required],
+      districtSponsor: [this.distSponsor, Validators.required],
       projectTitle: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
       problemStatement:  ['', [Validators.required, Validators.minLength(200), Validators.maxLength(10000)]],
       litReview:  ['', [Validators.required, Validators.minLength(200), Validators.maxLength(10000)]],
       sponsoredResearch: [false],
-      financialSponsor: this.finSponsor,
-      hypotheses: this.hypothesisArray,
+      financialSponsor: [this.finSponsor],
+      hypotheses: [this.hypothesisArray, Validators.required],
       irbApproved: [false],
       irbConditionalOnFCPS: [false],
       forDegree: [],
       degreeLevel: [''],
-      academicAdvisor: this.academicSupervisor
+      academicAdvisor: [this.academicSupervisor]
     });
   }
 

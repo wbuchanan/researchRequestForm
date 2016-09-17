@@ -8,15 +8,13 @@ import { FormBuilder, FormGroup} from '@angular/forms';
 })
 export class ExistingDataComponent implements OnInit {
   @Output() currentData: EventEmitter<ExistingData> = new EventEmitter<ExistingData>();
-  existingData: FormGroup;
-
+  private existingData: FormGroup;
   private helpStudentLevel: string = '';
   private helpClassRoomLevel: string = '';
   private helpTeacherLevel: string = '';
   private helpGradeLevel: string = '';
   private helpSchoolLevel: string = '';
   private helpDistrictLevel: string = '';
-
   private existing: ExistingData = new ExistingData();
   constructor(private _fb: FormBuilder) { }
   ngOnInit() {

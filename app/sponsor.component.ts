@@ -17,11 +17,8 @@ import {Institution} from "./institution";
 export class SponsorComponent implements OnInit {
 
   @Input() peeps: PeopleComponent;
-
   @Input() contacts: ContactComponent;
-
   @Input() inst: InstitutionComponent;
-
   @Output() financialSponsor : EventEmitter<Sponsor> = new EventEmitter<Sponsor>();
 
   private sponsorship : Sponsor = new Sponsor();
@@ -31,9 +28,9 @@ export class SponsorComponent implements OnInit {
   constructor(private _fb: FormBuilder) { }
   ngOnInit() {
     this.sponsor = this._fb.group( {
-      poc : this.peeps,
-      contactInfo: this.contacts,
-      institutionalAffiliation: this.inst,
+      poc : [this.peeps, Validators.required],
+      contactInfo: [this.contacts, Validators.required],
+      institutionalAffiliation: [this.inst, Validators.required],
       fundingAmount: [, Validators.required],
       fundingDuration: [, Validators.required],
       fundingDurationUnits: ['', Validators.required],

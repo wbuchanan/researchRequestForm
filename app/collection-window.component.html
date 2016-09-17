@@ -14,7 +14,7 @@
                   <label for="startDate">Start of Collection Window:
                     <span (mouseover)="displayOpenWindowHelp()" (mouseout)="undisplayOpenWindowHelp()" class="glyphicon glyphicon-info-sign pull-right"></span>
                   </label>
-                  <input type="date" class="form-control col-md-6" id="startDate" defaultValue="{{theDatesRaw.start}}" formControlName="startDate" [(ngModel)]="collection[i].startDate" step="1" min="theDates.starting" max="theDates.ending">
+                  <input type="date" class="form-control col-md-6" id="startDate" defaultValue="{{theDatesRaw.start}}" formControlName="startDate" [(ngModel)]="collection[i].startDate" step="1" min="{{theDates.starting}}" max="{{collection[i].endDate || theDates.ending}}">
                   <div *ngIf="!dataCollection.controls.collectionWindow.controls[i].controls.startDate.valid && !dataCollection.controls.collectionWindow.controls[i].controls.startDate.pristine" class="alert alert-danger" style="font-size: 12px">
                     The data collection can not begin prior to today.
                   </div>

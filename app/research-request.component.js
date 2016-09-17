@@ -33,19 +33,19 @@ var ResearchRequestComponent = (function () {
     }
     ResearchRequestComponent.prototype.ngOnInit = function () {
         this.researchRequest = this._fb.group({
-            requestor: this.requestingPerson,
-            districtSponsor: this.distSponsor,
+            requestor: [this.requestingPerson, forms_1.Validators.required],
+            districtSponsor: [this.distSponsor, forms_1.Validators.required],
             projectTitle: ['', [forms_1.Validators.required, forms_1.Validators.minLength(10), forms_1.Validators.maxLength(200)]],
             problemStatement: ['', [forms_1.Validators.required, forms_1.Validators.minLength(200), forms_1.Validators.maxLength(10000)]],
             litReview: ['', [forms_1.Validators.required, forms_1.Validators.minLength(200), forms_1.Validators.maxLength(10000)]],
             sponsoredResearch: [false],
-            financialSponsor: this.finSponsor,
-            hypotheses: this.hypothesisArray,
+            financialSponsor: [this.finSponsor],
+            hypotheses: [this.hypothesisArray, forms_1.Validators.required],
             irbApproved: [false],
             irbConditionalOnFCPS: [false],
             forDegree: [],
             degreeLevel: [''],
-            academicAdvisor: this.academicSupervisor
+            academicAdvisor: [this.academicSupervisor]
         });
     };
     ResearchRequestComponent.prototype.bindPersonObject = function (person) {
@@ -86,13 +86,13 @@ var ResearchRequestComponent = (function () {
         __metadata('design:type', hypothesis_component_1.HypothesisComponent)
     ], ResearchRequestComponent.prototype, "hypothesisArray", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], ResearchRequestComponent.prototype, "theRequest", void 0);
-    __decorate([
         core_1.Input(), 
         __metadata('design:type', person_component_1.PersonComponent)
     ], ResearchRequestComponent.prototype, "academicSupervisor", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ResearchRequestComponent.prototype, "theRequest", void 0);
     ResearchRequestComponent = __decorate([
         core_1.Component({
             selector: 'research-request',

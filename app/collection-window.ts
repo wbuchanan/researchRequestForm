@@ -4,8 +4,8 @@ import { Measures } from './measures';
 export class CollectionWindow {
   startDate: Date;
   endDate: Date;
-  collectingData: boolean;
+  collectingData: boolean = false;
   dataToCollect: Measures[];
-  needFcpsData: boolean;
+  needFcpsData: boolean = false;
   fcpsData: ExistingData;
 }

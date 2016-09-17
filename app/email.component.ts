@@ -9,14 +9,10 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 export class EmailComponent implements OnInit {
 
   @Output() emailAdded: EventEmitter<Email[]> = new EventEmitter<Email[]>();
-
-  public emailTypes = [ "home", "office", "other" ];
-  email: FormGroup;
+  private emailTypes = [ "home", "office", "other" ];
+  private email: FormGroup;
   private emails: Email[] = new Array(new Email());
-
-  constructor(private _fb: FormBuilder) {
-
-  }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit() {
       this.email = this._fb.group( {

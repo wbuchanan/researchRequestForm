@@ -39,6 +39,38 @@ var CollectionWindowComponent = (function () {
             collectionWindow: this._fb.array([this.initCollectionWindowFields()])
         });
     };
+    CollectionWindowComponent.prototype.initCollectionWindowFields = function () {
+        return this._fb.group({
+            startDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange()]],
+            endDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange()]],
+            collectingData: [false],
+            dataToCollect: this.measurement,
+            needFcpsData: [false],
+            fcpsData: this.existing
+        });
+    };
+    CollectionWindowComponent.prototype.addCollectionWindowFields = function () {
+        this.collection.push(new collection_window_1.CollectionWindow());
+        var control = this.dataCollection.controls['collectionWindow'];
+        control.push(this.initCollectionWindowFields());
+    };
+    CollectionWindowComponent.prototype.removeCollectionWindowFields = function (i) {
+        this.collection.pop();
+        var control = this.dataCollection.controls['collectionWindow'];
+        control.removeAt(i);
+    };
+    CollectionWindowComponent.prototype.addMeasures = function (i, measures) {
+        this.collection[i].dataToCollect = measures;
+    };
+    CollectionWindowComponent.prototype.currentData = function (i, existsData) {
+        this.collection[i].fcpsData = existsData;
+    };
+    CollectionWindowComponent.prototype.setMinDate = function (i) {
+        console.log(this.collection[i].startDate);
+        var indate = new Date(this.collection[i].startDate);
+        var sdate = new Date(this.theDates.starting);
+        return indate < sdate ? indate : sdate;
+    };
     CollectionWindowComponent.prototype.displayOpenWindowHelp = function () {
         this.openWindow = 'This is the earliest date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
     };
@@ -63,35 +95,13 @@ var CollectionWindowComponent = (function () {
     CollectionWindowComponent.prototype.undisplayRequestingData = function () {
         this.areYouRequestingData = '';
     };
-    CollectionWindowComponent.prototype.initCollectionWindowFields = function () {
-        return this._fb.group({
-            startDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange]],
-            endDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange]],
-            collectingData: [false],
-            dataToCollect: this.measurement,
-            needFcpsData: [false],
-            fcpsData: this.existing
-        });
-    };
-    CollectionWindowComponent.prototype.addCollectionWindowFields = function () {
-        this.collection.push(new collection_window_1.CollectionWindow());
-        var control = this.dataCollection.controls['collectionWindow'];
-        control.push(this.initCollectionWindowFields());
-    };
-    CollectionWindowComponent.prototype.removeCollectionWindowFields = function (i) {
-        this.collection.pop();
-        var control = this.dataCollection.controls['collectionWindow'];
-        control.removeAt(i);
-    };
-    CollectionWindowComponent.prototype.addMeasures = function (i, measures) {
-        this.collection[i].dataToCollect = measures;
-    };
-    CollectionWindowComponent.prototype.currentData = function (i, existsData) {
-        this.collection[i].fcpsData = existsData;
-    };
     CollectionWindowComponent.prototype.updateCollectionWindow = function () {
         this.outputWindows.emit(this.collection);
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], CollectionWindowComponent.prototype, "outputWindows", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', measures_component_1.MeasuresComponent)
@@ -100,10 +110,6 @@ var CollectionWindowComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', existing_data_component_1.ExistingDataComponent)
     ], CollectionWindowComponent.prototype, "existing", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], CollectionWindowComponent.prototype, "outputWindows", void 0);
     CollectionWindowComponent = __decorate([
         core_1.Component({
             selector: 'collection-window',

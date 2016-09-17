@@ -27,9 +27,9 @@
                 <span class="input-group-addon">(</span>
                 <input type="text" class="form-control" id="areaCode" formControlName="areaCode" placeholder="###" [(ngModel)]="phones[i].areaCode">
                 <span class="input-group-addon">)</span>
-                <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.areaCode.valid && !phone.controls.phoneNumbers.controls[i].controls.areaCode.pristine" class="alert alert-danger" style="font-size: 12px">
-                  Invalid area code.
-                </div>
+              </div>
+              <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.areaCode.valid && !phone.controls.phoneNumbers.controls[i].controls.areaCode.pristine" class="alert alert-danger" style="font-size: 12px">
+                Invalid area code.
               </div>
             </div>
             <div class="col-md-3">
@@ -37,18 +37,18 @@
                 <span class="input-group-addon"> </span>
                 <input type="text" class="form-control" formControlName="exchangeCode" placeholder="###"  [(ngModel)]="phones[i].exchangeCode">
                 <span class="input-group-addon"> - </span>
-                <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.exchangeCode.valid && !phone.controls.phoneNumbers.controls[i].controls.exchangeCode.pristine" class="alert alert-danger" style="font-size: 12px">
-                  Invalid exchange code.
-                </div>
+              </div>
+              <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.exchangeCode.valid && !phone.controls.phoneNumbers.controls[i].controls.exchangeCode.pristine" class="alert alert-danger" style="font-size: 12px">
+                Invalid exchange code.
               </div>
             </div>
             <div class="col-md-3">
               <div class="input-group">
                 <span class="input-group-addon"> </span>
                 <input type="text" class="form-control" formControlName="subscriberNumber" placeholder="####"  [(ngModel)]="phones[i].subscriberNumber">
-                <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.valid && !phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.pristine" class="alert alert-danger" style="font-size: 12px">
-                  Invalid subscriber number.
-                </div>
+              </div>
+              <div *ngIf="!phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.valid && !phone.controls.phoneNumbers.controls[i].controls.subscriberNumber.pristine" class="alert alert-danger" style="font-size: 12px">
+                Invalid subscriber number.
               </div>
             </div>
             <div class="col-md-3">

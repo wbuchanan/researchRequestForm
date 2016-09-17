@@ -10,12 +10,10 @@ import { UNIT_OF_MEASUREMENT } from './unitsOfMeasurement';
 export class MeasuresComponent implements OnInit {
 
   @Output() addMeasures : EventEmitter<Measures[]> = new EventEmitter<Measures[]>();
-
-  timeUnits = [ "seconds", "minutes", "hours", "class periods", "days"];
-  measures: FormGroup;
-  units = UNIT_OF_MEASUREMENT;
+  private timeUnits = [ "seconds", "minutes", "hours", "class periods", "days"];
+  private measures: FormGroup;
+  private units = UNIT_OF_MEASUREMENT;
   private measurement: Measures[] = new Array(new Measures());
-
   private helpName: string = '';
   private helpUnitOffMeasurement: string = '';
   private helpReferences: string = '';

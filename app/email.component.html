@@ -20,18 +20,18 @@
                 <span class="input-group-addon">User name:</span>
                 <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="John.Doe" [(ngModel)]="emails[i].userName">
                 <span class="input-group-addon">@</span>
-                <div *ngIf="!email.controls.emailAddresses.controls[i].controls.userName.valid && !email.controls.emailAddresses.controls[i].controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
-                  Invalid User Name
-                </div>
+              </div>
+              <div *ngIf="!email.controls.emailAddresses.controls[i].controls.userName.valid && !email.controls.emailAddresses.controls[i].controls.userName.pristine" class="alert alert-danger" style="font-size: 12px">
+                Invalid User Name
               </div>
             </div>
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-addon">Domain:</span>
                 <input type="text" class="form-control" id="domain" placeholder="fayette.kyschools.us" formControlName="domain" [(ngModel)]="emails[i].domain">
-                <div *ngIf="!email.controls.emailAddresses.controls[i].controls.domain.valid && !email.controls.emailAddresses.controls[i].controls.domain.pristine" class="alert alert-danger" style="font-size: 12px">
-                  Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
-                </div>
+              </div>
+              <div *ngIf="!email.controls.emailAddresses.controls[i].controls.domain.valid && !email.controls.emailAddresses.controls[i].controls.domain.pristine" class="alert alert-danger" style="font-size: 12px">
+                Invalid domain must be one of .com, .net, .gov, .us, .edu, or .org
               </div>
             </div>
           </div>

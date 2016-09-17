@@ -1,28 +1,16 @@
 export class Address {
-  streetNumber: string = '';
-  streetDirection: string = '';
-  streetName: string = '';
-  streetType: string = '';
-  unitType: string = '';
-  unitNumber: string = '';
-  city: string = '';
-  state: string = '';
-  zipCode: string = '';
-  secondLine: boolean = false;
 
-  constructor(private stNumber?: string, private stDirection?: string, private stName?: string, private stType?: string,
-              private uType?: string, private uNumber?: string, private cityName?: string, private stateName?: string,
-              private zip?: string, private line2?: boolean) {
-    this.streetNumber = stNumber;
-    this.streetDirection = stDirection;
-    this.streetName = stName;
-    this.streetType = stType;
-    this.unitNumber = uNumber;
-    this.unitType = uType;
-    this.city = cityName;
-    this.state = stateName;
-    this.zipCode = zip;
-    this.secondLine = line2;
+  constructor(private streetNumber?: string,
+              private streetDirection?: string,
+              private streetName?: string,
+              private streetType?: string,
+              private unitType?: string,
+              private unitNumber?: string,
+              private city?: string,
+              private state?: string,
+              private zipCode?: string,
+              private secondLine?: boolean) {
+
   }
 
   getAddressLine1() : string {

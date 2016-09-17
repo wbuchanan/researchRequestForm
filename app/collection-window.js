@@ -1,6 +1,8 @@
 "use strict";
 var CollectionWindow = (function () {
     function CollectionWindow() {
+        this.collectingData = false;
+        this.needFcpsData = false;
     }
     return CollectionWindow;
 }());

@@ -23,9 +23,9 @@ var SponsorComponent = (function () {
     }
     SponsorComponent.prototype.ngOnInit = function () {
         this.sponsor = this._fb.group({
-            poc: this.peeps,
-            contactInfo: this.contacts,
-            institutionalAffiliation: this.inst,
+            poc: [this.peeps, forms_1.Validators.required],
+            contactInfo: [this.contacts, forms_1.Validators.required],
+            institutionalAffiliation: [this.inst, forms_1.Validators.required],
             fundingAmount: [, forms_1.Validators.required],
             fundingDuration: [, forms_1.Validators.required],
             fundingDurationUnits: ['', forms_1.Validators.required],

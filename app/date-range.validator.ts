@@ -4,53 +4,62 @@
  * @param fc The form control being tested
  * @return An error object or a null value
  */
-import { FormControl } from "@angular/forms";
+import {FormControl, ValidatorFn, Validators, AbstractControl} from "@angular/forms";
 
-export function checkDateRange(fc: FormControl) {
+export function checkDateRange(start?: Date, end?: Date) : ValidatorFn {
 
-  // Defines object storing the current date that will be modified to create start and end dates.
-  let theDatesRaw = { start : new Date(Date.now()), end: new Date(Date.now())};
+  return (control: AbstractControl): {[key: string]: any} => {
 
-  // Sets the time to midnight
-  theDatesRaw.start.setHours(0,0,0,0);
+    if (!start) start = new Date(Date.now());
+    if (!end) end = new Date(Date.now());
 
-  // Sets the end date to five years in the future
-  theDatesRaw.end.setFullYear(theDatesRaw.end.getFullYear() + 5);
+    // Defines object storing the current date that will be modified to create start and end dates.
+    let theDatesRaw = { start : new Date(Date.now()), end: new Date(Date.now())};
 
-  // Create a new Date object
-  let formDate = new Date();
+    // Sets the time to midnight
+    theDatesRaw.start.setHours(0,0,0,0);
 
-  // Sets a formDate value based on the value of the FormControl object
-  if (fc.value !== undefined) {
+    // Sets the end date to five years in the future
+    theDatesRaw.end.setFullYear(theDatesRaw.end.getFullYear() + 5);
 
-    // Sets the year, month, and day fields
-    formDate.setFullYear(fc.value.substring(0, 4), fc.value.substring(5,7) - 1, fc.value.substring(8, 10));
+    // Create a new Date object
+    let formDate = new Date();
 
-    // Sets the hour, minute, second, and millisecond fields
-    formDate.setHours(0,0,0,0);
+    // Sets a formDate value based on the value of the FormControl object
+    if (typeof control.value !== 'undefined') {
 
-  } // End IF Block
+      // Sets the year, month, and day fields
+      formDate.setFullYear(control.value.substring(0, 4),
+                           control.value.substring(5, 7) - 1,
+                           control.value.substring(8, 10));
 
-  // Defines an error object that will be returned if there is an invalid date selected
-  let err = {
+      // Sets the hour, minute, second, and millisecond fields
+      formDate.setHours(0, 0, 0, 0);
 
-    // Defines the object containing all necessary data for the validation
-    dateRangeError: {
+    } // End IF Block
 
-      // Date submitted by the end user
-      given: formDate,
+    // Defines an error object that will be returned if there is an invalid date selected
+    let err = {
 
-      // End date defined by current date plus five years
-      max: theDatesRaw.end,
+      // Defines the object containing all necessary data for the validation
+      dateRangeError: {
 
-      // Start date defined as the current day at midnight
-      min: theDatesRaw.start
+        // Date submitted by the end user
+        given: formDate,
 
-    } // Ends definition of dateRangeError object
+        // End date defined by current date plus five years
+        max: theDatesRaw.end,
 
-  }; // Ends definition of the err object.
+        // Start date defined as the current day at midnight
+        min: theDatesRaw.start
 
-  // Tests if the date provided by the end user is greater than the end date or less than the start date.
-  return (formDate > theDatesRaw.end || formDate < theDatesRaw.start) ? err : null;
+      } // Ends definition of dateRangeError object
+
+    }; // Ends definition of the err object.
+
+    // Tests if the date provided by the end user is greater than the end date or less than the start date.
+    return (formDate > theDatesRaw.end || formDate < theDatesRaw.start) ? err : null;
+
+  };
 
 } // Ends definition of the function

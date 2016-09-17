@@ -17,12 +17,9 @@ export class DataRequestComponent implements OnInit {
   @Input() requestingPerson: PersonComponent;
   @Input() theData: ExistingDataComponent;
   @Output() theRequest: EventEmitter<DataRequest> = new EventEmitter<DataRequest>();
-
   private backendURL : string = 'localhost:9200/';
-
   private request: DataRequest = new DataRequest();
-  dataRequest: FormGroup;
-
+  private dataRequest: FormGroup;
   constructor(private _fb: FormBuilder, private http: Http) { }
 
   ngOnInit() {

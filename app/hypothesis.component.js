@@ -16,8 +16,8 @@ var hypothesis_1 = require("./hypothesis");
 var HypothesisComponent = (function () {
     function HypothesisComponent(_fb) {
         this._fb = _fb;
-        this.methods = ["Quantitative", "Qualitative", "Mixed Methods"];
         this.hypothesisEmitter = new core_1.EventEmitter();
+        this.methods = ["Quantitative", "Qualitative", "Mixed Methods"];
         this.myHypotheses = new Array(new hypothesis_1.Hypothesis());
         this.helpResearchQuestion = '';
         this.helpMethodology = '';
@@ -51,7 +51,7 @@ var HypothesisComponent = (function () {
             researchQuestion: ['', forms_1.Validators.required],
             methodology: ['', forms_1.Validators.required],
             analysis: ['', forms_1.Validators.required],
-            dataRequirements: this.collection,
+            dataRequirements: [this.collection, forms_1.Validators.required],
             statisticalPower: this.statPower
         });
     };

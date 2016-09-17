@@ -17,13 +17,11 @@ export class CollectionWindowComponent implements OnInit {
 
   private theDatesRaw  = { start: new Date(Date.now()), end: new Date(Date.now()) } ;
 
+  @Output() outputWindows: EventEmitter<CollectionWindow[]> = new EventEmitter<CollectionWindow[]>();
   @Input() measurement : MeasuresComponent;
-
   @Input() existing: ExistingDataComponent;
 
-  @Output() outputWindows: EventEmitter<CollectionWindow[]> = new EventEmitter<CollectionWindow[]>();
-
-  public theDates : {};
+  public theDates: any;
   private collection: CollectionWindow[] = new Array(new CollectionWindow());
   private openWindow: string = '';
   private closeWindow: string = '';
@@ -48,42 +46,10 @@ export class CollectionWindowComponent implements OnInit {
     });
   }
 
-  displayOpenWindowHelp() : void {
-    this.openWindow = 'This is the earliest date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
-  }
-
-  undisplayOpenWindowHelp() : void {
-    this.openWindow = '';
-  }
-
-  displayCloseWindowHelp() : void {
-    this.closeWindow = 'This is the last date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
-  }
-
-  undisplayCloseWindowHelp() : void {
-    this.closeWindow = '';
-  }
-
-  displayCollectingData() : void {
-    this.areYouCollectingData = 'Check this box if you plan to collect your own data for this research project.';
-  }
-
-  undisplayCollectingData() : void {
-    this.areYouCollectingData = '';
-  }
-
-  displayRequestingData() : void {
-    this.areYouRequestingData = 'Check this box if you need DRA to query data from FCPS data systems.';
-  }
-
-  undisplayRequestingData() : void {
-    this.areYouRequestingData = '';
-  }
-
   initCollectionWindowFields() {
     return this._fb.group( {
-      startDate: ['', [Validators.required, checkDateRange]],
-      endDate: ['', [Validators.required, checkDateRange]],
+      startDate: ['', [Validators.required, checkDateRange()]],
+      endDate: ['', [Validators.required, checkDateRange()]],
       collectingData: [false],
       dataToCollect: this.measurement,
       needFcpsData: [false],
@@ -91,24 +57,63 @@ export class CollectionWindowComponent implements OnInit {
     } );
   }
 
-  addCollectionWindowFields() {
+  public addCollectionWindowFields() {
     this.collection.push(new CollectionWindow());
     const control = <FormArray>this.dataCollection.controls['collectionWindow'];
     control.push(this.initCollectionWindowFields());
   }
 
-  removeCollectionWindowFields(i: number) {
+  public removeCollectionWindowFields(i: number) {
     this.collection.pop();
     const control = <FormArray>this.dataCollection.controls['collectionWindow'];
     control.removeAt(i);
   }
 
-  addMeasures(i: number, measures) {
+  public addMeasures(i: number, measures) {
     this.collection[i].dataToCollect = measures;
   }
 
-  currentData(i: number, existsData) {
+  public currentData(i: number, existsData) {
     this.collection[i].fcpsData = existsData;
+  }
+
+  public setMinDate(i: number) : Date {
+    console.log(this.collection[i].startDate);
+    let indate = new Date(this.collection[i].startDate);
+    let sdate = new Date(this.theDates.starting);
+    return indate < sdate ? indate : sdate;
+  }
+
+  private displayOpenWindowHelp() : void {
+    this.openWindow = 'This is the earliest date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
+  }
+
+  private undisplayOpenWindowHelp() : void {
+    this.openWindow = '';
+  }
+
+  private displayCloseWindowHelp() : void {
+    this.closeWindow = 'This is the last date of the data collected (e.g., students enrolled as of ..., or collecting data starting on ...).';
+  }
+
+  private undisplayCloseWindowHelp() : void {
+    this.closeWindow = '';
+  }
+
+  private displayCollectingData() : void {
+    this.areYouCollectingData = 'Check this box if you plan to collect your own data for this research project.';
+  }
+
+  private undisplayCollectingData() : void {
+    this.areYouCollectingData = '';
+  }
+
+  private displayRequestingData() : void {
+    this.areYouRequestingData = 'Check this box if you need DRA to query data from FCPS data systems.';
+  }
+
+  private undisplayRequestingData() : void {
+    this.areYouRequestingData = '';
   }
 
   public updateCollectionWindow() : void {
