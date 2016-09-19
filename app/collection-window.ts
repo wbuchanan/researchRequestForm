@@ -5,7 +5,7 @@ export class CollectionWindow {
   startDate: Date;
   endDate: Date;
   collectingData: boolean = false;
-  dataToCollect: Measures[];
+  dataToCollect: Measures[] = [];
   needFcpsData: boolean = false;
   fcpsData: ExistingData;
 }

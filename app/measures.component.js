@@ -58,7 +58,7 @@ var MeasuresComponent = (function () {
             name: ['', [forms_1.Validators.required, forms_1.Validators.pattern('^[a-zA-Z0-9]{2,}.*')]],
             unitOfMeasurement: ['', forms_1.Validators.required],
             references: [''],
-            pilot: [false, forms_1.Validators.required],
+            pilot: [false],
             administrationTime: [10, forms_1.Validators.required],
             administrationTimeUnits: ['minutes', forms_1.Validators.required]
         });

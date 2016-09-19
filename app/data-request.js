@@ -2,7 +2,6 @@
 var DataRequest = (function () {
     function DataRequest() {
         this.existingReport = false;
-        this.existingReportName = ' ';
     }
     return DataRequest;
 }());

@@ -4,9 +4,9 @@
 import {People} from "./people";
 import {Contact} from './contact';
 export class DistrictSponsor {
-  firstName:  string = '';
-  lastName:  string = '';
-  jobTitle:  string = '';
+  firstName:  string;
+  lastName:  string;
+  jobTitle:  string;
   emailType:  string = "work";
   userName: string = '';
   domain: string = "fayette.kyschools.us";
@@ -14,7 +14,7 @@ export class DistrictSponsor {
   areaCode: string = "859";
   exchangeCode: string = "381";
   subscriberNumber: string = '';
-  office: string = '';
-  level: string = '';
+  office: string;
+  level: string;
   delegated: boolean = false;
 }

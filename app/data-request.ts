@@ -5,5 +5,5 @@ export class DataRequest {
   existingReport: boolean = false;
   requestedData: ExistingData;
   researchQuestion: string;
-  existingReportName: string = ' ';
+  existingReportName: string;
 }

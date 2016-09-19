@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Measures } from './measures';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import { UNIT_OF_MEASUREMENT } from './unitsOfMeasurement';
@@ -8,7 +8,6 @@ import { UNIT_OF_MEASUREMENT } from './unitsOfMeasurement';
   templateUrl: '../app/measures.component.html'
 })
 export class MeasuresComponent implements OnInit {
-
   @Output() addMeasures : EventEmitter<Measures[]> = new EventEmitter<Measures[]>();
   private timeUnits = [ "seconds", "minutes", "hours", "class periods", "days"];
   private measures: FormGroup;
@@ -64,7 +63,7 @@ export class MeasuresComponent implements OnInit {
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{2,}.*')]],
       unitOfMeasurement: ['', Validators.required],
       references: [''],
-      pilot: [false, Validators.required],
+      pilot: [false],
       administrationTime: [10, Validators.required],
       administrationTimeUnits: ['minutes', Validators.required]
     });

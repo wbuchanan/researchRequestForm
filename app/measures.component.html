@@ -14,7 +14,7 @@
                   </label>
                   <input type="text" class="form-control" formControlName="name" id="name"  [(ngModel)]="measurement[i].name" placeholder="WISC-III, Fountas & Pinnell, PALS, etc...">
                   <div *ngIf="helpName !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpName}}</div>
-                  <div *ngIf="!measures.controls.measure.controls[i].controls.name.valid" class="alert alert-danger" style="font-size: 12px">
+                  <div *ngIf="!measures.controls.measure.controls[i].controls.name.valid && !measures.controls.measure.controls[i].controls.name.pristine" class="alert alert-danger" style="font-size: 12px">
                     Must include the name of the measure being used to collect data
                   </div>
                 </div>
@@ -26,7 +26,7 @@
                       <option *ngFor="let m of units" [value]="m.value">{{m.key}}</option>
                     </select>
                     <div *ngIf="helpUnitOffMeasurement !== ''" class="alert alert-info" style="z-index: 100; position: absolute">{{helpUnitOffMeasurement}}</div>
-                    <div *ngIf="!measures.controls.measure.controls[i].controls.unitOfMeasurement.valid" class="alert alert-danger" style="font-size: 12px">
+                    <div *ngIf="!measures.controls.measure.controls[i].controls.unitOfMeasurement.valid && !measures.controls.measure.controls[i].controls.unitOfMeasurement.pristine" class="alert alert-danger" style="font-size: 12px">
                       Must identify the unit of measurement at which data will be collected
                     </div>
                 </div>

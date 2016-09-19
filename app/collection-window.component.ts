@@ -5,6 +5,7 @@ import { MeasuresComponent } from './measures.component';
 import { ExistingDataComponent } from './existing-data.component';
 import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators, NG_VALIDATORS } from '@angular/forms';
 import { checkDateRange } from './date-range.validator';
+import {Measures} from "./measures";
 
 
 
@@ -16,11 +17,9 @@ import { checkDateRange } from './date-range.validator';
 export class CollectionWindowComponent implements OnInit {
 
   private theDatesRaw  = { start: new Date(Date.now()), end: new Date(Date.now()) } ;
-
   @Output() outputWindows: EventEmitter<CollectionWindow[]> = new EventEmitter<CollectionWindow[]>();
   @Input() measurement : MeasuresComponent;
   @Input() existing: ExistingDataComponent;
-
   public theDates: any;
   private collection: CollectionWindow[] = new Array(new CollectionWindow());
   private openWindow: string = '';
@@ -51,9 +50,9 @@ export class CollectionWindowComponent implements OnInit {
       startDate: ['', [Validators.required, checkDateRange()]],
       endDate: ['', [Validators.required, checkDateRange()]],
       collectingData: [false],
-      dataToCollect: this.measurement,
+      dataToCollect: [this.measurement],
       needFcpsData: [false],
-      fcpsData: this.existing
+      fcpsData: [this.existing]
     } );
   }
 

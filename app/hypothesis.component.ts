@@ -25,45 +25,19 @@ export class HypothesisComponent implements OnInit {
 
   constructor(private _fb: FormBuilder) { }
 
-  private displayHelpResearchQuestion() : void {
-    this.helpResearchQuestion = 'This should be a testable hypothesis in the form of a question.  For example, do 8th grade females score higher than males on the KPREP Science assessment after participating in program x?';
-  }
-
-  private undisplayHelpResearchQuestion() : void {
-    this.helpResearchQuestion = '';
-  }
-
-  private displayHelpMethodology() : void {
-    this.helpMethodology = 'If your research is purely qualitative (e.g., ethnography, phenomenological research, etc...) select this option.  For any research involving quantitative analysis you will also be asked to supply information about the minimal detectable effect size of your study; there is also a link to free software that can assist you in estimating statistical power/minimally detectable effect sizes.';
-  }
-
-  private undisplayHelpMethodology() : void {
-    this.helpMethodology = '';
-  }
-
-  private displayHelpAnalysis() : void {
-    this.helpAnalysis = 'Use this field to provide a detailed description of how you plan to analyze the data.  If your research implies causal relationships in any way, you must include information about how your methods address selection bias/endogeneity issues and/or any other violations of model assumptions that would compromise causal inferences.';
-  }
-
-  private undisplayHelpAnalysis() : void {
-    this.helpAnalysis = '';
-  }
-
   ngOnInit() {
     this.hypotheses = this._fb.group({
       hypothesis: this._fb.array([ this.initHypothesisFields() ])
     });
   }
 
-
-
   initHypothesisFields() {
     return this._fb.group( {
       researchQuestion: ['', Validators.required],
       methodology: ['', Validators.required],
       analysis: ['', Validators.required],
-      dataRequirements: [this.collection, Validators.required],
-      statisticalPower: this.statPower
+      dataRequirements: [this.collection],
+      statisticalPower: [this.statPower]
     } );
   }
 
@@ -89,6 +63,30 @@ export class HypothesisComponent implements OnInit {
 
   updateHypotheses() : void {
     this.hypothesisEmitter.emit( this.myHypotheses );
+  }
+
+  private displayHelpResearchQuestion() : void {
+    this.helpResearchQuestion = 'This should be a testable hypothesis in the form of a question.  For example, do 8th grade females score higher than males on the KPREP Science assessment after participating in program x?';
+  }
+
+  private undisplayHelpResearchQuestion() : void {
+    this.helpResearchQuestion = '';
+  }
+
+  private displayHelpMethodology() : void {
+    this.helpMethodology = 'If your research is purely qualitative (e.g., ethnography, phenomenological research, etc...) select this option.  For any research involving quantitative analysis you will also be asked to supply information about the minimal detectable effect size of your study; there is also a link to free software that can assist you in estimating statistical power/minimally detectable effect sizes.';
+  }
+
+  private undisplayHelpMethodology() : void {
+    this.helpMethodology = '';
+  }
+
+  private displayHelpAnalysis() : void {
+    this.helpAnalysis = 'Use this field to provide a detailed description of how you plan to analyze the data.  If your research implies causal relationships in any way, you must include information about how your methods address selection bias/endogeneity issues and/or any other violations of model assumptions that would compromise causal inferences.';
+  }
+
+  private undisplayHelpAnalysis() : void {
+    this.helpAnalysis = '';
   }
 
 }

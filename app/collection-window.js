@@ -2,6 +2,7 @@
 var CollectionWindow = (function () {
     function CollectionWindow() {
         this.collectingData = false;
+        this.dataToCollect = [];
         this.needFcpsData = false;
     }
     return CollectionWindow;

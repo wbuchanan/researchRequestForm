@@ -44,9 +44,9 @@ var CollectionWindowComponent = (function () {
             startDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange()]],
             endDate: ['', [forms_1.Validators.required, date_range_validator_1.checkDateRange()]],
             collectingData: [false],
-            dataToCollect: this.measurement,
+            dataToCollect: [this.measurement],
             needFcpsData: [false],
-            fcpsData: this.existing
+            fcpsData: [this.existing]
         });
     };
     CollectionWindowComponent.prototype.addCollectionWindowFields = function () {

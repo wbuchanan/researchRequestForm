@@ -23,24 +23,6 @@ var HypothesisComponent = (function () {
         this.helpMethodology = '';
         this.helpAnalysis = '';
     }
-    HypothesisComponent.prototype.displayHelpResearchQuestion = function () {
-        this.helpResearchQuestion = 'This should be a testable hypothesis in the form of a question.  For example, do 8th grade females score higher than males on the KPREP Science assessment after participating in program x?';
-    };
-    HypothesisComponent.prototype.undisplayHelpResearchQuestion = function () {
-        this.helpResearchQuestion = '';
-    };
-    HypothesisComponent.prototype.displayHelpMethodology = function () {
-        this.helpMethodology = 'If your research is purely qualitative (e.g., ethnography, phenomenological research, etc...) select this option.  For any research involving quantitative analysis you will also be asked to supply information about the minimal detectable effect size of your study; there is also a link to free software that can assist you in estimating statistical power/minimally detectable effect sizes.';
-    };
-    HypothesisComponent.prototype.undisplayHelpMethodology = function () {
-        this.helpMethodology = '';
-    };
-    HypothesisComponent.prototype.displayHelpAnalysis = function () {
-        this.helpAnalysis = 'Use this field to provide a detailed description of how you plan to analyze the data.  If your research implies causal relationships in any way, you must include information about how your methods address selection bias/endogeneity issues and/or any other violations of model assumptions that would compromise causal inferences.';
-    };
-    HypothesisComponent.prototype.undisplayHelpAnalysis = function () {
-        this.helpAnalysis = '';
-    };
     HypothesisComponent.prototype.ngOnInit = function () {
         this.hypotheses = this._fb.group({
             hypothesis: this._fb.array([this.initHypothesisFields()])
@@ -51,8 +33,8 @@ var HypothesisComponent = (function () {
             researchQuestion: ['', forms_1.Validators.required],
             methodology: ['', forms_1.Validators.required],
             analysis: ['', forms_1.Validators.required],
-            dataRequirements: [this.collection, forms_1.Validators.required],
-            statisticalPower: this.statPower
+            dataRequirements: [this.collection],
+            statisticalPower: [this.statPower]
         });
     };
     HypothesisComponent.prototype.addHypothesisFields = function () {
@@ -73,6 +55,24 @@ var HypothesisComponent = (function () {
     };
     HypothesisComponent.prototype.updateHypotheses = function () {
         this.hypothesisEmitter.emit(this.myHypotheses);
+    };
+    HypothesisComponent.prototype.displayHelpResearchQuestion = function () {
+        this.helpResearchQuestion = 'This should be a testable hypothesis in the form of a question.  For example, do 8th grade females score higher than males on the KPREP Science assessment after participating in program x?';
+    };
+    HypothesisComponent.prototype.undisplayHelpResearchQuestion = function () {
+        this.helpResearchQuestion = '';
+    };
+    HypothesisComponent.prototype.displayHelpMethodology = function () {
+        this.helpMethodology = 'If your research is purely qualitative (e.g., ethnography, phenomenological research, etc...) select this option.  For any research involving quantitative analysis you will also be asked to supply information about the minimal detectable effect size of your study; there is also a link to free software that can assist you in estimating statistical power/minimally detectable effect sizes.';
+    };
+    HypothesisComponent.prototype.undisplayHelpMethodology = function () {
+        this.helpMethodology = '';
+    };
+    HypothesisComponent.prototype.displayHelpAnalysis = function () {
+        this.helpAnalysis = 'Use this field to provide a detailed description of how you plan to analyze the data.  If your research implies causal relationships in any way, you must include information about how your methods address selection bias/endogeneity issues and/or any other violations of model assumptions that would compromise causal inferences.';
+    };
+    HypothesisComponent.prototype.undisplayHelpAnalysis = function () {
+        this.helpAnalysis = '';
     };
     __decorate([
         core_1.Input(), 
